@@ -1,2 +1,38 @@
 450 questions- https://drive.google.com/file/d/1FMdN_OCfOI0iAeDlqswCiC2DZzD4nPsb/view
 frequent asked quetions-https://docs.google.com/spreadsheets/d/1k6hcdNsmBPxSPqaqmUpRKqBjax1-miMaRRKcbscL3ow/edit#gid=0
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Reverse of string/ array/ number:-
+var a = [1,2,3,4,5];
+   a.reverse();
+   document.write(a);
+------------------------------------
+ function customReverse(originalArray) {
+  let leftIndex = 0;
+  let rightIndex = originalArray.length - 1;
+
+  while (leftIndex < rightIndex) {
+    let temp = originalArray[leftIndex];
+    originalArray[leftIndex] = originalArray[rightIndex];
+    originalArray[rightIndex] = temp;
+    leftIndex++;
+    rightIndex--;
+  }
+}
+let myArray = [1, 2, 3, 4, 5];
+customReverse(myArray);
+console.log(myArray);
+-------------------------------------
+let numbers = [1, 2, 3, 5];
+let reversedNumbers = [];
+for(let i = numbers.length -1; i >= 0; i--) {
+  reversedNumbers.push(numbers[i]);
+}
+console.log(reversedNumbers);
+-----------------------------------
+  var t = [];
+  var a = [1,2,5];
+  for(var i = 0; i < a.length;i++){
+   t[i] = a[a.length-1-i]
+  }
+  console.log(t)
+-----------------------------------
