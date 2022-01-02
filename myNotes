@@ -79,4 +79,27 @@ let minNum = arrayList.reduce((prev, current) => {
   return Math.min(prev, current)
 });
 console.log(minNum);
------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+To find kth mini and max from an array:-
+var numbers = [1,4,3,5,6,2];
+var sorted = numbers.sort(function(a, b) { return a - b });
+var smallest = sorted[0], secondSmallest = sorted[1], thirdSmallest = sorted[2],
+    largest  = sorted[sorted.length - 1], secondLargest = sorted[sorted.length - 2], thirdLargest = sorted[sorted.length - 3];
+console.log('Smallest: ' + smallest);
+console.log('Second Smallest: ' + secondSmallest);
+console.log('Third Smallest: ' + thirdSmallest);
+console.log('Third Largest: ' + thirdLargest);
+console.log('Second Largest: ' + secondLargest);
+console.log('Largest: ' + largest);
+-------------------------------
+function kthSmallest(arr, k){
+    arr.sort((a,b) => a-b);
+    return arr[k - 1];
+}
+console.log(kthSmallest([ 1,2,3,4,5,6,7,8,9,10], 3));
+function kthLargest(arr, k){
+    arr.sort((a,b) => a-b);
+    return arr[arr.length - k];
+}
+console.log(kthLargest([ 1,2,3,4,5,6,7,8,9,10], 3));
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
