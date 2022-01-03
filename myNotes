@@ -198,3 +198,17 @@ function printUnion( arr1,  arr2)
             document.write(arr2[j++] + " ");
     }
   printUnion([ 1, 2, 4, 5, 6 ], [ 1, 2, 3, 5, 7 ]);
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Program to cyclically rotate an array by one:-
+function rotate(arr)
+{
+  var x = arr[arr.length-1], i;
+  for(i = arr.length-1; i > 0; i--) arr[i] = arr[i-1];
+  arr[0] = x;   
+}
+
+let arr = [1, 2, 3, 4, 5];
+rotate(arr);
+  
+for(var i = 0; i < arr.length; i++) document.write(arr[i] + " "); //5 1 2 3 4
+------------------------------------
