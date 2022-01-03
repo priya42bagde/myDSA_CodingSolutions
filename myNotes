@@ -145,4 +145,40 @@ function rearrange(arr){
     for (let i = 0; i < arr.length; i++) document.write(arr[i] + " ");
 }
 rearrange([ -1, 2, -3, 4, -5, 6, -7, 8, 9 ]); //-1 -3 -5 -7 2 6 4 8 9
---------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+To find union and intersection of the 2 sorted arrays:-
+var a = [34, 35, 45, 48, 49];
+var b = [48, 55];
+var union = [...new Set([...a, ...b])];
+console.log(union);
+------------------------------
+function union(a, b) {
+    return a.concat(b.filter(function(el) {
+        return a.indexOf(el) === -1;
+    }));
+}
+console.log(union([1,2,3,4,5],[2,3,4,5,6,7,9]))
+-------------------------------------
+const arr1 = [1,2,3,4];
+const arr2 = [1,2,5,6];
+const intersection = arr1.filter(value=>arr2.includes(value));
+console.log(intersection); // [1,2]
+-----------------------------------
+function printUnion( arr1,  arr2)
+    {var i = 0, j = 0;
+        while (i < arr1.length && j < arr2.length) { //5-0,1,2,3,4
+            if (arr1[i] < arr2[j])
+                document.write(arr1[i++] + " ");
+            else if (arr2[j] < arr1[i])
+                document.write(arr2[j++] + " ");
+            else {
+                document.write(arr2[j++] + " ");
+                i++;
+            }
+        }
+       while (i < arr1.length)
+            document.write(arr1[i++] + " ");
+        while (j < arr2.length)
+            document.write(arr2[j++] + " ");
+    }
+  printUnion([ 1, 2, 4, 5, 6 ], [ 1, 2, 3, 5, 7 ]);
