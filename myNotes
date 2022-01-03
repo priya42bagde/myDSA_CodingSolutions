@@ -162,8 +162,24 @@ console.log(union([1,2,3,4,5],[2,3,4,5,6,7,9]))
 const arr1 = [1,2,3,4];
 const arr2 = [1,2,5,6];
 const intersection = arr1.filter(value=>arr2.includes(value));
-console.log(intersection); // [1,2]
+console.log(intersection); // [1,2] //duplicate
+
+const arr3 = [1,2,3,4];
+const arr4 = [1,2,5,6];
+const array3 = arr3.filter(value=>!arr4.includes(value));
+const array4 = arr4.filter(value=>!arr3.includes(value));
+console.log(array3.concat(array4)) //[3,4,5,6] //unique
 -----------------------------------
+const yourArray = [1,2,2,3,3,3,4,4,4,4]
+let duplicates = []
+const tempArray = [...yourArray].sort()
+for (let i = 0; i < tempArray.length; i++) {
+  if (tempArray[i + 1] === tempArray[i]) {
+    duplicates.push(tempArray[i]) //all the times of each duplicates //[2,3,3,4,4,4] 
+  }
+}
+console.log(duplicates) 
+----------------------------------
 function printUnion( arr1,  arr2)
     {var i = 0, j = 0;
         while (i < arr1.length && j < arr2.length) { //5-0,1,2,3,4
