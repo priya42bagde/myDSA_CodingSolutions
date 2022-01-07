@@ -293,3 +293,40 @@ function getMinDiff(arr, n, k) {
 }
 console.log( getMinDiff([1, 5, 8, 10], 4, 2))
 --------------------------------------
+Given an array of N integers arr[] where each element represents the max number of steps that can be made forward from that element. Find the minimum number of jumps to reach the end of the array (starting from the first element). If an element is 0, then you cannot move through that element.
+Note: Return -1 if you can't reach the end of the array.
+https://www.youtube.com/watch?v=muDPTDrpS28
+
+function jumpPossible(arr){
+  var reachable = 0;
+  for(var i=0; i<arr.length; i++){
+    if(reachable < i) return false;
+    reachable = Math.max(reachable, i+ arr[i]);
+    console.log(reachable)
+  }
+  return true;
+}
+console.log(jumpPossible([1, 3, 5, 8, 9, 2, 6, 7, 6, 8, 9]))
+----------------------------------------
+https://www.youtube.com/watch?v=bRcVdrkl0hA
+function jumpPossible(arr){
+  if(arr.length ==0 || arr.length ==1) return 0;
+  if(arr[0]==0) return -1;
+  
+  var maxReach = arr[0], //initial value
+  var steps = arr[0], //initial value
+  var jumps =0;
+  
+  for(var i=0; i<arr.length-1; i++){
+   steps--;
+    maxReach = Math.max(maxReach, arr[i]+i); //arr[i]+i means index plus element at that index
+    if(steps == 0){ //if steps is zero then increase the jump AND steps will be change 
+      jumps++;
+      steps = maxReach -i;
+      if (steps <= 0) return -1; //if 0 present in between of the array of an elements 
+    }
+  }
+  return jumps+1; // 1 added becoz at first move we didn't counted
+}
+console.log(jumpPossible([3,4,2,1,2,3]))
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
