@@ -355,3 +355,30 @@ function oneDuplicate(array){
 }
 console.log(oneDuplicate([3,4,2,1,2]))
 ---------------------
+Given two sorted arrays arr1[] of size N and arr2[] of size M. Each array is sorted in non-decreasing order. Merge the two arrays into one sorted array in 
+non-decreasing order without using any extra space.
+var arr1 =  [1, 4 ]; var arr2 =[2, 3 ];
+function merge(m , n) { //2,2
+        var i = 0; //1 
+        var temp = 0; 
+    // While loop till last element of array 1(sorted)is greater than first element of array 2(sorted)
+        while (arr1[m - 1] > arr2[0]) { //4>2
+            if (arr1[i] > arr2[0]) { //1>2 //4>2
+                // Swap arr1[i] with first element of arr2 and 
+                // sorting the updated arr2(arr1 is already sorted)
+                // swap(arr1[i],arr2[0]);
+                temp = arr1[i]; //1
+                arr1[i] = arr2[0]; //2
+                arr2[0] = temp;
+                arr2.sort((a,b)=>a-b);
+            }
+            i++;
+        }
+    }
+merge(arr1.length, arr2.length); 
+        document.write("After Merging <br\>First Array: ");
+        document.write(arr1.toString());
+        document.write("<br\>Second Array:  ");
+        document.write(arr2.toString());
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
