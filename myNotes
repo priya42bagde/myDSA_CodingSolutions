@@ -330,3 +330,28 @@ function jumpPossible(arr){
 }
 console.log(jumpPossible([3,4,2,1,2,3]))
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Given an array of integers nums containing n + 1 integers where each integer is in the range [1, n] inclusive.
+There is only one repeated number in nums, return this repeated number.
+function oneDuplicate(array){
+ let arr = array.sort(); 
+ for(var i=0; i<arr.length-1; i++){
+ if(arr[i]==arr[i+1]){
+   return arr[i]
+ }
+}
+}
+console.log(oneDuplicate([3,4,2,1,2]))
+------------------------
+function oneDuplicate(array){
+    let obj = {}
+    for(let num of array){
+        if(obj[num]){
+            return num; //duplicate
+        }else{
+            obj[num] = 1;
+        }
+    }
+    console.log(obj)
+}
+console.log(oneDuplicate([3,4,2,1,2]))
+---------------------
