@@ -635,5 +635,66 @@ const maxProfit = function(prices) {
 };
 console.log(maxProfit ([7,1,5,3,6,4]))
 -------------------------------------
+Count pairs with given sum :-
+function getPairsCount(arr, n, sum)
+{
+    let count = 0; // Initialize result
+    for (let i = 0; i < n; i++)
+        for (let j = i + 1; j < n; j++)
+            if (arr[i] + arr[j] == sum){
+                count++;
+                console.log(arr[i], arr[j])
+                }
 
+    return count;
+}
+    let arr = [ 1, 5, 7, -1, 5 ];
+    let n = arr.length;
+    let sum = 6;
+    document.write("Count of pairs is "  + getPairsCount(arr, n, sum));
+    ------------------------------------
+    function printPairs(arr, n, sum) {
+        var m = {};
+        for (var i = 0; i < n; i++) {
+          var rem = sum - arr[i]; 
+          if (m.hasOwnProperty(rem)) {
+            var count = m[rem];
+            for (var j = 0; j < count; j++) {
+              document.write("(" + rem + ", " + arr[i] + ")" + "<br>");
+            }
+          } 
+          if (m.hasOwnProperty(arr[i])) {
+            m[arr[i]]++;
+          } else {
+            m[arr[i]] = 1;
+          }
+        }
+      }
+      var arr = [1, 5, 7, -1, 5];
+      var n = arr.length;
+      var sum = 6;
+printPairs(arr, n, sum);
+---------------------------------------
+ function pairedElements(arr, sum, n) {
+            var low = 0;
+            var high = n - 1;
+            while (low < high) {
+                if (arr[low] + arr[high] == sum) {
+                    document.write("The pair is : (" +
+                        arr[low] + ", " +
+                        arr[high] + ")<br>");
+                }
+                if (arr[low] + arr[high] > sum) {
+                    high--;
+                }
+                else {
+                    low++;
+                }
+            }
+        }
+        var arr = [ 2, 3, 4, -2, 6, 8, 9, 11]
+        var n = arr.length;
+        arr.sort(function(a,b){return a-b;});
+        pairedElements(arr, 6, n);
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
