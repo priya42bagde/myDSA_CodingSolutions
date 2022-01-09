@@ -607,5 +607,33 @@ console.log(countInversion([2, 4, 1, 3, 5])) //3
 let arr= [2, 4, 1, 3, 5]
 document.write(mergeSortAndCount(arr, 0, arr.length - 1));
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Best Time to Buy and Sell Stock:-
+var maxProfit = function(prices) {
+   let profit
+   let maxProfit = 0  
+   prices.forEach(function(buy, index) {
+       let rest = prices.slice(index + 1); document.write(rest+ "---");       
+       if (rest){
+           let sell = Math.max(...rest)      
+           sell > buy ? profit = sell - buy : null
+           profit > maxProfit ? maxProfit = profit : null 
+           console.log(profit)
+     }     
+   })  
+    return maxProfit    
+};
+console.log(maxProfit ([7,1,5,3,6,4]))
+------------------------------------
+const maxProfit = function(prices) {
+    let maxProfit = 0; let min = prices[0];
+    let lowestPrice  = prices[0];
+    for(let i = 1; i < prices.length; i++) {
+        min = Math.min(prices[i], min);
+        maxProfit = Math.max(maxProfit, prices[i] - min);
+    }
+    return maxProfit;
+};
+console.log(maxProfit ([7,1,5,3,6,4]))
+-------------------------------------
 
 
