@@ -381,4 +381,85 @@ merge(arr1.length, arr2.length);
         document.write("<br\>Second Array:  ");
         document.write(arr2.toString());
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Kadane's Algorithm:- Given an array Arr[] of N integers. Find the contiguous sub-array(containing at least one number) which has the maximum sum and return its sum.
+function sumSubArray(arr){ 
+     var maxi=arr[0]; //1 //2//5
+     var cursum=arr[0]; //1 //2 //3 //1
+     for(var i=1;i<arr.length;i++) //1,2,3,4
+        {
+            if(cursum<0) cursum=0; //1<0 //2<0 //3<0 //4<0
+            cursum=cursum+arr[i]; //2=0+2 //5=2+3 //1=3+-2 // 6=1+5
+            maxi=Math.max(maxi,cursum); //2=1,2 //5=2,5 // 5=1,5 //6,1
+        }
+    return maxi;
+}
+console.log(sumSubArray([1,2,3,-2,5])) //9
+----------------------------------
+function sumSubArray(arr){ 
+      let max = arr[0];
+      let sum = 0;
 
+        for(let i=0; i<arr.length; i++) {
+            sum += arr[i];
+            if (sum > max) {
+                max = sum;
+            }
+            if (sum < 0 ) {
+                sum = 0;
+            }
+        }
+        return max;
+}
+console.log(sumSubArray([ -1,-2,-3,-4])) //-1
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Given an array of intervals where intervals[i] = [starti, endi], merge all overlapping intervals, and return an array of the non-overlapping intervals that cover 
+all the intervals in the input.
+Example 1:
+Input: intervals = [[1,3],[2,6],[8,10],[15,18]]
+Output: [[1,6],[8,10],[15,18]]
+Explanation: Since intervals [1,3] and [2,6] overlaps, merge them into [1,6].
+-------
+function merge(intervals) {  
+    intervals.sort((a,b) => a[0] - b[0]); document.write(intervals +"<hr/>");
+    let results = [[intervals[0][0], intervals[0][1]]];  document.write(results +"<hr/>");
+    
+    for (let i = 1; i < intervals.length; i++) { //1,2,3
+      if (intervals[i][0] <= results[results.length-1][1]) { 2<6
+        results[results.length-1][1] = Math.max(results[results.length-1][1], intervals[i][1]) // 6,6
+      } else {
+       results.push(intervals[i])
+      }
+    }
+    return results;
+  };
+  console.log(merge([[1,3],[2,6],[8,10],[15,18]]))
+  --------------------------------------------------
+  function merge(intervals) {
+  if(intervals.length <= 1) return intervals; //// test if there are at least 2 intervals
+  var result = []; var top   = null;
+  intervals = intervals.sort(function(a, b) {return a[0] - b[0]});
+  result.push(intervals[0]); //document.write(result) //// push the 1st interval into the result
+
+  // start from the next interval and merge if needed
+  for (var i = 1; i < intervals.length; i++) 
+  {
+    // get the top element
+    top = result[result.length - 1];  
+    // if the current interval doesn't overlap with the 
+    // result top element, push it to the result
+    if (top[1] < intervals[i][0]) {
+      result.push(intervals[i]);
+    }
+    // otherwise update the end value of the top element
+    // if end of current interval is higher
+    else if (top[1] < intervals[i][1])
+    {
+      top[1] = intervals[i][1];
+      result.pop();
+      result.push(top);
+    }
+  }
+  return result;
+}
+console.log(merge([[1,3],[2,6],[8,10],[15,18]]))
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
