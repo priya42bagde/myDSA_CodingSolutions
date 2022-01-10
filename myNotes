@@ -724,3 +724,44 @@ function findCommon(ar1, ar2, ar3, n1, n2, n3)
       document.write("Common Elements are ");
       findCommon(ar1, ar2, ar3, n1, n2, n3);
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Rearrange array in alternating positive & negative items with O(1) extra space:  https://www.youtube.com/watch?v=5MeI5Kk8KTQ
+    function rightrotate(arr , n , outofplace , cur) {
+        var tmp = arr[cur];
+        for ( var i = cur; i > outofplace; i--)
+            arr[i] = arr[i - 1];
+        arr[outofplace] = tmp;
+    } 
+    function rearrange(arr , n) {
+        var outofplace = -1; 
+        for (var index = 0; index < n; index++)
+        {
+            if (outofplace >= 0)
+            {
+                if ((arr[index] >= 0 && arr[outofplace] < 0) || (arr[index] < 0 && arr[outofplace] >= 0)) {
+                    if (index - outofplace >= 2)
+                        outofplace = outofplace + 2;
+                    else
+                        outofplace = -1;
+                }
+            }
+            if (outofplace == -1) {
+               if ((arr[index] <0 && index%2 == 1) || (arr[index] >= 0 && index%2 == 0))
+                    outofplace = index;
+            }
+        }
+    }
+    function printArray(arr , n) {
+        for (i = 0; i < n; i++)
+            document.write(arr[i] + " ");
+        document.write("");
+    }
+    var arr = [ -5, -2, 5, 2, 4, 7, 1, 8, 0, -8 ];
+        var n = arr.length;
+ 
+        document.write("Given array is ");
+        printArray(arr, n);
+ 
+        rearrange(arr, n);
+ 
+        document.write("<br/>RearrangeD array is ");
+        printArray(arr, n);
