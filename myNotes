@@ -765,3 +765,23 @@ Rearrange array in alternating positive & negative items with O(1) extra space: 
  
         document.write("<br/>RearrangeD array is ");
         printArray(arr, n);
+	
+	https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2Fpriya42bagde%2FmyDSA%2Fblob%2Fmain%2FmyNotes
+	const subArrayExists = (arr) => {
+    const sumSet = new Set();
+    // Traverse through array and store prefix sums
+    let sum = 0;
+    for (let i = 0 ; i < arr.length ; i++)
+    {
+        sum = sum + arr[i]; //0+4=4 // 4+2=6 //6+(-3)=3 //3+1=4
+        document.write(arr[i] + " ")
+        if (sum === 0 || sumSet.has(sum)) return true; // If prefix sum is 0 or it is already present
+        sumSet.add(sum);
+    }
+    return false;
+}
+const arr = [4, 2, 0, 1, 6] //[4, 2, -3, 1, 6];
+if (subArrayExists(arr))
+    console.log("Found a subarray with 0 sum");
+else
+    console.log("No Such Sub Array Exists!");
