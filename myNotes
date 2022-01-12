@@ -765,9 +765,9 @@ Rearrange array in alternating positive & negative items with O(1) extra space: 
  
         document.write("<br/>RearrangeD array is ");
         printArray(arr, n);
-	
-	https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2Fpriya42bagde%2FmyDSA%2Fblob%2Fmain%2FmyNotes
-	const subArrayExists = (arr) => {
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+subArray sum equals to zero:-
+const subArrayExists = (arr) => {
     const sumSet = new Set();
     // Traverse through array and store prefix sums
     let sum = 0;
@@ -785,3 +785,71 @@ if (subArrayExists(arr))
     console.log("Found a subarray with 0 sum");
 else
     console.log("No Such Sub Array Exists!");
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Factorials of large numbers
+function factorialize(num) {
+  if (num < 0)  return -1;
+  else if (num == 0)  return 1;
+  else { return (num * factorialize(num - 1)); }
+}
+console.log(factorialize(5));
+------------------------------------------
+function factorialize(num) {
+  var result = num;
+  if (num === 0 || num === 1) return 1; 
+  while (num > 1) 
+  { 
+    num--;
+    result *= num;
+  }
+  return result;
+}
+console.log(factorialize(5));
+-----------------------------------------
+function factorialize(num) {
+  if (num === 0 || num === 1)
+    return 1;
+  for (var i = num - 1; i >= 1; i--) {
+    num *= i;
+  }
+  return num;
+}
+console.log(factorialize(5));
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Maximum Product Subarray 
+function productSubArray(nums) {
+  let globalMaxProduct = nums[0];
+  for (let i = 0; i < nums.length; i++) {
+    let localMaxProduct = 1;
+    for (let j = i; j < nums.length; j++) {
+      localMaxProduct *= nums[j];
+
+      if (localMaxProduct > globalMaxProduct) {
+        globalMaxProduct = localMaxProduct;
+      }
+    }
+  }
+  return globalMaxProduct;
+}
+console.log(productSubArray([6, -3, -10, 0, 2]))
+-------------------------------------------------
+function productSubArray(nums) {
+ if(nums == null || nums.length == 0) return 0;
+ if(nums.length ==1) return nums[0];
+ let maxProduct = 0;
+ let currProduct = 1;
+ for (let i = 0; i < nums.length; i++) {
+    currProduct *= nums[i];
+    maxProduct = Math.max(currProduct, maxProduct);
+    if(currProduct ==0) currProduct = 1;
+}
+currProduct = 1;
+for (let i = nums.length-1; i >=0; i--) {
+    currProduct *= nums[i];
+    maxProduct = Math.max(currProduct, maxProduct);
+    if(currProduct ==0) currProduct = 1;
+}
+return maxProduct
+}
+console.log(productSubArray([6, -3, -10, 0, 2]))
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
