@@ -915,3 +915,47 @@ let arr = [1, 9, 3, 10, 4, 20, 2];
 let n = arr.length;
 document.write("Length of the Longest contiguous subsequence is " + findLongestConseqSubseq(arr, n));
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Given an array of size n and a number k, find all elements that appear more than n/k times
+   function morethanNdK(a,n,k)
+    {
+        let x = n / k;  
+        let y=new Map(); // Hash map initialization
+        for (let i = 0; i < n; i++) // count the frequency of each element.
+        {
+            if (!y.has(a[i]))   // element doesn't exist in hash table
+                y.set(a[i], 1);
+            else  // element exist in the hash table
+            {
+                let count = y.get(a[i]);
+                y.set(a[i], count + 1);
+            }
+        }
+        for (let [key, value] of y.entries())  // iterate over each element in the hash table and check their frequency, if it is more than n/k, print it.
+        {
+            let temp = value;
+            if (temp > x) document.write(key+"<br>");
+        }
+    }  
+    let a=[1, 1, 2, 2, 3, 5, 4, 2, 2, 3, 1, 1, 1]; console.log(a.sort())
+    let n = 12;
+    let k = 4;
+    morethanNdK(a, n, k);
+-----------------------------------------
+function printElements(arr , n , k) {
+        var x = parseInt(n / k);
+        var mp = new Map(); // Counting frequency of every element using Counter //MAP works on key-value pairs
+        for (var i = 0; i < n; i++) {
+            if (mp.has(arr[i]))
+                mp.set(arr[i],mp.get(arr[i])+1);
+            else
+                mp.set(arr[i], 1);
+        }
+        for (var k of mp) {  // Traverse the map and print all the elements with occurrence more than n/k times
+            if (parseInt(k[1]) > x) document.write(k[0]+"<br/>");
+        }
+    }
+var arr = [ 1, 1, 2, 2, 3, 5, 4, 2, 2, 3, 1, 1, 1 ];
+        var n = arr.length;
+        var k = 4;
+printElements(arr, n, k);
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
