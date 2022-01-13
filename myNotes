@@ -877,6 +877,26 @@ Longest consecutive subsequence :-
         document.write( "Length of the Longest contiguous subsequence is " +findLongestConseqSubseq(arr, n) );
 -----------------------------------------------
 function findLongestConseqSubseq(arr, n) {
+   var mx = 0; var count = 0; arr.sort(function (a, b) { return a - b; })
+   for (var i = 0; i < n; i++) {
+      if (i > 0 && (arr[i] == arr[i - 1] + 1)) {  // Check if the previous value is consecutive to the current value.
+                count++;
+            }
+      else if (i > 0 && arr[i] == arr[i - 1]) {  // Skip if the current value is equal to the previous value.
+                continue;
+            }
+      else { // Resetting count for next upcoming consecutive sequence.
+                count = 1;
+            }
+            mx = Math.max(mx, count);            
+    }
+    return mx;
+}
+let arr = [1, 9, 3, 10, 4, 20, 2];
+let n = arr.length;
+document.write("Length of the Longest contiguous subsequence is " + findLongestConseqSubseq(arr, n));
+-----------------------------------------------
+function findLongestConseqSubseq(arr, n) {
     let S = new Set(); let ans = 0;
     for (let i = 0; i < n; i++) S.add(arr[i]);  // Hash all the array elements
     for (let i = 0; i < n; i++)
