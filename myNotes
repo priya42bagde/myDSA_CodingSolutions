@@ -853,3 +853,45 @@ return maxProduct
 }
 console.log(productSubArray([6, -3, -10, 0, 2]))
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Longest consecutive subsequence :-
+   function findLongestConseqSubseq(arr, n) {
+            let count = 0;
+            arr.sort(function (a, b) { return a - b; })
+            var v = [];
+            v.push(arr[0]);
+            for (let i = 1; i < n; i++) { //remove duplicate elements //or use include method
+                if (arr[i] != arr[i - 1])
+                    v.push(arr[i]);
+            }
+            console.log(v) 
+            for (let i = 0; i < v.length; i++) { //main logic to find longest length
+                if (v[i] - v[i - 1] == 1){
+                    count++;
+                    console.log(v[i])  
+                    }                
+            }
+            return count;
+        }
+        let arr = [1, 9, 3, 10, 4, 20, 2]; 
+        let n = arr.length;
+        document.write( "Length of the Longest contiguous subsequence is " +findLongestConseqSubseq(arr, n) );
+-----------------------------------------------
+function findLongestConseqSubseq(arr, n) {
+    let S = new Set(); let ans = 0;
+    for (let i = 0; i < n; i++) S.add(arr[i]);  // Hash all the array elements
+    for (let i = 0; i < n; i++)
+    { 
+        if (!S.has(arr[i] - 1)) //if element not present //0 // if current element is the starting element of a sequence
+        {
+           let j = arr[i]; //j=1//2 //3//4  // Then check for next elementsin the sequence
+            while (S.has(j))
+                j++; //2
+            ans = Math.max(ans, j - arr[i]); 
+        }
+    }
+    return ans;
+}
+let arr = [1, 9, 3, 10, 4, 20, 2];
+let n = arr.length;
+document.write("Length of the Longest contiguous subsequence is " + findLongestConseqSubseq(arr, n));
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
