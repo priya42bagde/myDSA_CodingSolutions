@@ -1274,3 +1274,26 @@ let n = arr.length;
 threeWayPartition(arr, n, 10, 20);
 document.write("Modified array <br>");
 for(let i = 0; i < n; i++) document.write(arr[i] + " ");
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Minimum swaps and K together :- https://www.youtube.com/watch?v=PLu6uvp9l1k
+function minSwap(arr,  n,  k) {
+    var good=0, bad=0;
+    for (var i = 0; i < n; i++){ // Find count of elements which are less than equals to k
+        if (arr[i] <= k) good++; //3   
+        }
+    var bad = 0; // Find unwanted elements in current window of size 'count'
+    for (var i = 0; i < good; i++){ //0,1,2 <3
+        if (arr[i] > k)  bad++; //5
+    }
+    var i=0, j=good, ans = bad;
+   while(j<n) {
+      if (arr[i] > k) bad--;
+      if (arr[j] > k) bad++;
+      ans = Math.min(ans, bad);
+      i++; j++;
+    }
+    return ans;
+}
+var arr=[2, 1, 5, 6, 3]; var n =arr.length; var k = 3;
+document.write(minSwap(arr, n, k));
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
