@@ -1178,4 +1178,68 @@ let arr = [ 3, 4, 1, 9, 56, 7, 9, 12 ];
 let m = 5; // Number of students
 let n = arr.length;
 document.write("Minimum difference is " +  findMinDiff(arr, n, m));
------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Smallest subarray with sum greater than a given value:- (https://www.youtube.com/watch?v=NKoHjWl2m8Y)
+function smallestSubWithSum(arr, n, x) //x=51, n=6
+{
+    let min_len = n + 1; //7
+    for (let start=0; start<n; start++) //0,1,2,3,4,5
+    {
+        let curr_sum = arr[start]; //1,4,45,6,10,19
+        if (curr_sum > x) return 1;
+        for (let end=start+1; end<n; end++) //1,2,3,4,5,6
+        {
+          curr_sum = curr_sum + arr[end]; //5=1+4 //50=5+45 //56=50+6 //66=56+10 //85=66+19
+          if (curr_sum > x && (end - start + 1) < min_len)  //56>51 // <7
+          min_len = (end - start + 1); console.log(end - start + 1);
+        }
+    }
+    return min_len;
+}
+let arr1 = [ 1, 4, 45, 6, 10, 19 ];
+let x = 51;
+let n1 = arr1.length;
+let res1 = smallestSubWithSum(arr1, n1, x);
+(res1 == n1 + 1) ? document.write("Not possible<br>"): document.write(res1 + "<br>");
+-----------------------------------------------------
+function smallestSubWithSum(arr, n, x) //x=51, n=6
+{
+    let min_len = n + 1; //7
+    for (let start=0; start<n; start++) //0,1,2,3,4,5
+    {
+        let curr_sum = arr[start]; //1,4,45,6,10,19
+        if (curr_sum > x) return 1;
+        for (let end=start+1; end<n; end++) //1,2,3,4,5,6
+        {
+          curr_sum = curr_sum + arr[end]; //5=1+4 //50=5+45 //56=50+6 //66=56+10 //85=66+19
+          if (curr_sum > x && (end - start + 1) < min_len)  //56>51 // <7
+          min_len = (end - start + 1); 
+        }
+    }
+    return min_len;
+}
+let arr1 = [ 1, 4, 45, 6, 10, 19 ];
+let x = 51;
+let n1 = arr1.length;
+let res1 = smallestSubWithSum(arr1, n1, x);
+(res1 == n1 + 1) ? document.write("Not possible<br>"): document.write(res1 + "<br>");
+---------------------------------------------------------------
+function smallestSubWithSum(arr, n, x) //x=51, n=6
+{
+    let min=n + 1, sum=0, start=0, end=0; 
+    while(end<n){ //n=6
+       sum= sum+arr[end++];
+       while(sum>x && start<n){
+         if(end-start<min){
+           min= end-start
+         }
+         sum=sum-arr[start++]
+       }
+    }
+    return min;
+}
+let arr1 = [ 1, 11, 100, 1, 0, 200, 3, 2, 1, 250 ];
+let x =280;
+let n1 = arr1.length;
+let res1 = smallestSubWithSum(arr1, n1, x);
+(res1 == n1 + 1) ? document.write("Not possible<br>"): document.write(res1 + "<br>");
