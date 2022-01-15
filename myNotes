@@ -1161,3 +1161,21 @@ Trapping Rain Water :- https://www.youtube.com/watch?v=F4d15bMiYEQ
  }
  console.log(rainWater([0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]))
  -----------------------------------------------------------
+Chocolate Distribution Problem:-Given an array of n integers where each value represents the number of chocolates in a packet. Each packet can have a variable number of chocolates. There are m students, the task is to distribute chocolate packets such that: 
+Each student gets one packet.The difference between the number of chocolates in the packet with maximum chocolates and packet with minimum chocolates given to the students is minimum.
+function findMinDiff(arr, n, m){
+    arr.sort(function(a, b){return a - b}); console.log(arr) //[1, 3, 4, 7, 9, 9, 12, 56]
+    if (n < m) return -1; // Number of students cannot be more than number of packets
+    let min_diff = Number.MAX_VALUE;   // Largest number of chocolates
+    for(let i = 0; i + m - 1 < n; i++) //m for students and -1 because last index length
+    { //1,9
+        let diff = arr[i + m - 1] - arr[i]; //9-1=8 //9-3=6 //12-4=8 //56-7=49
+        if (diff < min_diff) min_diff = diff;
+    }
+    return min_diff;
+}
+let arr = [ 3, 4, 1, 9, 56, 7, 9, 12 ];
+let m = 5; // Number of students
+let n = arr.length;
+document.write("Minimum difference is " +  findMinDiff(arr, n, m));
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
