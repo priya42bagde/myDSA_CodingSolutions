@@ -1297,3 +1297,64 @@ function minSwap(arr,  n,  k) {
 var arr=[2, 1, 5, 6, 3]; var n =arr.length; var k = 3;
 document.write(minSwap(arr, n, k));
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Palindromic Array :- (Find minimum number of merge operations to make an array palindrome)(https://www.youtube.com/watch?v=wiDLcGxhh80)
+function arrayPalindrome(arr,n){
+ let result=0, i=0, j=n-1;
+ while(i<j){
+  if(arr[i]==arr[j]){
+   i++; j--;
+  }
+  else if(arr[i]<arr[j]){
+   i++;
+   arr[i]=arr[i]+arr[i-1];
+   result++;
+  }
+  else if(arr[i]>arr[j]){
+  j--;
+  arr[j]=arr[j]+arr[j+1];
+  result++;
+  }
+ }
+  return result;
+}
+let arr=[1, 4, 5, 9, 1];
+let n= arr.length;
+console.log(arrayPalindrome(arr,n))
+-------------------------------------------
+function palindrome(arr, n){ 
+   let flag = 0;
+   for (let i = 0; i <= n / 2 && n != 0; i++) { // Loop till array size n/2.
+      if (arr[i] != arr[n - i - 1]) { // Check if first and last element are different Then set flag to 1.
+            flag = 1;
+            break;
+        }
+    }
+    if (flag == 1) document.write("Not Palindrome");
+    else document.write("Palindrome");
+}
+let arr = [ 1, 2, 3, 2, 1 ];let n = arr.length;
+palindrome(arr, n); //palindrome
+---------------------------------------
+ function isPalindrome(N){ //121
+        let str = "" + N;
+        let len = str.length;
+        for (let i = 0; i < parseInt(len / 2, 10); i++){
+            if (str[i] != str[len - 1 - i ])
+                return false;
+        }
+        return true;
+    }
+function isPalinArray(arr, n){  // Function to check if an array is PalinArray or not
+       for (let i = 0; i < n; i++){ //121
+            let ans = isPalindrome(arr[i]);
+            if (ans == false)
+                return false;
+        }
+        return true;
+    }
+    let arr = [ 121, 131, 20 ];
+    let n = arr.length;
+    let res = isPalinArray(arr, n);
+    if (res == true) document.write("Array is a PalinArray");
+    else document.write("Array is not a PalinArray");
+    --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
