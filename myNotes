@@ -1357,4 +1357,110 @@ function isPalinArray(arr, n){  // Function to check if an array is PalinArray o
     let res = isPalinArray(arr, n);
     if (res == true) document.write("Array is a PalinArray");
     else document.write("Array is not a PalinArray");
-    --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Median of two sorted arrays:- https://www.youtube.com/watch?v=afwPSXmRsGs https://www.youtube.com/watch?v=NTop3VTjmxk&t=17s https://www.youtube.com/watch?v=ws98ud9uxl4
+var findMedianSortedArrays = function(nums1, nums2) {
+    const nums = nums1.concat(nums2)
+    nums.sort( function(a,b) { return a - b; } )
+    if (((nums.length + 1) % 2 ) === 0){ //odd
+         let median = (nums.length + 1)/2
+         return nums[median - 1]  //find the index of the median in the array
+    } 
+    else {  //you need to subtract one from the index since arrays start at 0
+       let first = (nums.length/2) //index of the first median
+       let second = first + 1 //index of the second median
+       let med1 = nums[first - 1]
+       let med2 = nums[second - 1]
+       const median = (med1 + med2)/2 
+       return parseInt(median) 
+    }    
+};
+let arr1 = [1,2,3], arr2=[4,5,6];
+console.log(findMedianSortedArrays(arr1, arr2));
+---------------------------------------------------
+var findMedianSortedArrays = function(nums1, nums2) {
+    const nums = nums1.concat(nums2)
+    nums.sort( function(a,b) { return a - b; } )
+    if (((nums.length + 1) % 2 ) === 0){ //odd
+         let median = (nums.length + 1)/2
+         return nums[median - 1]  //find the index of the median in the array
+    } 
+    else {  //you need to subtract one from the index since arrays start at 0
+       let first = (nums.length/2) //index of the first median
+       let second = first + 1 //index of the second median
+       let med1 = nums[first - 1]
+       let med2 = nums[second - 1]
+       const median = (med1 + med2)/2 
+       return parseInt(median) 
+    }    
+};
+let arr1 = [1,2,3], arr2=[4,5,6];
+console.log(findMedianSortedArrays(arr1, arr2));
+--------------------------------------------------
+function findmedian(a, n1, b, n2){
+    let i = 0; let j = 0; let k; let m1 = -1, m2 = -1;
+    for(k = 0; k <= (n1 + n2) / 2; k++){
+        if (i < n1 && j < n2){
+            if (a[i] < b[j])
+            {
+                m2 = m1;
+                m1 = a[i];
+                i++;
+            }
+            else{
+                m2 = m1;
+                m1 = b[j];
+                j++;
+            }
+        }
+        else if (i == n1){ /* all elements of a[] are smaller than smallest(or first) element of b[] or a[] is empty*/
+            m2 = m1;
+            m1 = b[j];
+            j++;
+        }
+        else if (j == n2){  /* all elements of b[] are smaller than smallest(or first) element of a[] or b[] is empty*/
+            m2 = m1;
+            m1 = a[i];
+            i++;
+        }
+    }
+    if ((n1 + n2) % 2 == 0){ /*sum of number of elements of the arrays is even */
+           return (m1 + m2) / 2;
+    }
+    return m1;  /* sum of number of elements of the arrays is odd */
+}
+let a = [ 1, 12, 15, 26, 38 ]; let b = [ 2, 13, 24 ];
+let n1 = a.length; let n2 = b.length;
+document.write(findmedian(a, n1, b, n2));
+--------------------------------------
+function getMedian(ar1, ar2, n){
+    var i = 0; var j = 0; var count; var m1 = -1, m2 = -1;
+    for (count = 0; count <= n; count++){
+        if (i == n) { /*all elements of ar1[] are smaller than smallest(or first) element of ar2[]*/
+            m1 = m2;
+            m2 = ar2[0];
+            break;
+        }
+        else if (j == n){  /*all elements of ar2[] are smaller than smallest(or first) element of ar1[]*/
+            m1 = m2;
+            m2 = ar1[0];
+            break;
+        }
+        if (ar1[i] <= ar2[j]){ /* equals sign because if two arrays have some common elements */
+            m1 = m2; /* Store the prev median */
+            m2 = ar1[i];
+            i++;
+        }
+        else{
+            m1 = m2; /* Store the prev median */
+            m2 = ar2[j];
+            j++;
+        }
+    }
+    return (m1 + m2)/2;
+}
+var ar1 = [1, 12, 15, 26, 38]; var ar2 = [2, 13, 17, 30, 45];
+var n1 = ar1.length; var n2 = ar2.length;
+if (n1 == n2) document.write("Median is "+ getMedian(ar1, ar2, n1));
+else document.write("Doesn't work for arrays of unequal size");
+-------------------------------------------------
