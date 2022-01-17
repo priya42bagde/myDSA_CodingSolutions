@@ -1464,7 +1464,7 @@ var n1 = ar1.length; var n2 = ar2.length;
 if (n1 == n2) document.write("Median is "+ getMedian(ar1, ar2, n1));
 else document.write("Doesn't work for arrays of unequal size");
 -------------------------------------------------
-Spirally traversing a matrix :--https://www.youtube.com/watch?v=4mSTiSBk_iY&t=903s
+Spirally traversing a matrix :--https://www.youtube.com/watch?v=4mSTiSBk_iY&t=903s https://www.geeksforgeeks.org/print-a-given-matrix-in-spiral-form/
 function spriral(arr,r,c){
   var top=0, bottom=r-1, left=0, right=c-1, i, result;
   while(top<=bottom && left<=right){
@@ -1498,3 +1498,5 @@ var arr=[[1, 2, 3, 4],
 var r=4;
 var c=4;
 console.log(spriral(arr,r,c)) //1 2 3 4 8 12 16 15 14 13 9 5 6 7 11 10
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Search an element in matrix:-
