@@ -1500,3 +1500,43 @@ var c=4;
 console.log(spriral(arr,r,c)) //1 2 3 4 8 12 16 15 14 13 9 5 6 7 11 10
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Search an element in matrix:-
+function search(mat, m, n, x) //m=5, n=4, x=29
+{
+    var i = m - 1; //i=5-1=4 //3
+    var j = 0; //1
+        while (i >= 0 && j < n) //4>=0, 0<29
+        {
+            if (mat[i][j] == x) 
+                return true;
+            if (mat[i][j] > x) //4,1(32)>29 
+                i--;
+            else // if mat[i][j] < x //27<29
+                j++;
+        } 
+        return false;
+}
+var mat = [[10, 20, 30, 40],
+              [15, 25, 35, 45],
+              [27, 29, 37, 48],
+              [32, 33, 39, 50],
+              [50, 60, 70, 80]]; //[[1,3,5,7],[10,11,16,20],[23,30,34,60]];
+if (search(mat, 5, 4, 29)) document.write("Yes");
+else document.write("No");
+----------------------------------------------------------
+const linearSearch = (arr, target) => {
+        for (let i = 0; i < arr.length; i++) {
+            for (let j = 0; j < arr[i].length; j++) {
+                if (arr[i][j] == target) {
+                    return [i, j];
+                }
+            }
+        }
+        return [-1, -1];
+    }
+    let arr = [[3, 12, 9],
+    [5, 2, 89],
+    [90, 45, 22]];
+    let target = 2;
+    let ans = linearSearch(arr, target); console.log(ans);
+    document.write(`Element found at index: [${ans[0]} ${ans[1]}]`);
+--------------------------------------------------------------------------
