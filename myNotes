@@ -1540,3 +1540,41 @@ const linearSearch = (arr, target) => {
     let ans = linearSearch(arr, target); console.log(ans);
     document.write(`Element found at index: [${ans[0]} ${ans[1]}]`);
 --------------------------------------------------------------------------
+Median in a row-wise sorted Matrix:--
+function countlessThanMid(a, mid){
+      var l = 0, h = a.length-1; 
+       while(l <= h) {
+           var md = (l + h)/2; 
+           if(a[md] <= mid) {
+               l = md + 1;
+           }
+           else {
+               h = md - 1;
+           }
+       }
+       return l; 
+ }
+function binaryMedian(arr, r, c)
+{
+   //var median(int matrix[][], int r, int c) {
+   var low = 0;
+   var high = 10000000000; 
+   while(low<=high){
+     var mid=(low+high)/2;
+      var count=0;
+     for(var i=0;i<r;i++){
+  count+=countlessThanMid(arr[i],mid);
+     }
+     if(count<=(r*c)/2){
+         low=mid+1;
+     }
+     else{
+         high=mid-1;
+      }
+     }
+     return parseInt(low);
+}
+var r = 3, c = 1;
+var m = [[1], [2], [3]];
+document.write("Median is " + binaryMedian(m, r, c));
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
