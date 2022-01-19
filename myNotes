@@ -1578,3 +1578,52 @@ var r = 3, c = 1;
 var m = [[1], [2], [3]];
 document.write("Median is " + binaryMedian(m, r, c));
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Row with max 1s:-
+function rowWithMaxOne(arr, n, m){
+var ansrow = -1;
+var max = 0;
+for(var i=0; i<n; i++){
+ var temp_res = 0;
+   for(var j=m-1; j>=0; j--){
+    if(arr[i][j]==1){
+     temp_res++
+    }
+    else{
+      break;
+    }
+  }
+  if(temp_res >max){
+   max = temp_res;
+   ansrow=i;
+  }
+}
+return ansrow;
+}
+let arr= [[0, 1, 1, 1],
+           [0, 0, 1, 1],
+           [1, 1, 1, 1],
+           [0, 0, 0, 0]]
+console.log(rowWithMaxOne(arr,4,4))
+-----------------------------------------
+function rowWithMaxOne(arr, n, m){
+var ansrow = -1;
+var j = m-1;
+for(var i=0; i<n && j>=0; i++){
+  while(j>=0){
+    if(arr[i][j]==1){
+      j--;
+      ansrow = i;
+    }
+    else{
+      break;
+    }
+  }
+}
+return ansrow;
+}
+let arr= [[0, 1, 1, 1],
+           [0, 0, 1, 1],
+           [1, 1, 1, 1],
+           [0, 0, 0, 0]]
+console.log(rowWithMaxOne(arr,4,4))
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
