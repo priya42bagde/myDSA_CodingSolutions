@@ -1740,4 +1740,33 @@ let A = [ [ 0, 1, 1, 0 ],
                [ 1, 1, 1, 1 ],
                [ 1, 1, 0, 0 ] ];
 document.write("Area of maximum rectangle is " + maxRectangle(R, C, A));
+--------------------------------------------------------------------------
+function maxRectangle(A){
+  for(var i=0; i<A.length; i++){ //add column height  
+   for(var j=0; j<A[0].length; j++){
+     if(i!=0 && A[i][j]!=0){
+     A[i][j]= A[i][j]+A[i-1][j];
+     }
+   }
+  }
+  for(var i=0; i<A.length;i++){ //every row sorted
+    A[i].sort();// document.write(A);
+  }
+  var maxArea=0, area=0;
+  for(var i=0; i<A.length;i++){ //area calculation
+   var width=1;
+   for(var j=A[0].length-1; j>=0; j--){
+      area=A[i][j]*width;
+      width++;
+      maxArea=Math.max(maxArea,area);
+    } 
+  }
+  return maxArea;
+}    
+let R = 4;let C = 4;
+let A = [ [ 0, 1, 1, 0 ],
+               [ 1, 1, 1, 1 ],
+               [ 1, 1, 1, 1 ],
+               [ 1, 1, 0, 0 ] ];
+console.log("Area of maximum rectangle is " + maxRectangle(A));
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
