@@ -1684,3 +1684,60 @@ sortMat(mat, n);
 let Mat=[[10, 20, 30, 40],[15, 25, 35, 45],
              [27, 29, 37, 48],[32, 33, 39, 50]];
 console.log(printSorted(Mat, 4));
+----------------------------------------------------------
+Given a binary matrix M of size n X m. Find the maximum area of a rectangle formed only of 1s in the given matrix.(Max Reactangle):-- https://www.youtube.com/watch?v=9vYCQLYF6ng
+https://www.youtube.com/watch?v=dAVF2NpC3j4
+   function maxHist(R, C, row)
+    {
+        let result = []; // Create an empty stack. The stack holds indexes of histogram[] array. The bars stored in stack are always in increasing order of their heights.
+        let top_val; // Top of stack
+        let max_area = 0; // Initialize max area in current row (or histogram)
+        let area = 0; // Initialize area with current top
+        let i = 0;  // Run through all bars of given histogram (or row)
+        while (i < C) {
+            if (result.length == 0|| row[result[result.length - 1]] <= row[i]) { 
+                result.push(i++);  // If this bar is higher than the bar on top stack, push it to stack
+            }
+            else {
+                // If this bar is lower than top of stack, then calculate area of rectangle with stack top as the smallest (or minimum height) bar. 'i' is 'right index' for the top and element before top in stack is 'left index'
+                top_val = row[result[result.length - 1]];
+                result.pop();
+                area = top_val * i;
+                if (result.length > 0) {
+                    area = top_val * (i - result[result.length - 1] - 1);
+                }
+                max_area = Math.max(area, max_area);
+            }
+        }
+        while (result.length > 0) { // Now pop the remaining bars from stack and calculate area with every popped bar as the smallest bar
+            top_val = row[result[result.length - 1]];
+            result.pop();
+            area = top_val * i;
+            if (result.length > 0) {
+                area = top_val * (i - result[result.length - 1] - 1);
+            }
+ 
+            max_area = Math.max(area, max_area);
+        }
+        return max_area;
+    }
+    function maxRectangle(R, C, A) // Returns area of the largest rectangle with all 1s in A[][]
+    {
+        let result = maxHist(R, C, A[0]); //console.log( A[0]) //Calculate area for first row and initialize it as result
+        for (let i = 1; i < R; i++) {   // iterate over row to find maximum rectangular area considering each row as histogram
+            for (let j = 0; j < C; j++) {
+                if (A[i][j] == 1) {  // if A[i][j] is 1 then add A[i -1][j]
+                    A[i][j] += A[i - 1][j];
+                }
+            }
+         result = Math.max(result, maxHist(R, C, A[i]));  // Update result if area with current row (as last row of rectangle) is more
+        }
+        return result;
+    }    
+let R = 4;let C = 4;
+let A = [ [ 0, 1, 1, 0 ],
+               [ 1, 1, 1, 1 ],
+               [ 1, 1, 1, 1 ],
+               [ 1, 1, 0, 0 ] ];
+document.write("Area of maximum rectangle is " + maxRectangle(R, C, A));
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
