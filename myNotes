@@ -1499,7 +1499,7 @@ var r=4;
 var c=4;
 console.log(spriral(arr,r,c)) //1 2 3 4 8 12 16 15 14 13 9 5 6 7 11 10
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Search an element in matrix:-
+Search an element in matrix:- 
 function search(mat, m, n, x) //m=5, n=4, x=29
 {
     var i = m - 1; //i=5-1=4 //3
@@ -1578,7 +1578,7 @@ var r = 3, c = 1;
 var m = [[1], [2], [3]];
 document.write("Median is " + binaryMedian(m, r, c));
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Row with max 1s:-
+Row with max 1s:- https://www.youtube.com/watch?v=9bWIWzRFbp8
 function rowWithMaxOne(arr, n, m){
 var ansrow = -1;
 var max = 0;
