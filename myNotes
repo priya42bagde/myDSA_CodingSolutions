@@ -1627,3 +1627,60 @@ let arr= [[0, 1, 1, 1],
            [0, 0, 0, 0]]
 console.log(rowWithMaxOne(arr,4,4))
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Sorted matrix:-
+function sortMat(mat, n)
+{
+    let temp = new Array(n * n); // temporary matrix of size n^2
+    let k = 0;
+    for (let i = 0; i < n; i++) // copy the elements of matrix one by one into temp[]
+        for (let j = 0; j < n; j++)
+            temp[k++] = mat[i][j];  console.log(temp) //[5, 4, 7, 1, 3, 8, 2, 9, 6]
+    temp.sort();
+    k = 0; // copy the elements of temp[] one by one in mat[][]
+    for (let i = 0; i < n; i++)
+        for (let j = 0; j < n; j++)
+            mat[i][j] = temp[k++];
+}
+function printMat(mat, n)// function to print the given matrix
+{
+    for (let i = 0; i < n; i++) {
+        for (let j = 0; j < n; j++)
+            document.write( mat[i][j] + " ");
+        document.write( "<br>");
+    }
+}
+let mat = [ [ 5, 4, 7 ],
+              [ 1, 3, 8 ],
+                [ 2, 9, 6 ] ];
+let n = 3;
+sortMat(mat, n);
+    document.write( "\nMatrix After Sorting: " + "<br>");
+    printMat(mat, n);
+ ----------------------------------------------------
+     function printSorted(Mat,N)
+    {
+       var a=new Array(N * N);
+       var k=0;
+       for(var i=0;i<N;i++)
+       {
+           for(var j=0;j<N;j++)
+           {
+               a[k]=Mat[i][j];
+               k++;
+           }
+       }
+       a.sort();
+       var x=0;
+       for(var i=0;i<N;i++)
+       {
+           for(var j=0;j<N;j++)
+           {
+               Mat[i][j]=a[x];
+               x++;
+           }
+       }
+       return Mat;
+   }
+let Mat=[[10, 20, 30, 40],[15, 25, 35, 45],
+             [27, 29, 37, 48],[32, 33, 39, 50]];
+console.log(printSorted(Mat, 4));
