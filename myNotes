@@ -1830,5 +1830,82 @@ Find a specific pair in Matrix:-
            [0, -4, 10, -5, 1 ]];
     document.write("Maximum Value is " + findMaxValue(N,mat));
   ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  
-     
+Rotate a matrix by 90 degree in clockwise direction without using any extra space:-  
+   var N = 4;
+function rotate90Clockwise(a) {  // Function to rotate the matrix 90 degree clockwise
+   for (i = 0; i < parseInt(N / 2); i++) { // Traverse each cycle //0,1
+            for (j = i; j < N - i - 1; j++) { //3, 2
+                var temp = a[i][j];  // Swap elements of each cycle in clockwise direction
+                a[i][j] = a[N - 1 - j][i];
+                a[N - 1 - j][i] = a[N - 1 - i][N - 1 - j];
+                a[N - 1 - i][N - 1 - j] = a[j][N - 1 - i];
+                a[j][N - 1 - i] = temp;
+            }
+        }
+    }
+function printMatrix(arr) {  // Function for print matrix
+        for (i = 0; i < N; i++) {
+            for (j = 0; j < N; j++)
+                document.write(arr[i][j] + " ");
+            document.write("<br/>");
+        }
+}
+var arr = [ [ 1, 2, 3, 4 ],
+                    [ 5, 6, 7, 8 ],
+                    [ 9, 10, 11, 12 ],
+                    [ 13, 14, 15, 16 ] ];
+rotate90Clockwise(arr);
+printMatrix(arr);
+-----------------------------------------------
+var N = 4;
+function rotate90Clockwise(arr) { // Function to rotate the matrix 90 degree clockwise
+      for (j = 0; j < N; j++) {  //0,1,2,3 printing the matrix on the basis of observations made on indices.
+          // console.log(arr[0]) //[1, 2, 3, 4]
+           for (i = N - 1; i >= 0; i--){ //3,2,1,0
+               // console.log(arr[i]) //[13, 14, 15, 16]
+                document.write(arr[i][j] + " ");
+                }
+            document.write("<br/>");
+            }        
+    }
+var arr = [ [ 1, 2, 3, 4 ],
+                    [ 5, 6, 7, 8 ],
+                    [ 9, 10, 11, 12 ],
+                    [ 13, 14, 15, 16 ] ];
+rotate90Clockwise(arr);     
+---------------------------------------------------------
+let N = 4
+function print(arr){
+    for(let i = 0; i < N; ++i){
+        for(let j = 0; j < N; ++j)
+            document.write(arr[i][j] + " ");             
+        document.write("<br>");
+    }
+}
+function rotate(arr){
+    for(let i = 0; i < N; ++i)  // First rotation with respect to main diagonal
+    {
+        for(let j = 0; j < i; ++j)
+        {
+            let temp = arr[i][j];
+            arr[i][j] = arr[j][i];
+            arr[j][i] = temp;
+        }
+    }
+    for(let i = 0; i < N; ++i)  // Second rotation with respect to middle column
+    {
+        for(let j = 0; j < N / 2; ++j)
+        {
+            let temp = arr[i][j];
+            arr[i][j] = arr[i][N - j - 1];
+            arr[i][N - j - 1] = temp;
+        }
+    }
+}
+ let arr = [ [ 1, 2, 3, 4 ],
+                    [ 5, 6, 7, 8 ],
+                    [ 9, 10, 11, 12 ],
+                    [ 13, 14, 15, 16 ] ];
+    rotate(arr);
+    print(arr);
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
