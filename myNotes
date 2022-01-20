@@ -1770,3 +1770,65 @@ let A = [ [ 0, 1, 1, 0 ],
                [ 1, 1, 0, 0 ] ];
 console.log("Area of maximum rectangle is " + maxRectangle(A));
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Find a specific pair in Matrix:-
+ function findMaxValue(N,mat){
+        let maxValue = Number.MIN_VALUE;
+         for (let a = 0; a < N - 1; a++) //0,1,2,3 Consider all possible pairs mat[a][b] and mat1[d][e]
+          for (let b = 0; b < N - 1; b++) //0,1,2,3 //
+             for (let d = a + 1; d < N; d++) //1,2,3,4
+               for (let e = b + 1; e < N; e++) //1,2,3,4
+                  if (maxValue < (mat[d][e] - mat[a][b])){
+                      maxValue = mat[d][e] - mat[a][b]; 
+                      //document.write(mat[d][e], mat[a][b]+ "  ")
+                      console.log(maxValue)
+                      }
+        return maxValue; 
+    }
+    let N = 5;
+    let mat=[    [ 1, 2, -1, -4, -20],
+                  [-8, -3, 4, 2, 1],
+                  [3, 8, 6, 1, 3],
+                  [ -4, -1, 1, 7, -6 ],
+                  [ 0, -4, 10, -5, 1 ]];
+    document.write("Maximum Value is " +findMaxValue(N,mat));
+    ---------------------------------------------
+       function findMaxValue(N,mat){
+        let maxValue = Number.MIN_VALUE;
+        let maxArr=new Array(N);  // maxArr[i][j] stores max of elements in matrix from (i, j) to (N-1, N-1)
+        for(let i = 0; i < N; i++){
+            maxArr[i]=new Array(N); 
+        }
+        maxArr[N - 1][N - 1] = mat[N - 1][N - 1]; // last element of maxArr will be same's as of the input matrix 
+        let maxv = mat[N-1][N-1];  //1 preprocess last row // Initialize max
+        for (let j = N - 2; j >= 0; j--){
+            if (mat[N - 1][j] > maxv)
+                maxv = mat[N - 1][j];
+            maxArr[N - 1][j] = maxv;
+        }
+        maxv = mat[N - 1][N - 1];  //  // preprocess last column //Initialize max
+        for (let i = N - 2; i >= 0; i--){
+            if (mat[i][N - 1] > maxv)
+                maxv = mat[i][N - 1];
+            maxArr[i][N - 1] = maxv;
+        }
+        for (let i = N-2; i >= 0; i--) // preprocess rest of the matrix from bottom
+        {
+            for (let j = N-2; j >= 0; j--)
+            {
+            if (maxArr[i+1][j+1] - mat[i][j] > maxValue)  // Update maxValue
+                    maxValue = maxArr[i + 1][j + 1] - mat[i][j];
+             maxArr[i][j] = Math.max(mat[i][j], Math.max(maxArr[i][j + 1], maxArr[i + 1][j]) ); // set maxArr (i, j)
+            }
+        }
+        return maxValue;
+    }
+    let N = 5;
+    let mat = [[ 1, 2, -1, -4, -20 ],
+           [-8, -3, 4, 2, 1 ],
+           [ 3, 8, 6, 1, 3 ],
+           [ -4, -1, 1, 7, -6] ,
+           [0, -4, 10, -5, 1 ]];
+    document.write("Maximum Value is " + findMaxValue(N,mat));
+  ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  
+     
