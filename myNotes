@@ -2030,4 +2030,29 @@ document.write(find(A, B, 5, 4, k));
         var arr2 = [ 1, 4, 8, 10 ];
         var k = 5;
         document.write(kth(arr1, arr2, 5, 4, k));
-----------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Find distinct elements common to all rows of a matrix:- https://www.youtube.com/watch?v=oY-BlyCImSc
+let M = 4; //row
+let N =5; //column
+function printCommonElements(mat){
+   let mp = new Map(); //used for count of an elements 
+   for (let j = 0; j < N; j++)  // initialize 1st row elements with value 1
+        mp.set(mat[0][j],1);
+   for (let i = 1; i < M; i++) // traverse the matrix
+    {
+        for (let j = 0; j < N; j++){
+            if (mp.get(mat[i][j]) != null && mp.get(mat[i][j]) == i) // If element is present in the map and is not duplicated in current row.
+            {
+                mp.set(mat[i][j], i + 1);  // we increment count of the element in map by 1
+                if (i == M - 1) // If this is last row
+                    document.write(mat[i][j] + " ");
+            }
+        }
+    }
+}
+let mat = [[1, 2, 1, 4, 8],
+       [3, 7, 8, 5, 1],
+       [8, 7, 7, 3, 1],
+       [8, 1, 2, 7, 9]]
+printCommonElements(mat)
+-----------------------------------------------------
