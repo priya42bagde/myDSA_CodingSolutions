@@ -1931,8 +1931,6 @@ function getElementsGreaterThanOrEqual(num,n,mat){
         }
         return ans;
     }
- 
-    
     function kthSmallest(mat,n,k){ // reuturs kth smallest index in the matrix
         // We know the answer lies between the first and the last element So do a binary search on answer based on the number of elements our current element is greater than the elements in the matrix
         let l = mat[0][0], r = mat[n - 1][n - 1];
@@ -1955,81 +1953,6 @@ function getElementsGreaterThanOrEqual(num,n,mat){
         [32, 33, 39, 50],
     ];
 document.write("7th smallest element is " + kthSmallest(mat, 4, 7));
----------------------------------------------------------------------------
- function kth(arr1 , arr2 , m , n , k) {
-        var sorted1 = Array(m + n).fill(0);
-        var i = 0, j = 0, d = 0;
-        while (i < m && j < n) {
-            if (arr1[i] < arr2[j])
-                sorted1[d++] = arr1[i++];
-            else
-                sorted1[d++] = arr2[j++];
-        }
-        while (i < m)
-            sorted1[d++] = arr1[i++];
-        while (j < n)
-            sorted1[d++] = arr2[j++];
-        return sorted1[k - 1];
-    }
-        var arr1 = [ 2, 3, 6, 7, 9 ];
-        var arr2 = [ 1, 4, 8, 10 ];
-        var k = 5;
-        document.write(kth(arr1, arr2, 5, 4, k));
----------------------------------------------------------------------------
-  function find(A, B, m, n, k_req)
-    {
-        let k = 0, i = 0, j = 0;
-        while (i < m && j < n) {   // Keep taking smaller of the current elements of two sorted arrays and keep incrementing k
-            if (A[i] < B[j]) {
-                k++;
-                if (k == k_req)
-                    return A[i];
-                i++;
-            }
-            else {
-                k++;
-                if (k == k_req)
-                    return B[j];
-                j++;
-            }
-        }
-        while (i < m) { // If array B[] is completely traversed
-            k++;
-            if (k == k_req)
-                return A[i];
-            i++;
-        }
-        while (j < n) {  // If array A[] is completely traversed
-            k++;
-            if (k == k_req)
-                return B[j];
-            j++;
-        }
-        return -1;
-    }
-    let A = [ 2, 3, 6, 7, 9 ];
-    let B = [ 1, 4, 8, 10 ];
-    let k = 5;
-document.write(find(A, B, 5, 4, k));
------------------------------------------------------
-   function kth(a , b , n , m , k) { 
-       var pq = [];  // Declaring a min heap
-       for (i = 0; i < n; i++) { // Pushing elements for array a to min-heap
-            pq.push(a[i]);
-        }
-       for (i = 0; i < m; i++) { // Pushing elements for array b to min-heap
-            pq.push(b[i]);
-        }
-        pq.sort((a,b)=>b-a);
-        while (k-- > 1) { // Popping-out K-1 elements
-            pq.pop();
-        }
-        return pq.pop();
-    }
-        var arr1 = [ 2, 3, 6, 7, 9 ];
-        var arr2 = [ 1, 4, 8, 10 ];
-        var k = 5;
-        document.write(kth(arr1, arr2, 5, 4, k));
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Find distinct elements common to all rows of a matrix:- https://www.youtube.com/watch?v=oY-BlyCImSc
 let M = 4; //row
