@@ -1991,4 +1991,57 @@ function reverseString(s){
     return s;    
 }
 console.log(reverseString(["h","e","l","l","o"]))   
---------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Palindrome:- https://itnext.io/11-way-to-check-for-palindromes-in-javascript-85dbfe7dfb5d
+function checkPalindrome(str) {
+    const len = string.length;
+    for (let i = 0; i < len / 2; i++) { // loop through half of the string
+        if (string[i] !== string[len - 1 - i]) {
+            return 'It is not a palindrome';
+        }
+    }
+    return 'It is a palindrome';
+}
+const string = prompt('Enter a string: ');
+const value = checkPalindrome(string);
+console.log(value);
+-------------------------------------------
+function checkPalindrome(str) {
+    const arrayValues = string.split(''); // convert string to an array
+    const reverseArrayValues = arrayValues.reverse();  // reverse the array values
+    const reverseString = reverseArrayValues.join(''); // convert array to string
+    if(string == reverseString) {
+        console.log('It is a palindrome');
+    }
+    else {
+        console.log('It is not a palindrome');
+    }
+}
+const string = prompt('Enter a string: ');
+checkPalindrome(string);
+-------------------------------------------
+function checkPalindrome(str) {
+    let i = 0;
+    let j = str.length - 1;
+    while(i < j) {
+        if(str[i] == str[j]) {
+            i++; 
+            j--;
+        }
+        else {
+            return false;
+        }
+    }
+    return true;
+}
+const string = prompt('Enter a string: ');
+console.log(checkPalindrome(string));
+---------------------------------------------
+function checkPalindrome(str) {
+    return str.split('').every((char, i) => {
+        return char === str[str.length - i - 1]; //ccharater matching
+    });
+}
+const string = prompt('Enter a string: ');
+console.log(checkPalindrome(string));
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
