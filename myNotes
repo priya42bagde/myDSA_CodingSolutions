@@ -2075,3 +2075,26 @@ function printDups(str){
 var str = "test string";
 printDups(str);
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+A Program to check if strings are rotations of each other or not:- https://www.geeksforgeeks.org/a-program-to-check-if-strings-are-rotations-of-each-other/
+https://www.youtube.com/watch?v=-xX8WHd7Ztk
+ function areRotations( str1,  str2){ // There lengths must be same and str2 must be a substring of str1 concatenated with str1. 
+        return (str1.length == str2.length) && ((str1 + str1).indexOf(str2) != -1); //AACDAACD //ACDA //not present
+    }
+    var str1 = "AACD"; var str2 = "ACDA";
+    if (areRotations(str1, str2)) document.write("Strings are rotations of each other");
+    else document.write("Strings are not rotations of each other");
+----------------------------------------------
+ function areRotations( s1,  s2) {
+        if(s1.length!=s2.length){
+            return false;
+        }
+        else{
+            s1=s1+s1;
+            return s1.includes(s2);
+        }        
+    }
+    var str1 = "AACD"; var str2 = "ACDA";
+    if (areRotations(str1, str2)) document.write("Strings are rotations of each other");
+    else document.write("Strings are not rotations of each other");
+ ------------------------------------------------
+ 
