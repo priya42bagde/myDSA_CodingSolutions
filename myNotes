@@ -2115,3 +2115,21 @@ https://www.youtube.com/watch?v=-xX8WHd7Ztk
 }
 console.log(shuffleCheck())
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Javascript program to Check if a string is a valid shuffle of two distinct strings javascript:-
+function countAndSay(n){
+ if(n==1) return "1";
+ var s= countAndSay(n-1);
+ var result=""; var count=0;
+ for(var i=0; i<s.length; i++){
+   count++;
+   if(i==s.length-1 || s.charAt(i)!=s.charAt(i+1))
+   {
+     result= result+count+s.charAt(i);
+     count=0;
+   }
+  }
+ return result
+}
+var num=4;
+console.log(countAndSay(num))
+------------------------------------------
