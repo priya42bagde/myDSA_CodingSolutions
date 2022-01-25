@@ -2097,7 +2097,7 @@ https://www.youtube.com/watch?v=-xX8WHd7Ztk
     if (areRotations(str1, str2)) document.write("Strings are rotations of each other");
     else document.write("Strings are not rotations of each other");
  ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
- Program to Check if a string is a valid shuffle of two distinct strings:-
+ Program to Check if a string is a valid shuffle of two distinct strings:- (https://www.youtube.com/watch?v=qN_vwYtvFUM)
  function shuffleCheck(){
    var s1="XY";var s2="12"; var result="X1Y2";
    if((s1.length+s2.length)!=result.length) console.log("No");
