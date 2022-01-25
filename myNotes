@@ -2096,5 +2096,22 @@ https://www.youtube.com/watch?v=-xX8WHd7Ztk
     var str1 = "AACD"; var str2 = "ACDA";
     if (areRotations(str1, str2)) document.write("Strings are rotations of each other");
     else document.write("Strings are not rotations of each other");
- ------------------------------------------------
- 
+ ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Program to Check if a string is a valid shuffle of two distinct strings:-
+ function shuffleCheck(){
+   var s1="XY";var s2="12"; var result="X1Y2";
+   if((s1.length+s2.length)!=result.length) console.log("No");
+   else{
+     var i=0, j=0, k=0;
+     while(k<result.length){
+       if(i<s1.length && s1[i]==result[k]) i++;
+       else if(j<s2.length && s2[j]==result[k]) j++;
+       else break;
+     k++;
+     }
+     if(i<s1.length || j<s2.length) console.log("no");
+     else{ console.log("yes") }
+   }   
+}
+console.log(shuffleCheck())
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
