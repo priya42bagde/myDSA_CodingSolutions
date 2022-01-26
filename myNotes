@@ -2132,4 +2132,27 @@ function countAndSay(n){
 }
 var num=4;
 console.log(countAndSay(num))
-------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Longest Palindrome in a String :- https://www.youtube.com/watch?v=AKIHWGumagI
+const expandFromCenter =(s, i, j)=>{
+  while(i>=0 && j<s.length && s.charAt(i)==s.charAt(j)){
+   i--; j++;
+  }
+  return j-i-1;
+}
+function longestPalSubstr(str){
+   var start=0, end=0;
+   for( var i=0; i<str.length; i++){
+     var len1= expandFromCenter(str, i, i+1)
+      var len2= expandFromCenter(str, i, i)
+      var len = Math.max(len1, len2);
+      if(end-start<len){
+        start = i-(len-1)/2; //Because we need starting index of our longest string.palindrome string is evenly distribute from both sides for both letter.
+        end= i+len/2;
+      }
+   }
+  return str.substring(start+1,end+1);
+}
+   let str = "forgeeksskeegfor";
+   document.write("Length is: " + longestPalSubstr(str));
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------   
