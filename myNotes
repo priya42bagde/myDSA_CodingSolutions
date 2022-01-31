@@ -2290,4 +2290,26 @@ function permute(str, l, r){ //l=0, r=3
 let str = "abc"; let n = str.length;
 permute(str, 0, n-1);
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+Split the binary string into substrings with equal number of 0s and 1s
+function maxSubStr(str, n){
+ var count0 = 0, count1 = 0;   // To store the count of 0s and 1s
+ var cnt = 0;  // To store the count of maximum substrings str can be divided into
+    for (var i = 0; i < n; i++) 
+    {
+        if (str[i] == '0') {
+            count0++;
+        }
+        else {
+            count1++;
+        }
+        if (count0 == count1) {
+            cnt++;
+        }
+    }
+    if (count0 != count1) {  // It is not possible to split the string
+        return -1;
+    }
+  return cnt;
+}
+var str = "0100110101"; var n = str.length;
+document.write( maxSubStr(str, n));
