@@ -2250,5 +2250,22 @@ function subString(str,n){
         var str = "abcd";
         SubString(str, str.length);
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+print all permutations of a given string:-- https://www.youtube.com/watch?v=va3NEycUxsg
+function permute(s , answer)
+{ 
+    if (s.length == 0)
+    {
+       document.write(answer + "</br>");
+    }
+    for(let i = 0 ;i < s.length; i++)
+    {
+        let ch = s[i]; //a //b //c ....
+        let rest = s.slice(0, i) + s.slice(i + 1); //console.log(rest) //bc
+        //console.log(answer + ch)
+        permute(rest, answer + ch); 
+    }
+}
+let s= "abc"; let answer="";
+permute(s, answer);
 -----------------------------------------------
+
