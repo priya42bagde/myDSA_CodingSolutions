@@ -2290,7 +2290,7 @@ function permute(str, l, r){ //l=0, r=3
 let str = "abc"; let n = str.length;
 permute(str, 0, n-1);
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Split the binary string into substrings with equal number of 0s and 1s
+Split the binary string into substrings with equal number of 0s and 1s:- https://www.youtube.com/watch?v=UyX22tCpzhI
 function maxSubStr(str, n){
  var count0 = 0, count1 = 0;   // To store the count of 0s and 1s
  var cnt = 0;  // To store the count of maximum substrings str can be divided into
@@ -2313,3 +2313,43 @@ function maxSubStr(str, n){
 }
 var str = "0100110101"; var n = str.length;
 document.write( maxSubStr(str, n));
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Longest Common Prefix :- https://www.youtube.com/watch?v=0SF6RLMYBcE
+var longestCommonPrefix = function(strs) {
+    if(strs === null || strs.length === 0) return "";
+    for (let i=0; i < strs[0].length; i++) //flower 5
+    { 
+        for (let j = 1; j < strs.length; j++)
+        { 
+            if(strs[0][i] !== strs[j][i] ) return strs[0].slice(0,i)
+        } 
+    }
+   return strs[0];
+}
+console.log(longestCommonPrefix(["flower","flow","flight"]))
+-----------------------------------------------------------------
+var longestCommonPrefix = function(strs) {
+    let prefix = ""
+    if(strs === null || strs.length === 0) return prefix
+    for (let i=0; i < strs[0].length; i++){ 
+        const char = strs[0][i] // loop through all characters of the very first string. 
+        for (let j = 1; j < strs.length; j++){ 
+          // loop through all other strings in the array
+            if(strs[j][i] !== char) return prefix
+        }
+        prefix = prefix + char
+    }
+    return prefix
+}
+console.log(longestCommonPrefix(["flower","flow","flight"]))
+----------------------------------------------------------------
+function longestCommonPrefix(array){
+    var A= array.sort(); console.log(A); var i= 0; //["flight", "flow", "flower"]
+    while(i<A[0].length && A[0].charAt(i)=== A[A.length-1].charAt(i))
+    { 
+      i++;
+    }  
+    return A[0].substring(0, i);
+}
+console.log(longestCommonPrefix(["flower","flow","flight"]))
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
