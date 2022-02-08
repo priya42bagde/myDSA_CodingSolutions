@@ -2381,3 +2381,66 @@ return result;
 };
 console.log(romanToInt("V"))
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Most frequent word in an array of strings:-
+   function findWord(arr) {
+        var hs = {};  // Create Dictionary(map) to store word and it's frequency
+        for (var i = 0; i < arr.length; i++) 
+        {  // Iterate through array of words
+          if (hs.hasOwnProperty(arr[i])) {   // If word already exist in Dictionary then increase it's count by 1
+            hs[arr[i]] = hs[arr[i]] + 1;
+          }
+          else {  // Otherwise add word to Dictionary
+            hs[arr[i]] = 1;
+          }
+        } //console.log(Object.entries(hs))
+        var Key = ""; // Create set to iterate over Dictionary
+        var Val = 0;
+        for (const [key, value] of Object.entries(hs)) {
+         if (value > Val) {  // Check for word having highest frequency
+            Val = value;
+            Key = key;
+          }
+        } console.log(Key, Val)
+       return Key;  // Return word having highest frequency
+      }
+var arr = ["aaa", "bbb", "bbb", "ccc", "ccc", "ccc"];
+document.write(findWord(arr));
+-------------------------------------------------------------------------------------------------------------------------------------
+Second most repeated word in a sequence:-
+   function findWord(arr) {
+        var hs = {};  // Create Dictionary(map) to store word and it's frequency
+        for (var i = 0; i < arr.length; i++) 
+        {  // Iterate through array of words
+          if (hs.hasOwnProperty(arr[i])) {   // If word already exist in Dictionary then increase it's count by 1
+            hs[arr[i]] = hs[arr[i]] + 1;
+          }
+          else {  // Otherwise add word to Dictionary
+            hs[arr[i]] = 1;
+          }
+        } 
+        const frequencyArray = Object.entries(hs); console.log(frequencyArray)
+        return frequencyArray.sort((a, b) => {
+      return b[1] - a[1];
+   })[1][0]; 
+}
+var arr = ["aaa", "bbb", "bbb", "ccc", "ccc", "ccc"];
+document.write(findWord(arr));
+------------------------------------------------------------
+const str = 'aaa bbb ccc bbb aaa aaa';
+const secondMostFrequent = str => {
+   const strArr = str.split(''); console.log(strArr)
+   const map = strArr.reduce((acc, val) => {
+      if(acc.has(val)){
+         acc.set(val, acc.get(val) + 1);
+      }else{
+         acc.set(val, 1);
+      };
+      return acc;
+   }, new Map);
+   const frequencyArray = Array.from(map); 
+   return frequencyArray.sort((a, b) => {
+      return b[1] - a[1];
+   })[1][0]; 
+};
+document.write(secondMostFrequent(str));
+---------------------------------------------------------------   
