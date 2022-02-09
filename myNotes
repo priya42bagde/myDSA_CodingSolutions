@@ -2443,4 +2443,49 @@ const secondMostFrequent = str => {
    })[1][0]; 
 };
 document.write(secondMostFrequent(str));
----------------------------------------------------------------   
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Minimum Swaps for Bracket Balancing:-
+https://www.youtube.com/watch?v=WhMbbnHZpis
+function BalancedStringBySwapping(s){
+        var k=0,count=0;
+        for(var i=0;i<s.length;i++)
+        {
+          if(s[i]=='[' )
+          {
+              if(k>=0) k++;
+              else
+              {
+                count=count+(-1*k);
+                k++;
+              }
+          }
+          else if(s[i]==']') k--;
+        }
+        return count;
+}
+var s = "[]][][";
+document.write(BalancedStringBySwapping(s));
+--------------------------------------------------
+function BalancedStringBySwapping(s){
+        var open=0,close=0,shift=0,unbalanced=0;
+        for(var i=0;i<s.length;i++)
+        {
+          if(s.charAt(i)=='[' ){
+              open++;
+              if(unbalanced>0)
+              {
+                shift=shift+unbalanced;
+                unbalanced--;
+              }
+          }
+          else
+          {
+              close++;
+              unbalanced = close-open;
+          }
+        }
+        return shift;
+}
+var s = "[]][][";
+document.write(BalancedStringBySwapping(s));
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
