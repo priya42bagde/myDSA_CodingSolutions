@@ -2508,7 +2508,7 @@ var longestCommonSubsequence = function(text1, text2) { // Create dp table
 var s1 = "ABCDGH", s2="AEDFHR";
 document.write(longestCommonSubsequence(s1, s2));
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Rearrange characters in a string such that no two adjacent are same:-  https://www.youtube.com/watch?v=sSDAN_WwNwU
+Rearrange characters in a string such that no two adjacent are same:-  https://www.youtube.com/watch?v=sSDAN_WwNwU  https://leetcode.com/problems/reorganize-string/discuss/1409359/Two-JavaScript-solutions
 function isPossible(str){
   let freq = new Map(); // To store the frequency of each of the character
   let max_freq = 0;  // To store the maximum frequency so far
@@ -2532,3 +2532,47 @@ let str = "geeksforgeeks";
 if (isPossible(str.split(''))) document.write("Yes");
 else document.write("No");
 ----------------------------------------------------------
+let reorganizeString = (str) => {
+  let map = {};  // build a frequency map for characters in S - max 26 entries...
+  for (let i = 0; i < str.length; i++) {
+    let char = str[i];
+    map[char] = (map[char] || 0) + 1;
+  } console.log(map)
+  let sorted = Object.keys(map).sort((a, b) => map[b] - map[a]); console.log(sorted)// sorted array based on frequency count - max 26 entries => O(1) => constant time
+  let max = (str.length + 1) / 2; // fast path early return if a count is (N+1) / 2 for first item
+  if (map[sorted[0]] > max) return '';
+  let result = []; // interleave characters
+  let position = 0;
+  for (let idx = 0; idx < sorted.length; idx++) {
+    let char = sorted[idx];
+    let frequency = map[char];
+    for (let j = 0; j < frequency; j++) {
+      // rewind pointer to 1 when we overflow odd indexes... note: we don't have enough characters to overflow again
+      if (position >= str.length) position = 1;
+      result[position] = char;
+      position += 2;
+    }
+  }
+  return result.join('');
+};
+console.log(reorganizeString("geeksforgeeks"));
+--------------------------------------------------------
+var reorganizeString1 = function(S) {
+    let hash = {};
+    for (let c of S) hash[c] = hash[c] + 1 || 1; 
+    let sort = Object.keys(hash).sort((a,b)=>hash[b] - hash[a]); console.log(sort)
+    let res = [];
+    let index = 0;
+    for (let i = 0;i<sort.length;i++) {
+        let occur = hash[sort[i]];
+        if (occur > parseInt((S.length + 1)/2)) return "";
+        for (let j = 0;j < occur;j++) {
+            if (index >= S.length) index = 1;
+            res[index] = sort[i];
+            index += 2;
+        }
+    } 
+    return res.join('');
+};
+console.log(reorganizeString1("geeksforgeeks"));
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
