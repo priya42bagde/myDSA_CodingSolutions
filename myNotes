@@ -2508,5 +2508,27 @@ var longestCommonSubsequence = function(text1, text2) { // Create dp table
 var s1 = "ABCDGH", s2="AEDFHR";
 document.write(longestCommonSubsequence(s1, s2));
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+Rearrange characters in a string such that no two adjacent are same:-  https://www.youtube.com/watch?v=sSDAN_WwNwU
+function isPossible(str){
+  let freq = new Map(); // To store the frequency of each of the character
+  let max_freq = 0;  // To store the maximum frequency so far
+        for (let j = 0; j < str.length; j++) 
+        {  //console.log(max_freq, freq)
+            if (freq.has(str[j])) {
+                freq.set(str[j], freq.get(str[j]) + 1);
+                if (freq.get(str[j]) > max_freq)
+                    max_freq = freq.get(str[j]);
+            }
+            else {
+                freq.set(str[j], 1);
+                if (freq.get(str[j]) > max_freq)
+                    max_freq = freq.get(str[j]);
+            }
+        }
+        if (max_freq <= (str.length - max_freq + 1)) return true;
+        return false;
+    }
+let str = "geeksforgeeks";
+if (isPossible(str.split(''))) document.write("Yes");
+else document.write("No");
 ----------------------------------------------------------
