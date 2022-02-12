@@ -2576,3 +2576,27 @@ var reorganizeString1 = function(S) {
 };
 console.log(reorganizeString1("geeksforgeeks"));
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Remove Consecutive Characters:-
+function isPossible(S){
+        var ans="";
+        for(var i=0;i<S.length;i++){
+            if(S[i]!=S[i-1])
+               ans+=(S[i]);
+        }
+        return ans;
+}
+let str = "aabaa";
+console.log(isPossible(str))
+----------------------------------------------
+function isPossible(s){
+     var i=0;
+     while(i<s.length-1)
+     {
+         if(s.charAt(i)==s.charAt(i+1)) s=s.substring(0,i)+s.substring(i+1);
+         else i++;      
+     }
+     return s;
+}
+let str = "aabaa";
+console.log(isPossible(str))
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
