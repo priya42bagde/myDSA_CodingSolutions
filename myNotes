@@ -2617,4 +2617,42 @@ const groupedAnagrams = getGroupedAnagrams(words); //console.log(groupedAnagrams
 for (const sortedWord in groupedAnagrams) {
   console.log(groupedAnagrams[sortedWord].toString());
 }
-----------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+String matching where one string contains wildcard characters:---   https://www.youtube.com/watch?v=Q6ZX95GadA8 (multiple recursion is happening so better to do with DP because
+in DP we can store already calculated values)
+https://www.youtube.com/watch?v=Lw4_BOwSOcA   https://www.geeksforgeeks.org/wildcard-character-matching/ https://www.youtube.com/watch?v=x4TG1x0STNE
+function match(first, second)
+{  
+   // If we reach at the end of both strings, we are done
+   if (first.length == 0 && second.length == 0) 
+        return true;
+    // Make sure that the characters after '*' are present in second string.
+    // This function assumes that the first string will not contain two consecutive '*'
+    if (first.length > 1 && first[0] == '*' && second.length == 0)
+        return false;
+    // If the first string contains '?', or current characters of both strings match
+    if ((first.length > 1 && first[0] == '?') || (first.length != 0 && second.length != 0 && first[0] == second[0]))
+        return match(first.substring(1), second.substring(1));
+    // If there is *, then there are two possibilities // a) We consider current character of second string
+    // b) We ignore current character of second string.
+    if (first.length > 0 && first[0] == '*')
+        return match(first.substring(1), second) || match(first, second.substring(1));
+    return false;
+}
+ function test(first, second) // A function to run test cases
+{
+    if (match(first, second)) document.write("Yes" + "<br>");
+    else document.write("No" + "<br>");
+}
+test("g*ks", "geeks"); // Yes
+test("ge?ks*", "geeksforgeeks"); // Yes
+test("g*k", "gee"); // No because 'k' is not in second
+test("*pqrs", "pqrst"); // No because 't' is not in first
+test("abc*bcd", "abcdhghgbcd"); // Yes
+test("abc*c?d", "abcd"); // No because second must have 2 instances of 'c'
+test("*c*d", "abcd"); // Yes
+test("*?c*d", "abcd"); // Yes
+---------------------------------------------------------------------------
+https://www.youtube.com/watch?v=7SHV_QfVROE https://www.youtube.com/watch?v=x4TG1x0STNE
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
