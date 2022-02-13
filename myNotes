@@ -2600,3 +2600,21 @@ function isPossible(s){
 let str = "aabaa";
 console.log(isPossible(str))
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Print Anagrams Together:-
+const words = ["dell", "ledl", "abc", "cba", 'boo'];
+function getGroupedAnagrams(words) {
+  const anagrams = {}; // {abc:[abc,cba], dell:[dell, ledl]}
+  words.forEach((word) => {
+    const sortedWord = word.split('').sort().join('');
+    if (anagrams[sortedWord]) {
+      return anagrams[sortedWord].push(word);
+    }
+    anagrams[sortedWord] = [word];
+  });
+  return anagrams;
+}
+const groupedAnagrams = getGroupedAnagrams(words); //console.log(groupedAnagrams)
+for (const sortedWord in groupedAnagrams) {
+  console.log(groupedAnagrams[sortedWord].toString());
+}
+----------------------------------------------------
