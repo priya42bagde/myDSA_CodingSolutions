@@ -2728,3 +2728,42 @@ const isIsomorphic = (firstStr, nextStr) => {
 }
 console.log(isIsomorphic(str1, str2));
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Transform One String to Another using Minimum Number of Given Operation
+ function minOps(A, B){
+    if (A.length != B.length) return -1;
+    let i, j, res = 0; let count = new Array(256);
+    for(let i = 0; i < 256; i++)
+    {
+        count[i] = 0;
+    }
+    // count characters in A
+    // Subtract count for every character in B
+    for(i = 0; i < A.length; i++)
+    {
+        count[A[i].charCodeAt(0)]++;
+        count[B[i].charCodeAt(0)]--;
+    }
+     console.log(count)  
+    // Check if all counts become 0
+    for(i = 0; i < 256; i++)
+        if (count[i] != 0)
+            return -1;
+       
+    i = A.length - 1;
+    j = B.length - 1; 
+    while(i >= 0)
+    {
+      // If there is a mismatch, then keep incrementing result 'res'until B[j] is not found in A[0..i]
+        if (A[i] != B[j])
+            res++;
+        else
+            j--;
+             
+        i--;        
+    }
+    return res;    
+}
+let A = "EACBD";
+let B = "EABCD";
+ document.write("Minimum number of operations required is " + minOps(A, B));
+ -----------------------------------------------------------------------------
