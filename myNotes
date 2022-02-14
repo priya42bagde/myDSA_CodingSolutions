@@ -2686,3 +2686,45 @@ function wildCard( p, s){
 //console.log(wildCard("*c*d", "abcd")); // Yes
 //console.log(wildCard("*?c*d", "abcd")); // Yes
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Isomorphic Strings :-
+const str1 = 'abcde';
+const str2 = 'eabdc';
+const isIsomorphic = (str1 , str2) => {
+   if (str1.length !== str2.length) {
+      return false;
+   };
+   for (let i = 0; i < str1.length; i++) {
+      const a = str1.indexOf(str1[i]); //a
+      const b = str2.indexOf(str2[i]); //e
+      if (str2[a] !== str2[i] || str1[b] !== str1[i]) {
+         return false;
+      };
+   };
+   return true;
+};
+console.log(isIsomorphic(str1, str2));
+--------------------------------------------------
+const str1 = 'abcde';
+const str2 = 'eabdc';
+const isIsomorphic = (firstStr, nextStr) => {
+    if (str1.length != str2.length) 
+    {
+      console.log('Both strings have different lenghts');
+    	return false;
+    }
+    var chMap = {};
+    for (var i = 0; i < str1.length; i++) {
+    	  if (!chMap[str1[i]]) //not
+        {   	
+            chMap[str1[i]] = str2[i];
+        } 
+        else if (chMap[str1[i]] !== str2[i]) 
+        {
+        	console.log('Both strings differ in maaping at index ' + i);
+          return false;
+        }
+    }
+    return true;
+}
+console.log(isIsomorphic(str1, str2));
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
