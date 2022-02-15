@@ -2766,4 +2766,45 @@ Transform One String to Another using Minimum Number of Given Operation
 let A = "EACBD";
 let B = "EABCD";
  document.write("Minimum number of operations required is " + minOps(A, B));
- -----------------------------------------------------------------------------
+-----------------------------------------------------------------------------
+Recursively print all sentences that can be formed from list of word lists:-
+var R = 3; var C = 3;
+function printUtil(arr, m, n, output)
+{
+     output[m] = arr[m][n]; //  Add current word to output array
+        //  If this is last word of current output sentence, then print the output sentence
+        if (m == R - 1)
+        {
+            for (var i=0; i < R; i++)
+            {
+                document.write(output[i] + " " );
+            }
+            document.write("</br>")
+            return;
+        }
+        for (var i=0; i < C; i++)  //  Recur for next row
+        {
+            if (arr[m + 1][i] != "" && m < C)
+            {
+                printUtil(arr, m + 1, i, output);
+            }
+        }
+}    
+function print(arr){
+   var output = Array(R).fill(null); //  Create an array to store sentence
+      //  Consider all words for first row as starting points and print all sentences
+        for (var i=0; i < C; i++)
+        {
+            if (arr[0][i] != "")
+            {
+                printUtil(arr, 0, i, output);
+            }
+        }
+}
+ var arr =
+        [
+        ["you", "we", ""],
+        ["have", "are", ""],
+        ["sleep", "eat", "drink"]];
+ console.log(print(arr));
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
