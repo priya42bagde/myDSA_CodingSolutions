@@ -2808,3 +2808,51 @@ function print(arr){
         ["sleep", "eat", "drink"]];
  console.log(print(arr));
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Smallest window in a string containing all the characters of another string :-
+function Minimum_Window(s,t){
+    let m = new Array(256);
+    for(let i = 0; i < 256; i++)
+    {
+        m[i] = 0; 
+    } 
+    let ans = Number.MAX_VALUE;   // Length of ans
+    let start = 0; // Starting index of ans
+    let count = 0;
+    for(let i = 0; i < t.length; i++) // Creating map
+    {
+        if (m[t[i].charCodeAt(0)] == 0)
+            count++;
+             
+        m[t[i].charCodeAt(0)]++;
+    }
+    let i = 0; // References of Window
+    let j = 0;
+    while (j < s.length) // Traversing the window
+    {
+        m[s[j].charCodeAt(0)]--; // Calculations
+         
+        if (m[s[j].charCodeAt(0)] == 0)
+            count--;
+        if (count == 0)  // Condition matching
+        {
+            while (count == 0)
+            {
+               if (ans > j - i + 1) // Sorting ans
+                {
+                    ans = Math.min(ans, j - i + 1);
+                    start = i;
+                }
+                m[s[i].charCodeAt(0)]++; // Sliding I Calculation for removing I
+                if (m[s[i].charCodeAt(0)] > 0)
+                    count++;  
+                i++;
+            }
+        }
+        j++;
+    }
+    if (ans != Number.MAX_VALUE) return (s).join("").substring(start, (start + ans));
+    else return "-1";
+}
+let s = "ADOBECODEBANC"; let t = "ABC"; 
+document.write(Minimum_Window( s.split(""), t.split("")));
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
