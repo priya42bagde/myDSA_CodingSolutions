@@ -2891,3 +2891,98 @@ var minNumOfFlip = function(s) {
 };
 console.log(minNumOfFlip("001"))
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Convert a sentence into its equivalent mobile numeric keypad sequence:-  https://www.youtube.com/watch?v=OIwab9G2O18     from ASCII and index
+function printSequence(arr,input){
+        let output = "";
+        for (let i = 0; i < input.length; i++)
+        {
+            if (input[i] == ' ') output = output + "0".charCodeAt(0);  // Checking for space
+            else
+            {
+                let position = input[i].charCodeAt(0) - 'A'.charCodeAt(0); // Calculating index for each character
+                output = output + arr[position];
+            }
+        }
+        return output;
+}
+let str = ["2", "22", "222",
+       "3", "33", "333",
+       "4", "44", "444",
+       "5", "55", "555",
+       "6", "66", "666",
+       "7", "77", "777", "7777",
+       "8", "88", "888",
+       "9", "99", "999", "9999" ]
+     
+    let input = "GEEKSFORGEEKS";
+    document.write(printSequence(str, input));
+    ----------------------------------------------------------------
+    function printSequence(S)
+{
+    //code here
+    var num=0;
+    var temp="";
+    
+    for(var i=0;i<S.length;i++){
+        if(S[i]=='A'){
+            num=2;
+        }else if(S[i]=='B'){
+            num=22;
+        }else if(S[i]=='C'){
+            num=222;
+        }else if(S[i]=='D'){
+            num=3;
+        }else if(S[i]=='E'){
+            num=33;
+        }else if(S[i]=='F'){
+            num=333;
+        }else if(S[i]=='G'){
+            num=4;
+        }else if(S[i]=='H'){
+            num=44;
+        }else if(S[i]=='I'){
+            num=444;
+        }else if(S[i]=='J'){
+            num=5;
+        }else if(S[i]=='K'){
+            num=55;
+        }else if(S[i]=='L'){
+            num=555;
+        }else if(S[i]=='M'){
+            num=6;
+        }else if(S[i]=='N'){
+            num=66;
+        }else if(S[i]=='O'){
+            num=666;
+        }else if(S[i]=='P'){
+            num=7;
+        }else if(S[i]=='Q'){
+            num=77;
+        }else if(S[i]=='R'){
+            num=777;
+        }else if(S[i]=='S'){
+            num=7777;
+        }else if(S[i]=='T'){
+            num=8;
+        }else if(S[i]=='U'){
+            num=88;
+        }else if(S[i]=='V'){
+            num=888;
+        }else if(S[i]=='W'){
+            num=9;
+        }else if(S[i]=='X'){
+            num=99;
+        }else if(S[i]=='Y'){
+            num=999;
+        }else if(S[i]=='Z'){
+            num=9999;
+        }else if(S[i]==' '){
+            num=0;
+        }
+        temp+=num.toString();
+    }
+    return temp;
+}  
+console.log(printSequence("ABC"))
+ -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
