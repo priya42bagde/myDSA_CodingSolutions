@@ -2856,3 +2856,38 @@ function Minimum_Window(s,t){
 let s = "ADOBECODEBANC"; let t = "ABC"; 
 document.write(Minimum_Window( s.split(""), t.split("")));
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Number of flips to make binary string alternate:- https://www.youtube.com/watch?v=7b2ShX5YMXY
+var minNumOfFlip = function(s) {
+    let count = 0;
+    for (var i = 0; i< s.length; i++) 
+    {
+        if(i%2 == 0 && s.charAt(i)=="0") count++;
+        if(i%2 != 0 && s.charAt(i)=="1") count++;   
+    }
+    return Math.min(count, s.length-count);
+};
+console.log(minNumOfFlip("001"))
+----------------------------------------------------------------
+var minNumOfFlip = function(s) {
+    let count = 0;
+    for (let i = 0; i< s.length; i++) 
+    {
+        if(i%2 == 0)
+        {
+           if(s.charAt(i)=="0")
+           {
+              count++;
+           }
+        }  
+        else if(i%2 != 0)
+        {
+             if(s.charAt(i)=="1")
+             {
+               count++;
+             }
+        }    
+    }
+    return Math.min(count, s.length-count);
+};
+console.log(minNumOfFlip("001"))
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
