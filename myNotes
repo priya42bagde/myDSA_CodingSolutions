@@ -2985,4 +2985,41 @@ let str = ["2", "22", "222",
 }  
 console.log(printSequence("ABC"))
  -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
- 
+ Count the Reversals:- https://www.youtube.com/watch?v=dTBpH9YT2HQ
+ function printSequence(s){
+ if (s.length%2 != 0) return -1;
+ var open=0; var close=0; 
+ for (var i=0; i< s.length; i++){
+     if (s[i] == '{') open++; //1//2 //3
+     else open--; //3-1=2
+     if (open < 0)
+      {
+         close++; 
+         open=1;
+      }
+    }
+   return  close+open/2;
+}
+document.write(printSequence("{{{}"));
+-------------------------------------------------
+function printSequence(s){
+ if (s.length%2 != 0) return -1;
+ var open=0; var close=0; 
+ for (var i=0; i< s.length; i++){
+      if(s.at(i)=='{')
+       open++;
+       else
+       {
+           if(open == 0)
+           close++;
+           else
+           open--;
+       }
+   }
+   rev = parseInt(Math.ceil(open/2.0) + Math.ceil(close/2.0));
+   return rev;
+}
+document.write(printSequence("{{{}"));
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
