@@ -3051,5 +3051,28 @@ Count Palindromic Subsequences:- https://www.youtube.com/watch?v=NdpolO4sM3k
 let str = "abcb";
 document.write("Total palindromic subsequence are : "+ countPS(str));
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
+Minimum characters to be added at front to make string palindrome
+function ispalindrome(s) {
+            let l = s.length;
+            let j;
+            for (let i = 0, j = l - 1; i <= j; i++, j--) {
+                if (s[i] != s[j])
+                    return false;
+            }
+            return true;
+}
+let s = "ABC"; let cnt = 0; let flag = 0;
+        while (s.length > 0)
+        {
+           if (ispalindrome(s)) {  // if string becomes palindrome then break
+                flag = 1;
+                break;
+            }
+            else {
+                cnt++;
+                s = s.substring(0, s.length - 1); 
+                //console.log(s)// erase the last element of the string
+            }
+        }
+if (flag) document.write(cnt);
+----------------------------------------------------
