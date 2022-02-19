@@ -3075,4 +3075,22 @@ let s = "ABC"; let cnt = 0; let flag = 0;
             }
         }
 if (flag) document.write(cnt);
-----------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Smallest window that contains all characters of string itself:- 
+ function smallestWindow(s){
+  let stack = [];
+  for(let i = 0; i < s.length; i++)
+  {
+      if(stack.includes(s[i])) continue;
+      while(stack[stack.length-1]>s[i] && s.substring(i).includes(stack[stack.length-1])) // 10-1>a
+      { 
+         stack.pop(); //remove
+      } 
+      stack.push(s[i]); console.log(stack) //add
+  }
+  return stack.join("");
+ }
+ let str="aabcbcdbca"
+ let array= str.split(''); 
+ console.log(smallestWindow(array))
+ -----------------------------------------------------------
