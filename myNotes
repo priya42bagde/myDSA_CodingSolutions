@@ -3203,5 +3203,43 @@ let len = addr.length;
 }
 console.log(validIPs("25525511135"))
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Count of number of given string in 2D character array:- https://www.youtube.com/watch?v=ZYeVllg0D7E
+function solve(i, j, s, input, size, index){
+  var found=0;
+  if(i>=0 && j>=0 && i<6 && j<6 && s[index]==input[i][j]){
+  var temp = s[index];
+  input[i][j]=0;
+  index+=1;
+  if(index==size) found =1;
+  else{
+    found= found+solve(i+1, j, s, input, size, index);
+    found= found+solve(i-1, j, s, input, size, index);
+    found= found+solve(i, j+1, s, input, size, index);
+    found= found+solve(i, j-1, s, input, size, index);
+  }
+  input[i][j]=temp;
+  }
+  return found;
+}
+function stringFind(){
+var Input  =[
+            ['D','D','D','G','D','D'],
+            ['B','B','D','E','B','S'],
+            ['B','S','K','E','B','K'],
+            ['D','D','D','D','D','E'],
+            ['D','D','D','D','D','E'],
+            ['D','D','D','D','D','G']
+           ]
+var str= "GEEKS"
+var size=5;//str.length; //5
+var ans=0;
+for(var i=0; i<6; i++){
+ for(var j=0; j<6; j++){
+   ans= ans+solve(i,j,str,Input, size,0)
+ }
+}
+return ans;
+}
+console.log(stringFind())
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
