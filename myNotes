@@ -3241,5 +3241,122 @@ for(var i=0; i<6; i++){
 return ans;
 }
 console.log(stringFind())
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Search a Word in a 2D Grid of characters:-
+let R, C;
+let x=[-1, -1, -1, 0, 0, 1, 1, 1]; // For searching in all 8 direction
+let y=[-1, 0, 1, -1, 1, -1, 0, 1];
+ 
+// This function searches in all
+    // 8-direction from point
+    // (row, col) in grid[][]
+function search2D(grid,row,col,word)
+{
+    // If first character of word
+        // doesn't match with
+        // given starting point in grid.
+        if (grid[row][col] != word[0])
+            return false;
+  
+        let len = word.length;
+  
+        // Search word in all 8 directions
+        // starting from (row, col)
+        for (let dir = 0; dir < 8; dir++) {
+            // Initialize starting point
+            // for current direction
+            let k, rd = row + x[dir], cd = col + y[dir];
+  
+            // First character is already checked,
+            // match remaining characters
+            for (k = 1; k < len; k++) {
+                // If out of bound break
+                if (rd >= R || rd < 0 || cd >= C || cd < 0)
+                    break;
+  
+                // If not matched, break
+                if (grid[rd][cd] != word[k])
+                    break;
+  
+                // Moving in particular direction
+                rd += x[dir];
+                cd += y[dir];
+            }
+            if (k == len) // If all character matched,then value of must be equal to length of word
+                return true;
+        }
+        return false;
+}
+// Searches given word in a given matrix in all 8 directions
+function exist( grid,word)  // Consider every point as starting point and search given word
+{
+    let res=false;
+      for (let row = 0; row < R; row++) {
+            for (let col = 0; col < C; col++) {
+                if (search2D(grid, row, col, word))
+                    document.write("pattern found at " + row + ", " + col+"<br>");
+            }
+        }
+        return true;
+}
+R = 3;
+C = 13;
+let grid = [['a','b','a','b'],['a','b','e','b'],['e','b','e','b'] ]
+console.log(exist(grid, "abe"));
+document.write("<br>");
 
+document.write("</hr>");
+
+let grid1 = [[ 'a','b','c'],['d','r','f'],['g','h','i'] ];
+console.log(exist(grid1, "abc"));
+document.write("<br>");
+------------------------------------------------
+const isOutOfBound = (board, row, col) => row < 0 || row >= board.length || col < 0 || col >= board[0].length;
+
+const checkNeighbors = (board, word, row, col) => {
+    // Check exit conditions
+    if (!word.length) return true;
+    if (isOutOfBound(board, row, col) || board[row][col] !== word[0]) return false;
+    
+    // Save some stuff
+    const curChar = board[row][col];
+    const newWord = word.substr(1);
+
+    board[row][col] = 0; // Disable the current character
+  
+    // Check if neighbors are fruitful
+    const results = checkNeighbors(board, newWord, row + 1, col) ||
+        checkNeighbors(board, newWord, row - 1, col) ||
+        checkNeighbors(board, newWord, row, col + 1) ||
+        checkNeighbors(board, newWord, row, col - 1);
+
+    // Enable current character
+    board[row][col] = curChar;
+  //console.log(board[row][col])
+   
+    return results;
+};
+
+
+var exist = function(board, word) {    
+    for (let row = 0; row < board.length; row++) {
+        for (let col  = 0; col < board[0].length; col++) {
+         document.write("pattern found at " + row + ", " + col+"<br>");
+            if (checkNeighbors(board, word, row, col)) {
+            
+              return true
+            };
+        }
+    }
+    return false;
+};
+let grid = [['a','b','a','b'],['a','b','e','b'],['e','b','e','b'] ]
+console.log(exist(grid, "abe"));
+document.write("<br>");
+
+document.write("</hr>");
+
+let grid1 = [[ 'a','b','c'],['d','r','f'],['g','h','i'] ];
+console.log(exist(grid1, "abc"));
+document.write("<br>");
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
