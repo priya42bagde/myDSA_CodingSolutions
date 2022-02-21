@@ -3360,3 +3360,41 @@ let grid1 = [[ 'a','b','c'],['d','r','f'],['g','h','i'] ];
 console.log(exist(grid1, "abc"));
 document.write("<br>");
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Function to find Number of customers who could not get a computer:- 
+let MAX_CHAR = 26; // n is number of computers in cafe. // 'seq' is given sequence of customer entry, exit events
+function runCustomerSimulation(n, seq) {
+            // seen[i] = 0, indicates that customer 'i' is not in cafe
+            // seen[1] = 1, indicates that customer 'i' is in cafe but computer is not assigned yet.
+            // seen[2] = 2, indicates that customer 'i' is in cafe and has occupied a computer.
+let seen = new Array(MAX_CHAR).fill(0); // Initialize result which is number of customers who could not get any compute
+let res = 0;
+let occupied = 0;  // To keep track of occupied computers
+for (let i = 0; i < seq.length; i++)
+{
+    let ind = seq[i].charCodeAt(0) - 'A'.charCodeAt(0); // Find index of current character in seen[0...25]
+    if (seen[ind] == 0) 
+    { // If First occurrence of 'seq[i]'
+          seen[ind] = 1; // set the current character as seen
+          if (occupied < n) { // If number of occupied computers is less than n, then assign a computer to new customer
+                occupied++;
+                seen[ind] = 2; // Set the current character as occupying a computer
+            }
+            else // Else this customer cannot get a computer,increment result
+                 res++;
+      }
+      else { // If this is second occurrence of 'seq[i]'
+              if (seen[ind] == 2) { // Decrement occupied only if this customer was using a computer
+                        occupied--; 
+               }
+               seen[ind] = 0;
+      }
+ }
+return res;
+}
+        document.write(runCustomerSimulation(2, "ABBAJJKZKZ") + "<br>");
+        document.write(runCustomerSimulation(3, "GACCBDDBAGEE") + "<br>");
+        document.write(runCustomerSimulation(3, "GACCBGDDBAEE") + "<br>");
+        document.write(runCustomerSimulation(1, "ABCBCA") + "<br>");
+        document.write(runCustomerSimulation(1, "ABCBCADEED") + "<br>");
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------        
+        
