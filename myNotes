@@ -3407,7 +3407,68 @@ return res;
         document.write(runCustomerSimulation(1, "ABCBCA") + "<br>");
         document.write(runCustomerSimulation(1, "ABCBCADEED") + "<br>");
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------        
-        
+EDIT Distance: Given two strings s and t. Return the minimum number of operations required to convert s to t. (Using DP)
+var minDistance = function(word1, word2) {
+    let dp = Array(word1.length+1).fill(null).map(()=>(Array(word2.length+1).fill(0)));
+    for (let i=0;i<dp.length;i++) {
+        dp[i][0] = i
+    }
+    for (let i=0;i<dp[0].length;i++) {
+        dp[0][i] = i
+    }
+    console.log(dp)
+    for (let i = 1;i<dp.length;i++) {
+        for (let j=1;j<dp[0].length;j++) {
+            dp[i][j] = Math.min(
+                            dp[i-1][j]+1, // left //2
+                            dp[i][j-1]+1, // right //2
+                            dp[i-1][j-1] + (word1[i-1]!=word2[j-1]?1:0) // diagonal //0+1
+                        );
+        }
+    }
+    return dp[dp.length-1][dp[0].length-1]; 
+};
+console.log(minDistance("geek", "gesek"))
+---------------------------------------------------------------
+function minOps(A, B){
+  // This parts checks whether conversion is possible or not
+    if (A.length != B.length) return -1;
+    let i, j, res = 0;
+    let count = [];    
+    for(let i = 0; i < 256; i++)
+    {
+        count[i] = 0;
+    }
+    // count characters in A      
+    // Subtract count for every character in B
+    for(i = 0; i < A.length; i++)
+    {
+        count[A[i].charCodeAt(0)]++;
+        count[B[i].charCodeAt(0)]--;
+    }  
+    // Check if all counts become 0
+    for(i = 0; i < 256; i++)
+        if (count[i] != 0)
+            return -1;
+       
+    i = A.length - 1;
+    j = B.length - 1;
+    while(i >= 0)
+    {
+      // If there is a mismatch, then keep incrementing result 'res' until B[j] is not found in A[0..i]
+        if (A[i] != B[j])
+            res++;
+        else
+            j--;
+             
+        i--;        
+    }
+    return res;    
+}
 
+let A = "EACBD";
+let B = "EABCD";
+console.log(minOps(A, B));
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
