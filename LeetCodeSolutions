@@ -43,4 +43,38 @@ var isPalindrome = function(x) {
     return true;  
 }
 ===========================================================================================================================================================================
+Longest Common Prefix:
+var longestCommonPrefix = function(strs) {
+let ans = ""; var strs= strs.sort();
+  for (i in strs[0]) { //i means 0,1,2
+    if (!strs.every((el) => el[i] === strs[0][i])) { break; } 
+      //every function return true/false usually //el representig each character of the items of 
+      //an array which we are compairing with f,l,....
+    ans += strs[0][i];
+  }
+  return ans;
+};
+--------------------------------------------------------------------------------
+var longestCommonPrefix = function(strs) {
+var arr = strs.sort()
+  var i=0;
+  while(arr[0].length>0 && arr[0].charAt(i)===arr[arr.length-1].charAt(i)){
+    i++;
+  }
+  console.log(arr[0].substring(0,i)) 
+  return arr[0].substring(0,i)
+};
+------------------------------------------------------------------------------
+var longestCommonPrefix = function(strs) {
+  if (strs.length === 0) return '';
+  let r = '';
+  for (let i = 0; i < strs[0].length; i++) {
+    for (let j = 1; j < strs.length; j++) {
+      if (strs[0][i] !== strs[j][i]) return r;
+    }
+    r += strs[0][i];
+  }
+  return r;
+};
+========================================================================================================================================================================
 
