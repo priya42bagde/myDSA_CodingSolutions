@@ -77,4 +77,38 @@ var longestCommonPrefix = function(strs) {
   return r;
 };
 ========================================================================================================================================================================
+Valid Paranthesis :
+var isValid = function(s) {
+    let map ={
+        "(":")",
+        "{":"}",
+        "[":"]"
+    }
+    let arr = []; //its example of stack i.e, 
+    for (let ch of s){
+        if(map[ch]){ //checking if inside in map object
+            arr.push(map[ch]);
+        }
+        else if(arr.length>0 && arr[arr.length-1]===ch){ //checking length>0 otherwise give undefined
+            arr.pop();
+        }
+        else {
+            return false;
+        }
+    }
+   return arr.length ===0 ? true: false;
+};
+--------------------------------------------------------------
+const isValid = (s) => {
+  const stack = [];
+  for (const c of s) {
+    if (c === '{' || c === '[' || c === '(') stack.push(c);
+    else {
+      const p = stack.pop(); // No need to check for empty before popping (returns undefined)
+      if ((c === '}' && p !== '{') || (c === ']' && p !== '[') || (c === ')') & (p !== '(')) return false;
+    }
+  }
+  return stack.length === 0; //true
+};
+=======================================================================================================================================================================
 
