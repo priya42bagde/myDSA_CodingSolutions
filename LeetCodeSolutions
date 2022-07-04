@@ -111,4 +111,15 @@ const isValid = (s) => {
   return stack.length === 0; //true
 };
 =======================================================================================================================================================================
+Contain duplicate: 
+var containsDuplicate = function(nums) {
+    return nums.length !== new Set(nums).size // As Set only contains non-duplicate values so new Set(nums) will remove all duplicates element then you can 
+    //check if the lenght of the array is same as set if same means no duplicates element otherwise duplicate is there
+};
+---------------------------------------------------------------
+var containsDuplicate = function(nums) {
+    return nums.length > new Set(nums).size;
+};
+=========================================================================================================================================================================
+
 
