@@ -121,5 +121,20 @@ var containsDuplicate = function(nums) {
     return nums.length > new Set(nums).size;
 };
 =========================================================================================================================================================================
+Remove Duplicates from Sorted Array:
+var removeDuplicates = function(nums) {
+    let prev = null;
+    const k = nums.length;
+    for (let i = 0; i < k; i++) {
+        if (prev === nums[i]) { //for duplicacy won't work
+            continue;
+        }
+        prev = nums[i];
+        nums.push(nums[i]); //[1,1,2,1,2]
+    }
+    nums.splice(0, k); //index, no. of elemnets from that index to delete the exact array
+};
+=========================================================================================================================================================================
+
 
 
