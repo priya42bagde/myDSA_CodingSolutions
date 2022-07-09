@@ -253,4 +253,16 @@ var lengthOfLastWord = function(s) {
     return len;
 };
 ============================================================================================================================================================================
-
+Majority Element:
+var majorityElement = function(nums) {
+    let map = {}
+    for(let item of nums){
+        if(!map[item]) {
+            map[item] = 1;
+        } else {
+            map[item]++;
+        }
+        if (map[item] >= nums.length/2) return item
+    }
+};
+--------------------------------------------- 
