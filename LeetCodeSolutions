@@ -265,4 +265,38 @@ var majorityElement = function(nums) {
         if (map[item] >= nums.length/2) return item
     }
 };
---------------------------------------------- 
+========================================================================================================================================================================
+Missing Number:
+var missingNumber = function(nums) {
+    nums.sort((a,b) => a - b ) 
+    let count = 0
+    for(let i = 0; i <= nums.length; i++) { // o (n)
+        if(nums[i] == count) {
+           count++
+        } else {
+            return count
+        }
+    }
+};
+------------------------------------------------
+var missingNumber = function(nums) {
+   nums.sort(function(a,b){return (a-b); });
+    for(let i=0;i<nums.length;i++){
+        if(nums[i]!==i){
+            return i;
+        }
+    }
+    return nums.length    
+};
+-----------------------------------------------
+var missingNumber = function(nums) {
+    nums.sort((a,b)=>a-b);
+    if (nums[0] !== 0) return 0;
+    for (var i = 0; i < nums.length; i++) {
+        if (nums[i]+1 !== nums[i+1]) {
+            return i+1;
+        }
+    }
+};
+==============================================================================================================================================================================
+
