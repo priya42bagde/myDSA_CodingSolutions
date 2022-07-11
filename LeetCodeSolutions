@@ -299,4 +299,96 @@ var missingNumber = function(nums) {
     }
 };
 ==============================================================================================================================================================================
+Reverse Vowels of a String:
+var reverseVowels = function(s) {
+    const VOWELS = { 'a': 1, 'e': 1, 'i': 1, 'o': 1, 'u': 1, 'A': 1, 'E': 1, 'I': 1, 'O': 1, 'U': 1 };
+    const arr = s.split('');
+    let i = 0, j = arr.length - 1;
+    while (i < j) {
+        if (VOWELS[arr[i]] && VOWELS[arr[j]]) { //if both present in VOWELS
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+            i++;
+            j--;
+        } else if (VOWELS[arr[i]]) { //if left side present in VOWELS then need to find right hand side so that's why j--
+            j--;
+        } else { //if right side present in VOWELS
+            i++;
+        }
+    }
+    return arr.join('');
+};
+----------------------------------------------------------------------------
+var reverseVowels = function(s) {
+    let left = 0
+    let right = s.length - 1
+    let arr = s.split("")
+    let vowels = ['a', 'e', 'i', 'o', 'u', 'A', 'E', "I", 'O', 'U']
+    
+    while(left < right){
+        if(vowels.indexOf(arr[left]) !== -1 && vowels.indexOf(arr[right]) !== -1) // if both present in vowels
+            {
+                [arr[left], arr[right]] = [arr[right], arr[left]]
+                ++left;
+                --right;
+            }
+        if(vowels.indexOf(arr[left]) == -1){ //if left not present
+            ++left
+        }
+        if(vowels.indexOf(arr[right]) == -1){ //if right not prsent
+            --right
+        }
+    }
+    return arr.join("")
+};
+------------------------------------------------------------------------------------
+const reverseVowels = (s) => {
+    const vowels = new Set(['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U']);
+    s = s.split('');
+    
+    let l = 0, r = s.length - 1;
+    
+    while(l < r){
+        if(vowels.has(s[l]) && vowels.has(s[r])){
+            swap(s, l, r);
+            l++, r--;
+        }else if(!vowels.has(s[l])){
+            l++;
+        }else if(!vowels.has(s[r])){
+            r--;
+        }
+    }
+    
+    return s.join('');
+};
 
+const swap = (arr, l, r) => {
+    const temp = arr[l];
+    arr[l] = arr[r];
+    arr[r] = temp;
+}
+--------------------------------------------------------------------------
+function swap(arr, idx1, idx2) {
+    return [arr[idx1], arr[idx2]] = [arr[idx2], arr[idx1]];
+}
+
+// reverse vowel function
+var reverseVowels = function(s) {
+    let vowels = ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'];
+    s = s.split('');
+    let start = 0;
+    let end = s.length-1;
+    while(start < end) {
+        if(vowels.includes(s[start]) && vowels.includes(s[end])) {
+            swap(s, start, end);
+            start++;
+            end--;
+        }else if(!vowels.includes(s[start])){
+            start++;
+        } else if(!vowels.includes(s[end])) {
+            end--;
+        }
+    }
+    
+    return s.join('');
+};
+================================================================================================================================================================================
