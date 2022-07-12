@@ -392,3 +392,27 @@ var reverseVowels = function(s) {
     return s.join('');
 };
 ================================================================================================================================================================================
+Single Number:
+var singleNumber = function(nums) {
+            nums.sort();
+            for (var i = 0; i < nums.length; i += 2) {
+                if (nums[i] != nums[i + 1]) {
+                    return nums[i];
+                }
+            }
+};
+-----------------------------------------
+var singleNumber = function(nums) {
+    let hash = {}
+    for(let val of nums){
+        hash[val]?delete hash[val]:hash[val]=1;
+    }
+    return Object.keys(hash)[0]
+};
+-----------------------------------------------
+var singleNumber = function(nums) {
+    for(var i=0;i<nums.length;i++) {
+        if(nums.indexOf(nums[i]) === nums.lastIndexOf(nums[i])) return nums[i];
+    }
+};
+===============================================================================================================================================================================
