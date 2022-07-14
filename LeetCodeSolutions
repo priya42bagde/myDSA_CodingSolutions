@@ -443,4 +443,30 @@ return new Array(n).fill(0).map((item, num) => (++num % 3 ? '' : 'Fizz') + (num 
 -> The remainder is 1 and thus our ternary condition is now simplified to 1.
 -> 1 ends up not being a falsy value and therefor coerces into a truthy value.
 ========================================================================================================================================================================
-
+Concatenation of Array:
+var getConcatenation = function(nums) {
+    return nums.concat(nums)
+};
+--------------------------------------------------
+var getConcatenation = function(nums) {
+   return [...nums, ...nums]
+};
+--------------------------------------------------
+var getConcatenation = function(nums) {
+    var n = nums.length;
+   for(var i=0; i<n; i++){
+       nums[i+n]=nums[i]
+   }
+    return nums
+}
+--------------------------------------------------
+var getConcatenation = function(nums) {
+    let n = nums.length;
+    let ans = new Array(2*n);    
+    for(let i = 0; i < n; i++) {
+		// ans[i] == nums[i] and ans[i + n] == nums[i]
+        ans[i] = ans[i + n]= nums[i];
+    }
+    return ans;
+};
+=========================================================================================================================================================================
