@@ -470,3 +470,79 @@ var getConcatenation = function(nums) {
     return ans;
 };
 =========================================================================================================================================================================
+Sort Array By Parity: 
+var sortArrayByParity = function(nums) {
+    var even =[], odd=[];
+    for(var i=0; i<nums.length;i++){
+        if(nums[i]%2 ===0){ even.push(nums[i]) }  
+        else {odd.push(nums[i])}
+    }
+    return even.concat(odd);
+};
+-----------------------------------------------------------
+var sortArrayByParity = function(nums) {
+    var even = nums.filter(num => num%2 === 0)
+    var odd = nums.filter(num => num%2 !==0)
+    return even.concat(odd);
+}
+------------------------------------------------------------
+var sortArrayByParity = function(nums) {
+    var even =[], odd=[];
+    nums.forEach((item)=>{
+         item%2==0 ? even.push(item) : odd.push(item)
+        
+    })
+    return even.concat(odd)
+}
+---------------------------------------------------------------
+var sortArrayByParity = function(nums) {
+    var even =[], odd=[];
+    nums.forEach((item)=>{
+         item%2==0 ? even.push(item) : odd.push(item)        
+    })
+    return [...even, ...odd]
+}
+-------------------------------------------------------------
+var sortArrayByParity = function(nums) {
+    var temp =[]
+    nums.forEach((item)=>{
+         item%2==0 ? temp.unshift(item) : temp.push(item)        
+    })
+    return temp
+}
+-----------------------------------------------------------
+var sortArrayByParity = function(A) {
+    return [...A.filter(v => v % 2 === 0), ...A.filter(v => v % 2 !== 0)];
+};
+-----------------------------------------------------------
+
+alayvora's avatar
+alayvora
+6
+April 27, 2020 2:08 PM
+
+305 VIEWS
+
+var sortArrayByParity = function(A) {
+  let i = 0;
+  let j = A.length -1;
+
+  while(i < j) {
+    if (A[i] % 2 !== 0 && A[j] % 2 === 0) {
+      let temp = A[i];
+      A[i] = A[j];
+      A[j] = temp;
+    }
+
+    if (A[i] % 2 !== 0) {
+      j--;
+    }
+
+    if(A[i] % 2 === 0) {
+      i++;
+    }
+  }
+
+  return A;
+};
+=========================================================================================================================================================================
