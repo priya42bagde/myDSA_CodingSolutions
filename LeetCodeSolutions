@@ -515,14 +515,6 @@ var sortArrayByParity = function(A) {
     return [...A.filter(v => v % 2 === 0), ...A.filter(v => v % 2 !== 0)];
 };
 -----------------------------------------------------------
-
-alayvora's avatar
-alayvora
-6
-April 27, 2020 2:08 PM
-
-305 VIEWS
-
 var sortArrayByParity = function(A) {
   let i = 0;
   let j = A.length -1;
@@ -546,3 +538,39 @@ var sortArrayByParity = function(A) {
   return A;
 };
 =========================================================================================================================================================================
+String Compression: 
+/*var compress = function(chars) {
+    var arr=[], count=1;
+    //if(chars.length===1) return 1;
+    for(var i=0; i< chars.length; i++){
+        if(!arr.includes(chars[i])){arr.push(chars[i])}
+        if(chars[i] != chars[i+1]){
+            arr.push(count);
+          count =1;
+        }
+        if(chars[i]==chars[i+1]){
+            count++;
+        }
+    }
+    return arr.length;
+};
+//console.log(compress( ["a","b","b","b","b","b","b","b","b","b","b","b","b"]))
+*/
+------------------------------------------------------------------
+var compress = function(chars) {
+    var arr=[], count=1;
+    if(chars.length===1) return 1;
+    for(var i=0; i< chars.length; i++){
+        if(!arr.includes(chars[i])){arr.push(chars[i])}
+        if(chars[i] != chars[i+1]){
+            arr.push(""+count);
+          count =1;
+        }
+        if(chars[i]==chars[i+1]){
+            count++;
+        }
+    }
+    return arr.length;
+};
+console.log(compress( ["a","b","b","b","b","b","b","b","b","b","b","b","b"]))
+======================================================================================================================================================================================
