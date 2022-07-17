@@ -574,3 +574,13 @@ var compress = function(chars) {
 };
 console.log(compress( ["a","b","b","b","b","b","b","b","b","b","b","b","b"]))
 ======================================================================================================================================================================================
+Find All Numbers Disappeared in an Array:
+var findDisappearedNumbers = function(nums) {
+    var s = {};
+    for (let i =1; i<= nums.length; i++) {
+        s[i] = 1; //storing all the key and values(1) to the object till the length of an array
+    }    
+    nums.forEach(n=> {   delete s[n] })  //deleting if we have in nums
+   return Object.keys(s) //getting from an object
+}; console.log(findDisappearedNumbers([4,3,2,7,8,2,3,1]))
+-------------------------------------------------------------------
