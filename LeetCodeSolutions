@@ -584,3 +584,22 @@ var findDisappearedNumbers = function(nums) {
    return Object.keys(s) //getting from an object
 }; console.log(findDisappearedNumbers([4,3,2,7,8,2,3,1]))
 -------------------------------------------------------------------
+To find unique values:
+var kthDistinct = function(arr) {
+  var unique = []
+  arr.filter((item)=>{
+    if(!unique.includes(item))
+       {
+         unique.push(item)
+       }
+    else {
+        unique.splice(1,1)
+    }
+  })
+ 
+  return unique
+};
+console.log(kthDistinct(["d","b","c","b","c","a"])) //[d,a]
+=====================================================================================================================================================================
+
+======================================================================================================================================================================
