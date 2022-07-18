@@ -601,5 +601,66 @@ var kthDistinct = function(arr) {
 };
 console.log(kthDistinct(["d","b","c","b","c","a"])) //[d,a]
 =====================================================================================================================================================================
+ Kth Distinct String in an Array: 
+var kthDistinct = function(arr,k) {
+  var unique = []
+  arr.filter((item)=>{
+    if(!unique.includes(item))
+       {
+         unique.push(item)
+       }
+    else {
+        unique.splice(1,1)
+    }
+  })
+ 
+  return unique[k-1] == undefined ? "" : unique[k-1]
+   
+};
+//console.log(kthDistinct(["d","b","c","b","c","a"],2))*/
+-------------------------------------------------------------------------------
+var kthDistinct = function(arr, k) {
+    let obj = {}
+    let ans = []
+    
+    for (let item of arr) {
+        obj[item] = obj[item] + 1 || 1
+    } // arr.forEach(letter => map[letter] = map[letter] + 1 || 1)
+    
+    for (let item in obj) {
+        if (obj[item] === 1) {
+            ans.push(item)   
+        }
+    }
+    
+    return ans.length >= k ? ans[k-1] : ''
+    
+    
+};
+-------------------------------------------------------------------------------
+const kthDistinct = (arr, k) => {
+    const map = {}
+    
+    for (const word of arr) {
+        if (!(word in map)) map[word] = 0
+        
+        map[word]++
+    }
 
+    const distinct = arr.filter(word => map[word] === 1)
+    
+    return distinct[k - 1] || ''
+}
+-------------------------------------------------------------------------------
+const kthDistinct = (arr, k) => {
+  const notDistinct = new Set(arr.filter((x, index, arr) => arr.indexOf(x) !== arr.lastIndexOf(x)));
+  return arr.filter((x) => !notDistinct.has(x))[k - 1] ?? "";
+};
+-------------------------------------------------------------------------------
+var kthDistinct = function(arr, k) {
+    let freqs = {};
+    for (let s of arr) freqs[s] = (freqs[s] || 0) + 1;
+       
+    return [...Object.keys(freqs)].filter(x => freqs[x] === 1)[k - 1] || "";
+};
 ======================================================================================================================================================================
