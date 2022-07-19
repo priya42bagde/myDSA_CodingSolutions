@@ -664,3 +664,17 @@ var kthDistinct = function(arr, k) {
     return [...Object.keys(freqs)].filter(x => freqs[x] === 1)[k - 1] || "";
 };
 ======================================================================================================================================================================
+Merge Strings Alternately:
+var mergeAlternately = function(word1, word2) {
+    var merged = [];
+    var w1 = word1.split("");
+    var w2 = word2.split("");
+    for(var i=0; i<word1.length || i< word2.length; i++){
+        merged.push(word1[i])
+        if( word2[i]){
+            merged.push(word2[i])
+        }
+    }
+    return merged.join("")
+};
+console.log(mergeAlternately("abc","pqr"))
