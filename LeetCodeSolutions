@@ -678,3 +678,61 @@ var mergeAlternately = function(word1, word2) {
     return merged.join("")
 };
 console.log(mergeAlternately("abc","pqr"))
+============================================================================
+Divide a String Into Groups of Size k: 
+var divideString = function(s, k, fill) {
+    var result = []
+    for(let i = 0;i<s.length;i+=k){
+		const element = s.slice(i,i+k);
+		if(element.length === k){
+			result.push(element);
+		}
+		else {
+			result.push(element+ fill.repeat(k - element.length));
+			
+		}
+	}
+	return result;
+};
+--------------------------------------------------------
+var divideString = function(s, k, fill) {
+    const res = []; let str = '';
+    for (let i = 0; i < s.length; i++) {
+        str += s[i];  
+        if (str.length === k) {
+            res.push(str);
+            str = '';
+        }
+    }
+    const n = str.length;   
+    if (n > 0) {
+        for (let i = 0; i < k - n; i++) {
+            str += fill;
+        }    
+        res.push(str);
+    }   
+    return res;
+};
+console.log(divideString("abcdefghi", 3, "x"))
+----------------------------------------------------------------
+var divideString = function(s, k, fill) {
+    let result = []    
+    if(s.length % k !== 0) s = s.concat(fill.repeat(k - s.length % k))   
+    for(let i = 0; i < s.length; i += k){
+        result.push(s.slice(i,i+k))
+    } 
+    return result
+};
+------------------------------------------------------------------
+const divideString = (s, k, fill) => {
+  const result = []
+  if (s.length % k) {
+    s += fill.repeat(k - s.length % k)
+  }
+  for (let i = 0; i < s.length; i ++) {
+    result.push(s.slice(i, i + k))
+    i += k - 1
+  }
+  return result
+}
+=========================================================================================================================================================================
