@@ -736,3 +736,68 @@ const divideString = (s, k, fill) => {
   return result
 }
 =========================================================================================================================================================================
+Plus One : 
+var plusOne = function(digits) {
+for(var i = digits.length - 1; i >= 0; i--){
+     digits[i]++; 
+    if(digits[i] > 9){
+        digits[i] = 0;
+    }else{
+        return digits;
+    }
+}
+digits.unshift(1);
+return digits;
+}; [1,2,3] //[1,2,4]
+//First, I add 1 anyway. If there is a carry-over, the new digit will also add 1. If the current digit is less than 9 then return the array.
+//Last, when running over for loop, I just put fill 1 in front of the array.
+//the spread operator creates a copy while unshift manipulates the original array.
+--------------------------------------------------------
+var plusOne = function(digits) {
+  for(let i = digits.length - 1; i >= 0; i --){
+    if(digits[i] === 9){
+      digits[i] = 0;
+    }
+    else {
+      digits[i] ++;
+      return digits; //if less than 9
+    }
+  }
+  return [1,...digits] //[1, ...digits] is the equivalent of digits.unshift(1) //Always run for more than 9
+  //this is used for the case where the digits are [9,9] after the iteration has //been completed, we are left with [0,0] which is wrong but it's okay because at //this point what we do is only increasing the number by one. So if this happens, //how do we return the right answer? We return the array with appending 1 in the //front and spread the digits to make a new array of [1,0,0]  
+};
+--------------------------------------------------
+var plusOne = function(digits) {
+    if (!digits || digits.length == 0) return [];
+    for(let i = digits.length - 1; i >= 0; i--){
+        if (digits[i] < 9){ //998->999  989->990
+            digits[i]++;
+            return digits;
+        }
+        else{
+            digits[i] = 0;
+        }
+    }
+    //only special case 999-> 1000
+    let thousand = new Array(digits.length).fill(0);
+    thousand.unshift(1); //add 1 in head of arr
+    return thousand;
+};
+----------------------------------------------------------
+var plusOne = function(digits) {
+    let end = digits.length - 1;
+    for(let i = end; i >= 0; i--){
+        if(digits[i] !== 9){
+            digits[i] = digits[i] + 1;
+            break;
+        } else {
+            digits[i] = 0;
+        }
+    }
+
+    if(digits[0] === 0) digits.unshift(1);
+    return digits;
+};
+==========================================================================================================================================================================
+
+
