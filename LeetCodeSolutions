@@ -799,5 +799,61 @@ var plusOne = function(digits) {
     return digits;
 };
 ==========================================================================================================================================================================
-
+Find First Palindromic String in the Array:
+var firstPalindrome = function(words) {
+    for(var i =0; i<words.length; i++){
+        if(words[i] === words[i].split('').reverse().join('')){
+           return words[i];
+           break;
+        }
+    }
+    return ""
+};
+----------------------------------------------------------------------
+var firstPalindrome = function(words) {
+    for (const word of words) {
+        if (word === word.split('').reverse().join('')) return word;
+    }
+    
+    return '';
+}; 
+----------------------------------------------------------------------
+var firstPalindrome = function(words) {
+    const isPalindrome = (w) => {
+        if(w === w.split('').reverse().join('')) return true
+        return false;
+    }
+    
+    let result = words.find(word => isPalindrome(word));
+    if(result) return result;
+    return '';
+};
+----------------------------------------------------------------------
+var firstPalindrome = function(words) {    
+    let result = words.find(w =>w === w.split('').reverse().join('') ?  true :   false)
+    return result ? result : '';
+};
+----------------------------------------------------------------------
+const firstPalindrome = (words) => words.find((x) => x === [...x].reverse().join("")) ?? "";
+----------------------------------------------------------------------
+var firstPalindrome = function(words) {
+    const palindrome = words.filter(item => item == item.split("").reverse().join(""));
+    if (palindrome.length > 0){
+      return palindrome[0];
+    }
+    return ""
+}; 
+----------------------------------------------------------------------
+var firstPalindrome = function(words) {
+  let reverseArr = []
+   for(let i=0; i<words.length; i++){
+       reverseArr.push(words[i].split('').reverse().join(''));
+       if(reverseArr[i] == words[i]){
+           return reverseArr[i]
+       }
+   }
+   return ''
+};
+//console.log(firstPalindrome(["abc","car","ada","racecar","cool"])) //"ada"
+=============================================================================================================================================================================
 
