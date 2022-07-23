@@ -856,4 +856,31 @@ var firstPalindrome = function(words) {
 };
 //console.log(firstPalindrome(["abc","car","ada","racecar","cool"])) //"ada"
 =============================================================================================================================================================================
-
+Count of Smaller Numbers After Self
+var countSmaller = function(nums) {
+    let newNums = [...nums];
+    newNums.sort(function(i1, i2){return i1 - i2});    
+    let res = [];
+    for(let i = 0; i < nums.length; ++i){
+        let seq = newNums.indexOf(nums[i]);
+        res.push(seq);
+        newNums.splice(seq, 1);
+    }   
+    return res; 
+};
+//console.log(countSmaller([5,2,6,1])) //[2,1,1,0]
+----------------------------------------------------------
+var countSmaller = function(nums) {
+    if (nums.length === 0) return nums
+    const retVal = []
+    for (let i = 0; i < nums.length; i++) { // 1
+        for (let j = 0; j < i; j++) { // 0
+            if (nums[j] > nums[i]) { // 0 1
+                retVal[j] += 1
+            }
+        }
+        retVal.push(0)
+    }
+    return retVal;
+};
+=================================================================================================
