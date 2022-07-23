@@ -883,4 +883,56 @@ var countSmaller = function(nums) {
     }
     return retVal;
 };
-=================================================================================================
+===========================================================================================================================================================================
+Add Strings:
+var addStrings = function(num1, num2) {
+    if(num1.length === num2.length){
+    var result = (parseInt(num1)+parseInt(num2)).toString();}
+    return result;
+};
+//console.log(addStrings("11", "123")) //"134"
+----------------------------------------------------------------------------------
+var addStrings = function(num1, num2) {
+    var cast1 = num1 * 1
+    var cast2 = num2 * 1
+    var answer = cast1 + cast2;  
+    return ''+answer;
+};
+----------------------------------------------------------------------------------
+var addStrings = function(num1, num2) {
+  const sum = BigInt(num1) + BigInt(num2);
+  return sum.toString();
+};
+----------------------------------------------------------------------------------
+var addStrings = function(num1, num2) {
+    let len = num1.length>num2.length ? num1.length:num2.length;
+    let l1 = num1.length-1, l2 = num2.length-1;
+    let carry = 0, out = "", sum = 0;
+    for(let i = 0; i<len; i++){
+        sum = parseInt(num1[l1-i] || 0) + parseInt(num2[l2-i] || 0) + carry;
+        out = sum%10 + out;
+        carry = Math.floor(sum/10);
+    }
+    if(carry>0) out = carry+out;
+    return out;
+};
+------------------------------------------------------------------------------------
+var addStrings = function(num1, num2) {
+    let result = "";
+    let carry = 0;
+    let p1 = num1.length - 1;
+    let p2 = num2.length - 1;
+    while(p1 >= 0 || p2 >= 0) {
+        const x1 = p1 >= 0 ? (num1.charCodeAt(p1) - '0'.charCodeAt(0)) : 0;
+        const x2 = p2 >= 0 ? (num2.charCodeAt(p2) - '0'.charCodeAt(0)) : 0;
+        const value = (x1 + x2 + carry) % 10;
+        carry = Math.floor((x1 + x2 + carry) / 10);
+        result = value + result;   
+        p1--;
+        p2--;
+    }
+    if (!!carry) { result = carry + result}    
+    return result;
+};
+==========================================================================================================================================================================
+
