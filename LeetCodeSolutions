@@ -935,4 +935,71 @@ var addStrings = function(num1, num2) {
     return result;
 };
 ==========================================================================================================================================================================
+Find First and Last Position of Element in Sorted Array
+function searchRange(nums, target) {
+  return [nums.indexOf(target), nums.lastIndexOf(target)];
+}
+---------------------------------------------------------------
+const searchRange = function(nums, target) {
+	let index = nums.indexOf(target)
 
+	if (index > -1) {
+		let start = index
+		let end = index
+		while(nums[index] === nums[index + 1]) {
+			end++
+			index++
+		}
+
+		return [start, end]
+	}
+
+	return [-1, -1]
+};
+------------------------------------------------------------------
+function binarySearch(nums, target, findMaxIndex) {
+    let index = -1, start = 0, end = nums.length - 1;
+    
+    while (start <= end) {
+        const mid = Math.floor(start + (end - start) / 2);
+        if (target < nums[mid]) {
+            end = mid - 1;
+        } else if (target > nums[mid]) {
+            start = mid + 1;
+        } else {
+            index = mid;
+            if (findMaxIndex) {
+                start = mid + 1;
+            } else {
+                end = mid - 1;
+            }
+        }
+    }
+    
+    return index;
+}
+var searchRange = function(nums, target) {
+    const result = [-1, -1];
+    
+    result[0] = binarySearch(nums, target, false);
+    if (result[0] > -1) {
+        result[1] = binarySearch(nums, target, true);
+    }
+    
+    return result;
+};
+---------------------------------------------------
+var searchRange = function(nums, target) {
+    var result = []
+    for(var i=0; i<nums.length; i++){
+        if(nums.length ==1 && nums[i]==target){
+           return [0,0];
+        }
+        if(nums[i]===target){
+         result.push(i)   
+        }
+    }
+    return result.length ? result : [-1,-1];
+};
+//console.log(searchRange([5,7,7,8,8,10], 8)) //not worked for all test cases
+=======================================================================================================================================================================
