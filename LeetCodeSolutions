@@ -1003,3 +1003,53 @@ var searchRange = function(nums, target) {
 };
 //console.log(searchRange([5,7,7,8,8,10], 8)) //not worked for all test cases
 =======================================================================================================================================================================
+ Find the Difference:
+ /**
+ * @param {string} s
+ * @param {string} t
+ * @return {character}
+ */
+var findTheDifference = function(s, t) {
+    return [...t].sort().find((char, i) => char !== [...s].sort()[i])
+}; //s="abc", t="abcd"
+/*var findTheDifference = function(s, t) {
+    var sChars = s.split('').sort();
+    var tChars = t.split('').sort();
+    var i;
+    for(i = 0; i < sChars.length; i++) {
+        if(tChars[i] !== sChars[i]) {
+            return tChars[i];
+        }
+    }
+    return tChars[i];
+};*/
+/*var findTheDifference = function (s, t) {
+    for (let i = 0; i < s.length; i++) {
+        t = t.replace(s[i], '')
+    }
+    return t;
+};*/
+/*var findTheDifference = function(s, t) {
+    for (let letter of s)
+        t = t.replace(letter, '');
+    return t;
+};*/
+/*var findTheDifference = function(s, t) {
+  const sum1 = s.split('').reduce((acc, cur) => acc + cur.charCodeAt(0), 0);
+  const sum2 = t.split('').reduce((acc, cur) => acc + cur.charCodeAt(0), 0);
+  return String.fromCharCode(sum2 - sum1);
+};*/
+
+
+/*var findTheDifference = function(s, t) {
+  var s = s.split("").sort((a,b)=> a-b).join(""); 
+  var t = t.split("").sort((a,b)=> a-b).join("");
+ // console.log(s,t)
+  for(var i =0; i< t.length || s.length; i++){
+      if(s[i] != t[i]){
+          return t[i]
+      }
+  }
+};
+console.log(findTheDifference( "abcd", "abcde"))*/
+====================================================================
