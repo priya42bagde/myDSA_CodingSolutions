@@ -1053,3 +1053,56 @@ var findTheDifference = function(s, t) {
 };
 console.log(findTheDifference( "abcd", "abcde"))*/
 ====================================================================
+String Matching in an Array:
+var stringMatching = function(words) {
+    words.sort((a, b) => a.length - b.length)
+    const result = []
+    
+    for(let i=0; i<words.length; i++) {
+        const currentWord = words[i]
+        
+        for(let j=i+1; j<words.length; j++) {
+            if(words[j].includes(currentWord)) {
+                result.push(currentWord)
+                break
+            }
+        }
+    }
+    
+    return result
+};
+/*var stringMatching = function(words) {
+    let arr = []
+    for(let i=0; i<words.length; i++){
+       for(let j=0; j<words.length; j++){
+        if(words[i] != words[j] && words[i].includes(words[j])){
+            arr.push(words[j])
+        }           
+       }
+    }
+    let newArr = [...new Set(arr)]   // removed duplicate elements
+    return newArr
+};
+/*var stringMatching = function(words) {
+    let str = '';
+    words.sort((a, b) => a.length - b.length);
+    let res = [];
+    for (let i = words.length - 1; i >= 0; i--) {
+        if (str.includes(words[i])) res.push(words[i]);
+        else str += words[i];
+    } 
+    
+    return res;
+};
+/*const stringMatching = words =>
+  words.filter(n => words.some(h => h !== n && h.includes(n)));
+/*var stringMatching = function(words) {
+    let res = [];
+    for (let word of words){
+        if (words.filter(w => w.includes(word)).length > 1) res.push(word);
+    }
+    return res;
+};*/
+
+//consle.log(stringMatching(["mass","as","hero","superhero"]))
+========================================================================================================================================================================
