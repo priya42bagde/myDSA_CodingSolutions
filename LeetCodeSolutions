@@ -1127,4 +1127,105 @@ var reorganizeString1 = function(S) {
     return res.join('');
 };
 console.log(reorganizeString("aab")) //"aba"
-----------------------------------------------------------------------------------
+======================================================================================================================================================================
+Longest Substring Without Repeating Characters: 
+We can use the Sliding Window technique for this question. Sliding Window is good for analysing subsets within a data structure, to see which subset is the best. 
+There are two approaches; fixed sized and dynamic. This solution uses the dynamic approach where the window is not a fixed size and can grow and shrink.
+Sliding Window uses two pointers to define the boundary of the subset (this is the window). In this example left and i are the left and right pointers, respectively.
+To solve the problem of finding the longest unique substring we use Set to store the characters. Before adding to the Set we first check if it already exists. 
+If it does exist, we remove all the characters in the Set from the left (using our left pointer) until the duplicate character has been removed.
+
+const lengthOfLongestSubstring = s => {
+ //sliding window approach
+ if(!s){return 0}
+ let start=0, end=0;
+ const uniqueCharacter = new Set();
+ let maxLength=0;
+ while(end<s.length){
+     if(!uniqueCharacter.has(s[end])){
+         uniqueCharacter.add(s[end]);
+         end++;
+         //maxLength = Math.max(maxLength, uniqueCharacter.size)
+         maxLength = Math.max(maxLength, end - start )
+     }
+     else{
+         uniqueCharacter.delete(s[start]);
+         start++;
+     }
+ }
+ return maxLength;
+}
+---------------------------------------
+USING MAP:
+var lengthOfLongestSubstring = function(s) {
+    // keeps track of the most recent index of each letter.
+    const seen = new Map();
+    // keeps track of the starting index of the current substring.
+    let start = 0;
+    // keeps track of the maximum substring length.
+    let maxLen = 0;
+    
+    for(let i = 0; i < s.length; i++) {
+        // if the current char was seen, move the start to (1 + the last index of this char)
+        // max prevents moving backward, 'start' can only move forward
+        if(seen.has(s[i])) start = Math.max(seen.get(s[i]) + 1, start)
+        seen.set(s[i], i);
+        // maximum of the current substring length and maxLen
+        maxLen = Math.max(i - start + 1, maxLen);
+    } 
+    
+    return maxLen;  
+};
+---------------------------------------------------------------
+using map:
+const lengthOfLongestSubstring = (s) => {
+    let tempMax = 0 
+    let maxLen = 0;
+    const map = new Map();     
+    for(let i = 0; i < s.length; i++) { 
+        const char = s[i];
+        if (map.get(char) >= tempMax) { 
+            tempMax = map.get(char) + 1; 
+        }
+        map.set(char, i); 
+        maxLen = Math.max(maxLen, i - tempMax + 1) 
+    }
+    return maxLen
+}
+console.log(lengthOfLongestSubstring("abcabcbb"))
+
+OR-----------------------------
+const lengthOfLongestSubstring = (s) => {
+    // reference to what is needed to update maxLen
+    let tempMax = 0 
+    // initalize at 0 
+    let maxLen = 0;
+    // use Map data structure due to ease of .get() and .set() methods 
+    const map = new Map();   
+  
+    for(let i = 0; i < s.length; i++) { 
+        const char = s[i]; 
+      
+        // check to see if character has been encountered before. if so, and the index was equal to or greater than the current tempMax, reset tempMax to index it was seen plus 1. 
+        // important because if the index it was last seen is less than tempMax that means tempMax isn't incremented up, making it easier to use it to update our maxLen below
+        // if it was encountered at a high index that means it will be harder to increase our maxLen since there is a repeat character pretty close to the current character
+        // new characters don't result in tempMax being increased since the lookup returns undefined which will return false for the evaluation
+        // this makes it easy for maxLen to be increased since that calculation looks at the index we are currently at which will always be pretty high since the loop always moves right
+        if (map.get(char) >= tempMax) { 
+            tempMax = map.get(char) + 1; 
+        }
+
+        // always update the index number we saw a character in the map 
+        map.set(char, i); 
+      
+        // use tempMax to determine to update maxLen or not. adding 1 here offsets the addition of 1 when tempMax is recalculated
+        // its used to determine if adding the current character is to our advantage or not as tempMax holds a reference to how far away our last repeat is
+        // subtracting current index from how far away last repeat gives us that difference and the 1 says to update or not. note it has to be greater for it to be worth updating
+        maxLen = Math.max(maxLen, i - tempMax + 1) 
+    }
+
+    return maxLen
+}
+=======================================================================================================================================================================
+
+maxLength tracks the largest substring, after each iteration we set maxLength to itself or the size of the Set which ever is largest.
