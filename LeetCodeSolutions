@@ -1229,3 +1229,96 @@ const lengthOfLongestSubstring = (s) => {
 =======================================================================================================================================================================
 
 maxLength tracks the largest substring, after each iteration we set maxLength to itself or the size of the Set which ever is largest.
+=======================================================================================================================================================================
+Longest Palindromic Substring: 
+var longestPalindrome = function(s) {
+    let maxPal = '';
+    
+    for(let i = 0; i < s.length; i++) {
+        bubble(i, i); // odd palindrome
+        bubble(i, i+1); // even palindrome
+    }
+    
+    function bubble(left, right) {
+
+        while(left >= 0 && s[left] === s[right]) {
+            left--;
+            right++;
+        }
+        left++;
+        right--;
+        
+        if(maxPal.length < right-left+1) {
+            maxPal = s.slice(left, right+1)
+        }
+    }
+    return maxPal;
+};
+---------------------------------------------------------------
+var longestPalindrome = function(s) {
+    let maxSub = '';
+    
+    const bubbleFromCenter = (left, right) => {
+        while(left >= 0 && right < s.length && s[left] === s[right]) {
+            left--;
+            right++;
+        }
+        return s.slice(left+1, right)
+    }
+    
+    for(let i = 0; i < s.length; i++) {
+        const sub1 = bubbleFromCenter(i, i);
+        const sub2 = bubbleFromCenter(i, i+1);
+        const sub = sub1.length > sub2.length ? sub1 : sub2
+        if(sub.length > maxSub.length) {
+            maxSub = sub
+        }
+    }
+    return maxSub
+};
+-----------------------------------------------------
+var longestPalindrome = function(s) {
+    let wonder = "";
+    if (s === null || s.length === 0) return wonder;
+    for (let i = 0; i < s.length; i++) {
+        let tmpOne = calc(s, i, i);
+        let tmpTwo = calc(s, i, i + 1);
+        wonder = tmpOne.length > wonder.length ? tmpOne : wonder;
+        wonder = tmpTwo.length > wonder.length ? tmpTwo : wonder;
+    }
+    return wonder;
+};
+    const calc = (s, left, right) => {
+    while (left >= 0 && right < s.length && s[left] === s[right]) {
+        left--;
+        right++;
+    }
+    return s.substring(left + 1, right);  
+};
+---------------------------------------------------------------------
+var longestPalindrome = function(s) {
+    if(s.length<1 || s === null) return '';
+    var longest = '';
+    for(let i=0; i<s.length; i++){
+        var oddCharacters = expandFromMid(s,i,i);
+        var evenCharacters = expandFromMid(s,i-1, i);
+        if(oddCharacters.length> longest.length){
+            longest = oddCharacters
+        }
+        if(evenCharacters.length> longest.length){
+            longest = evenCharacters
+        }
+    }
+    return longest
+};
+
+const expandFromMid =(s, left, right)=>{
+    var i=0;
+    while(s[left-i] && s[left-i]===s[right+i]){
+        i++;
+    }
+    i--;
+   return s.slice(left-i, right+i+1)
+}
+//console.log(longestPalindrome("babad"))*/
+=======================================================================================================================================================================
