@@ -1322,3 +1322,53 @@ const expandFromMid =(s, left, right)=>{
 }
 //console.log(longestPalindrome("babad"))*/
 =======================================================================================================================================================================
+Valid Parentheses: 
+var isValid = function(s) {
+    if (s.length <=1) return false   
+    let stack = []
+    let hash = {
+        '(' : ')',
+        '[' : ']',
+        '{' : '}'
+    }  
+    
+   /* for(let i = 0; i < s.length; i++){
+        if (hash[s[i]]) stack.push(hash[s[i]]) //s[i] means { //hash[s[i]] means }
+        else if (s[i] !== stack.pop()) return false
+    }
+    return stack.length===0 ? true : false;*/
+ 
+ 
+    /*for (let i = 0; i < s.length; i++) {
+    if (s[i] === '(' || s[i] === '{' || s[i] === '[') {
+      stack.push(s[i]);    
+    } else if (hash[stack.pop()] !== s[i]) {
+      return false;
+    }
+  }
+  return stack.length ? false : true;*/
+
+
+ /*for(const char of s) {
+      if (char in hash) {
+      stack.push(char);    
+    } else if (hash[stack.pop()] !== char) {
+      return false;
+    }
+  }
+  return !stack.length */
+
+
+  for (const c of s) {
+    if (c === '{' || c === '[' || c === '(') stack.push(c);
+    else {
+      const p = stack.pop(); // No need to check for empty before popping (returns undefined)
+      if ((c === '}' && p !== '{') || (c === ']' && p !== '[') || (c === ')') & (p !== '(')) return false;
+    }
+  }
+  return stack.length === 0;
+
+
+};
+console.log(isValid("{}[]"))
+============================================================================================================================================================================
