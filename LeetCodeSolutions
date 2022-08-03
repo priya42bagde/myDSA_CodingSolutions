@@ -1376,7 +1376,7 @@ Move Zeroes:
 var moveZeroes = function(nums) {
  return  nums.sort((a,b)=> b-a)
 };
-console.log(moveZeroes([0,1,0,3,12]))
+console.log(moveZeroes([0,1,0,3,12])) //[12,3,1,0,0] //Don't prefer
 ------------------------------------------------
 var moveZeroes = function(nums) {
  const nonEmpty =[], empty=[];
