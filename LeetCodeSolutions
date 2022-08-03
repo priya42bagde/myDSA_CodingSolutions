@@ -1372,3 +1372,42 @@ var isValid = function(s) {
 };
 console.log(isValid("{}[]"))
 ============================================================================================================================================================================
+Move Zeroes:
+var moveZeroes = function(nums) {
+ return  nums.sort((a,b)=> b-a)
+};
+console.log(moveZeroes([0,1,0,3,12]))
+------------------------------------------------
+var moveZeroes = function(nums) {
+ const nonEmpty =[], empty=[];
+  for(var i=0; i< nums.length; i++){
+    if(nums[i]!==0) nonEmpty.push(nums[i]);
+    else empty.push(nums[i])
+  }
+ return nonEmpty.concat(empty); //[...nonEmpty, ...empty]
+};
+console.log(moveZeroes([0,1,0,3,12]))
+-----------------------------------------------------
+var moveZeroes = function(nums) {
+  let j = 0  // nonzero count
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] !== 0) {	  
+      [nums[j], nums[i]] = [nums[i], nums[j]] // swap elements
+      j++
+    }
+  }
+  return nums
+};
+console.log(moveZeroes([0,1,0,3,12]))
+------------------------------------------------------
+let moveZeroes = function(nums) {
+        for(let i= nums.length-1; i>=0; i--){
+            if(nums[i]===0){
+                nums.push(0) //adding at last
+                nums.splice(i,1) //removing that element
+            }
+        }
+        return nums
+    };
+console.log(moveZeroes([10,1,0,3,12]))
+====================================================================================================================================================================
