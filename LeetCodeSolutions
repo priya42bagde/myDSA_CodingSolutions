@@ -1410,4 +1410,17 @@ let moveZeroes = function(nums) {
         return nums
     };
 console.log(moveZeroes([10,1,0,3,12]))
+---------------------------------------------------
+const moveZeroes = function (numbers) {
+
+   const nonZeroNumbers = numbers.filter(number => number !== 0);
+
+   const amountOfZeros = numbers.length - nonZeroNumbers.length;
+
+   nonZeroNumbers.push(...Array(amountOfZeros).fill(0))
+
+   return nonZeroNumbers;
+
+}
+console.log(moveZeroes([0,1,0,3,12]))
 ====================================================================================================================================================================
