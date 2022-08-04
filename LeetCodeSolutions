@@ -1424,3 +1424,74 @@ const moveZeroes = function (numbers) {
 }
 console.log(moveZeroes([0,1,0,3,12]))
 ====================================================================================================================================================================
+Valid Palindrome:
+var isPalindrome = function(s) {
+    s = s.replace(/[^0-9a-zA-Z]+/gmi,""); //m means	Multiline: Anchor meta characters work on each line.
+    s = s.toLowerCase();
+    var l = 0, r = s.length - 1;
+    console.log(s);
+    while(l<r) {
+        if(s.charAt(l) != s.charAt(r)) {
+            return false;
+        }
+        l++;
+        r--;
+    }
+    return true;
+};
+------------------------------------------------------------
+var isPalindrome = function(s) {
+    s = s.replace(/[^A-Za-z0-9]/g, '').toLowerCase(); 
+    //[] means contain characters
+    //^ means opposite
+    // A-Za-z0-9 means All the characters in a-z, A-z, 0-9
+    // g means global modifier 'g' to the regex to get all the matches
+    for (let i = 0; i < s.length; i++) {
+        if (s[i] !== s[s.length - 1 - i]) return false;
+    }
+    return true;
+};
+console.log(isPalindrome("A man, a plan, a canal: Panama"))// true
+---------------------------------------------------------------
+var isPalindrome = function(s) {
+   // \w means	Matches alphanumeric characters: [a-zA-Z0-9_] 
+   // \W	Matches non-alphanumeric characters: [^\w]
+    s = s.replace(/[\W_]+/g,"");
+    s = s.toLowerCase();
+    var l = 0, r = s.length - 1;
+  
+
+    while(l<r) {
+        if(s.charAt(l) != s.charAt(r)) {
+            return false;
+        }
+        l++;
+        r--;
+    }
+    return true;
+}
+------------------------------------------------------------------------
+var isPalindrome = function(s) {
+    // | means Alternation Matches either the characters before or the characters after the symbol.
+    var strippedString = s.replace(/\W|_/g, '');
+    var reversedString = strippedString.split('').reverse().join('');
+    
+    return strippedString.toLowerCase() == reversedString.toLowerCase();
+};
+------------------------------------------------------------------------------
+var isPalindrome = function(str) {
+    let s = str.toLowerCase().split('')
+    for(let i=0;i<s.length;i++){
+        if((s[i].charCodeAt(0) < 97 || s[i].charCodeAt(0) > 122) && (s[i].charCodeAt(0) < 48 || s[i].charCodeAt(0) > 57)){
+            s[i]=' '
+        }
+    }
+    let newS = ''
+    for(let i=0;i<s.length;i++){
+        if(s[i] !== ' '){
+            newS+=s[i]
+        }
+    }
+    return newS === newS.split('').reverse().join('')
+};
+===============================================================================================================================================================================
