@@ -1495,3 +1495,95 @@ var isPalindrome = function(str) {
     return newS === newS.split('').reverse().join('')
 };
 ===============================================================================================================================================================================
+Subsets:    //https://www.youtube.com/watch?v=4paR1cZx9Tg&t=650s
+var subsets = function(nums) {
+    let res = []
+    let subsets = []
+	
+    const dfs = (i) => {
+        if (i >= nums.length) {
+           res.push(subsets.slice()) 
+           return
+        }
+        
+        //include
+        subsets.push(nums[i])
+        dfs(i + 1)        
+        subsets.pop()
+        
+        //exclude
+        dfs(i + 1)
+    }
+	
+    dfs(0)
+    return res
+};
+-------------------------------------------------------------------------------------------
+var subsets = function(nums) {
+    let res = [[]];
+    for (const num of nums) {
+        const newRes = [];
+        for (const sol of res) {
+           newRes.push([...sol, num])
+        }
+        res = [...res, ...newRes];
+    }
+    
+    return res;
+};
+-------------------------------------------------------------------------------------------
+const subsets = nums => {
+    let res = [[]],
+        curr;
+    for(let num of nums) {
+        curr = res.map(x => [...x, num]);
+        res = [...res, ...curr]; //addition of 2 arrays i.e res with curr
+    }
+    return res;
+};
+-------------------------------------------------------------------------------------------
+var subsets = function (nums) {
+	let finalOutput = [];
+	const helper = (currentIndex, set) => { //0, []
+		if (currentIndex >= nums.length) {
+			finalOutput.push(set);
+			return; 
+		}
+		helper(currentIndex + 1, [...set, nums[currentIndex]]);
+        helper(currentIndex + 1, set);
+	};
+	helper(0, []);
+	return finalOutput;
+};
+-------------------------------------------------------------------------------------------
+var subsets = function(nums) {
+    return nums.reduce((sets, num) => sets.forEach(set => sets.push([...set, num])) || sets, [[]]);
+};
+-------------------------------------------------------------------------------------------
+var subsets = a => a.reduce((s, l) => s.concat(s.map(t => t.concat(l))), [[]]);
+-------------------------------------------------------------------------------------------
+var subsets = function(nums) {
+    let result = [];
+    dfs([], 0);    
+    function dfs(current, index){
+        result.push(current);
+        for(let i = index; i < nums.length; i++) {
+            dfs(current.concat(nums[i]), i + 1);
+        }
+    }    
+    return result;
+};
+-------------------------------------------------------------------------------------------
+var subsets = function(nums) {
+    var res = [[]]
+    for (let i = 0; i < nums.length; i++) {
+  		let length = res.length;
+		for (let j = 0; j < length; j++) {
+			res.push([...res[j],nums[i]])
+        }  
+   }
+   return res
+ };
+//console.log(subsets([1,2,3]))
+=======================================================================================================================================================================
+
