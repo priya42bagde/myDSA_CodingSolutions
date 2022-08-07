@@ -1586,4 +1586,54 @@ var subsets = function(nums) {
  };
 //console.log(subsets([1,2,3]))
 =======================================================================================================================================================================
+Vowels of All Substrings:
+var countVowels = function(word) {
+    const vowels = new Set(['a', 'e', 'i', 'o', 'u']);
+    let total = 0;
+    let count = 0;
+    for (let i = 0; i < word.length; i++) {
+        if (vowels.has(word[i])) {
+            count += i + 1;
+        }
+        total += count;
+    }
+    return total;
+};
+/*function countVowels(word) {
+    let len = word.length;
+    let vowels = ['a', 'e', 'i', 'o', 'u'];
+    let count = 0;
 
+    for (let i = 0; i < len; i++) {
+        if (vowels.includes(word[i])) {
+            count += len + (i * (len - i - 1));
+        }
+    }
+
+    return count;
+}*/
+//console.log(countVowels("bac"))
+/*var countVowels = function(word) {
+  let total = 0;  
+  for (let i = 0; i < word.length; i++) {
+    if (['a','e','i','o','u'].includes(word[i])) {
+      total += (i + 1) * (word.length - i);
+    }
+  }
+  return total;
+};*/
+//console.log(countVowels("aba")) //6
+
+/* The determinant factor of how many times a vowel will be used in the substring is depend on 2 things: the position of the vowel in the word and the remaining length of the word (from 0-indexed position of the vowel to end of the word)
+
+  // So the formula is (0-indexed): `(i + 1) * (world.length - i)`, where `i` is the position of the vowel
+  
+  // Some example
+  // Eg: 'abc'
+  // - The letter 'a' in 0 place (0-indexed) is used 3 times, 'a', 'ab', 'abc'
+  // Eg: 'bac'
+  // - The letter 'a' in 1st place (0-indexed) is used 4 times, 'ba', 'bac', 'a', 'ac'
+  // Eg: 'bca'
+  // - The letter 'a' in 2nd place (0-indexed) is used 3 times, 'bca', 'ca', 'a'
+ */
+ ====================================================================================================================================================================
