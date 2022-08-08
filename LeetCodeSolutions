@@ -1637,3 +1637,139 @@ var countVowels = function(word) {
   // - The letter 'a' in 2nd place (0-indexed) is used 3 times, 'bca', 'ca', 'a'
  */
  ====================================================================================================================================================================
+************************************ Permutations ***********************************
+  
+---------------------------------------- 1st Way ------------------------------------
+var permute = function(nums) {
+    let res = []
+    function help(arr2){
+        if (arr2.length==nums.length)
+            return res.push(arr2)
+        for(let e of nums)
+            if (!arr2.includes(e))
+                help([...arr2, e])
+    }
+    help([])
+    return res
+};
+console.log(permute([1,2,3])) //[[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]
+---------------------------------------- 2nd Way ------------------------------------
+const permute = nums => {
+    const arr = [];
+    _permute(arr, [], nums);
+    return arr;
+};
+const _permute = (arr, tempArr, nums) => {
+    if (tempArr.length === nums.length) {
+        //copy
+        arr.push(tempArr.slice());
+    } else {
+        nums.map(n => {
+        if (tempArr.indexOf(n) === -1) {
+          tempArr.push(n);
+          _permute(arr, tempArr, nums);
+          tempArr.pop();
+        }
+      });
+    }
+};
+---------------------------------------- 3rd Way ------------------------------------
+var permute = function(letters) {
+    let res = [];
+    dfs(letters, [], Array(letters.length).fill(false), res);
+    return res;
+}
+function dfs(letters, path, used, res) {
+    if (path.length == letters.length) {
+        // make a shallow copy since otherwise we'd be append the same list over and over
+        res.push(Array.from(path));
+        return;
+    }
+    for (let i = 0; i < letters.length; i++) {
+        // skip used letters
+        if (used[i]) continue;
+        // add letter to permutation, mark letter as used
+        path.push(letters[i]);
+        used[i] = true;
+        dfs(letters, path, used, res);
+        // remove letter from permutation, mark letter as unused
+        path.pop();
+        used[i] = false;
+    }
+}
+---------------------------------------- 4th Way ------------------------------------
+var permute = function(nums) {
+    let res = [];
+    dfs(nums, new Set(), res);
+    return res;
+}
+function dfs(nums, curr, res) {
+    if (curr.size == nums.length) {
+        res.push(Array.from(curr));
+        return;
+    }
+    for (let i = 0; i < nums.length; i++) {
+        if (curr.has(nums[i])) continue;
+        curr.add(nums[i]);
+        dfs(nums, curr, res);
+        curr.delete(nums[i]);
+    }
+}
+---------------------------------------- 5th Way ------------------------------------
+const permute = (nums) => {
+  const res = [];
+  const go = (cur, rest) => {
+    if (rest.length === 0) {
+      res.push(cur);
+      return;
+    }
+    for (let i = 0; i < rest.length; i++) {
+      // note if using array push and splice here, it will cause mutation
+      go(
+        [...cur, rest[i]],
+        [...rest.slice(0, i), ...rest.slice(i + 1)],
+      );
+    }
+  };
+
+  go([], nums);
+  return res;
+};
+---------------------------------------- 6th Way ------------------------------------
+var permute = function(nums) {
+  let results = [];
+
+  let permutations = (current, remaining) => {
+    if(remaining.length <= 0) results.push(current.slice());
+    else {
+      for(let i = 0; i < remaining.length; i++) { // Loop through remaining elements
+        current.push(remaining[i]); // Insert the iTH element onto the end of current
+        permutations(current.slice(), remaining.slice(0, i).concat(remaining.slice(i+1))); 
+        // Recurse with inserted element removed
+        current.pop(); // Remove last inserted element for next iteration
+      }
+    }
+  };
+
+  permutations([], nums);
+  return results;
+};
+---------------------------------------- 7th Way ------------------------------------
+var permute = function(nums) {
+    const result = [];    
+    function traverse(nums, storeArr) {
+        if(nums.length === 0) {
+            result.push([...storeArr]);
+            return ;
+        }
+        for(let num of nums) {
+            storeArr.push(num);
+            const value = nums.filter(item => item !== num);
+            traverse(value, storeArr);
+            storeArr.pop();
+        }
+    }    
+    traverse([...nums], [])
+    return result;
+};
+=========================================================================================================================================================================
