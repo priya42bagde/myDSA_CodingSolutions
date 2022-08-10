@@ -1773,3 +1773,50 @@ var permute = function(nums) {
     return result;
 };
 =========================================================================================================================================================================
+Group Anagram: 
+const groupAnagrams = strs => {
+    const map = {};
+    
+    for (let str of strs) {
+        const key = [...str].sort().join(''); //str.split('').sort().join('');
+
+        if (!map[key]) { //creating a new key always for new
+            map[key] = [];
+        }
+
+        map[key].push(str); //assgning values in the key
+    }
+    
+    return Object.values(map);
+};
+-------------------------------------
+var groupAnagrams = function(strs) {
+    let map = {}
+    
+    for (let str of strs) {
+        let key = [...str].sort()
+        map[key] = map[key] ? [...map[key], str] : [str]
+    }
+    
+    return Object.values(map)
+};
+--------------------------------------
+  Time complexity: O(m * n) where m is the total number of strings and n is the average number of char in each string
+  Space complexity: O(n)
+*/
+var groupAnagrams = function(strs) {
+  let result = {};
+  for (let str of strs) {
+    const keys = new Array(26).fill(0);
+    for (let char of str) {
+      keys[char.charCodeAt(0) - 97] += 1; 
+    }
+    
+    if (!result[keys]) result[keys] = [];
+    result[keys].push(str);
+  }
+  return Object.values(result);
+}
+======================================================================================================================================================================
+console.log(groupAnagrams(["eat","tea","tan","ate","nat","bat"]))
+--------------------------------------------------------------------------
