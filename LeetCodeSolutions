@@ -1820,4 +1820,49 @@ var groupAnagrams = function(strs) {
 }
 console.log(groupAnagrams(["eat","tea","tan","ate","nat","bat"]))
 ======================================================================================================================================================================
+ Remove All Adjacent Duplicates In String:
+const removeDuplicates = s => {
+  const stack = [];
+  for (const char of s) {
+    stack[stack.length - 1] === char ? stack.pop() : stack.push(char);
+  }
+  return stack.join('');
+};
+console.log(removeDuplicates("abbaca"))
 
+
+Since we need to check and remove the previous char by the current char, so it let us think about the stack:
+
+traverse the string s
+for every char, we compare it with the top value in stack
+if they are same, pop the top value
+otherwise, push the current char into stack
+finally, return the stack as a string
+----------------------------------------------------------
+var removeDuplicates = function(S) {
+    let res = [];
+    for(let i=0; i<S.length; i++){
+        if(S[i] !== res[res.length-1]) {
+            res.push(S[i]);
+        } else {
+            res.pop();
+        }
+    }
+    return res.join("");
+};
+---------------------------------------------------------
+var removeDuplicates = function(S) {
+  let stack = [];
+  stack.push(S[0]);
+  for(let i=1; i<S.length; i++){
+    if(S[i] != stack[stack.length - 1]){
+        stack.push(S[i]);
+    } else{
+        stack.pop();
+    }
+  }
+return stack.join("");
+};
+-----------------------------------------------------------
+const removeDuplicates = (S) => S.match(/(.)\1/g) ? removeDuplicates(S.replace(/(.)\1/g, '')) : S;
+==========================================================================================================================================================================
