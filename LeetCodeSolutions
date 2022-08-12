@@ -1866,3 +1866,33 @@ return stack.join("");
 -----------------------------------------------------------
 const removeDuplicates = (S) => S.match(/(.)\1/g) ? removeDuplicates(S.replace(/(.)\1/g, '')) : S;
 ==========================================================================================================================================================================
+Reverse Words in a String
+var reverseWords = function(s) {
+  var arr = s.split(' ') , result = [];
+  console.log("arr", arr)
+  for(var i=arr.length; i>=0; i--){
+     result.push(arr[i])
+  }
+  return result.filter(Boolean).join(" ");
+};
+//console.log(reverseWords("the sky is blue")) //"blue is sky the"
+---------------------------------------------------------------------------------
+const reverseWords = str => str.trim().split(/\s+/).reverse().join(' ');
+---------------------------------------------------------------------------------
+var reverseWords = function(str) {
+    return str
+            .split(' ')               //create an array of words separated based by spaces
+            .filter(string => string) //remove empty strings to take care of extra whitespace
+            .reverse()                //reverse the array of words
+            .join(' ');               //join the words back together with spaces inbetween
+};
+---------------------------------------------------------------------------------
+var reverseWords = function(s) {
+    return s.split(' ').filter(word => word.length>0).reverse().join(' ')
+};
+---------------------------------------------------------------------------------
+var reverseWords = function(s) {
+    let words = s.split(" ").filter( x => x!='' );
+    return words.reverse().join(' ');
+};
+==========================================================================================================================================================================
