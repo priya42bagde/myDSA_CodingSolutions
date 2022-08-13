@@ -1896,3 +1896,32 @@ var reverseWords = function(s) {
     return words.reverse().join(' ');
 };
 ==========================================================================================================================================================================
+ Find Common Characters
+ var commonChars = function(A) {
+    const result = []
+    const firstWordArr = [...A[0]]
+    
+    for(const letter of firstWordArr) {
+        if(A.every(word => word.includes(letter))) { // // Every word in array has letter
+            result.push(letter)
+            A = A.map(word => word.replace(letter, ''))   // Remove the matched letter from the words
+        }
+    }    
+    
+    return result
+};
+console.log(commonChars(["cool","lock","cook"]))
+-----------------------------------------------------------------------
+var commonChars = function(A) {
+    let common = A[0].split('').filter(char => {  //['c','o','o','k'] //c //o //o //k
+        for (var i = 1; i < A.length; i++) { //iterate from index =1
+            if (A[i].includes(char)) A[i] = A[i].replace(char, '');  
+            else return false;
+        }
+        return true;
+    })
+	return common
+};
+//console.log(commonChars(["cool","lock","cook"]))
+================================================================================================================================================================================
+------------------------------------------------------------------------
