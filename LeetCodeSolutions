@@ -1924,4 +1924,25 @@ var commonChars = function(A) {
 };
 //console.log(commonChars(["cool","lock","cook"]))
 ================================================================================================================================================================================
+Remove All Occurrences of a Substring:
+var removeOccurrences = function(s, part) {
+    const len = part.length;
+    while(s.indexOf(part) !== -1) {
+        s = s.slice(0, s.indexOf(part)) + s.slice(s.indexOf(part) + len) 
+        //first slice to take first part of the string
+        //second slice to take last part of the string
+    }
+    return s;
+};
+-----------------------------------------------------------------------------
+const removeOccurrences = (s, part) =>	s.includes(part) ? removeOccurrences(s.replace(part, ''), part) : s;
+-----------------------------------------------------------------------------
+var removeOccurrences = function(s, part) {
+    while(s.includes(part)){
+        s=s.replace(part,'');
+    }
+    return s;
+};
+=======================================================================================================================================================================
+
 ------------------------------------------------------------------------
