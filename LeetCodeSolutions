@@ -1944,5 +1944,45 @@ var removeOccurrences = function(s, part) {
     return s;
 };
 =======================================================================================================================================================================
-
+Sort Characters By Frequency:
+var frequencySort = function(s) {
+    let map = {};
+    for(let i = 0; i < s.length; i++) {
+        map[s[i]] ? map[s[i]] += s[i] : map[s[i]] = s[i];
+    }
+    return Object.values(map).sort((a, b) => { return b.length - a.length }).join('');
+};
+//console.log(frequencySort("tree")) //"eert"
+------------------------------------------------------------------
+var frequencySort = function(s) {
+    let map = {};
+    for (var item of s){
+        map[item] ? map[item] += [item] : map[item] = [item]
+    }
+    return Object.values(map).sort((a, b) => { return b.length - a.length }).join('');
+};
+console.log(frequencySort("tree"))
+--------------------------------------------------------------------
+var frequencySort = function(s) {
+    let seen ={}; //{t: 1, r: 1, e: 2}
+    for(let char of s){ // store characters Frequency of given string in map
+        seen[char] ? seen[char]++ : seen[char]=1;
+    }
+    
+    // sort characters according to characters Frequency in descending order
+    let SortedCharactersArray = Object.keys(seen).sort((a,b)=>seen[b]-seen[a]); //[e,t,r]
+    
+    let result = ""
+    // iterate through SortedCharactersArray and append character( character frequency )times to result  
+    for(let char of SortedCharactersArray)
+        result += char.repeat(seen[char]);
+        //// repeat is a method where you input the number of occurrence. We just concatenate to result
+    
+    return result;
+};
+--------------------------------------------------------------------
+var frequencySort = function(s) {
+    return Object.values( s.split('').reduce((h,i) => {h[i] = (h[i]||'') + i; return h}, {}) ).sort((a,b) => b.length - a.length).join('')
+};
+=======================================================================================================================================================================
 ------------------------------------------------------------------------
