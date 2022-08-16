@@ -1985,4 +1985,59 @@ var frequencySort = function(s) {
     return Object.values( s.split('').reduce((h,i) => {h[i] = (h[i]||'') + i; return h}, {}) ).sort((a,b) => b.length - a.length).join('')
 };
 =======================================================================================================================================================================
+Split a String in Balanced Strings:
+var balancedStringSplit = function(s) {
+	let count = 0,
+		balance = 0
+	for (let i = 0; i < s.length; i ++) {
+		if (s[i] === 'R') {
+			balance ++
+		} else {
+			balance --
+		}
+		if (balance === 0) {
+			count ++
+		}
+	}
+	return count
+};
+console.log(balancedStringSplit("RLRRLLRLRL"))
+-----------------------------------------------------
+var balancedStringSplit = function(s) {
+    let lcount = 0, rcount = 0;
+    let count = 0;
+    s.split('').forEach(val => {
+        if(val==='R') rcount++;
+        else if(val==='L') lcount++;
+        if(lcount===rcount){
+            count++;
+            lcount = 0;
+            rcount = 0;
+        }
+    });
+    return count;    
+};
+------------------------------------------------------
+var balancedStringSplit = function(s) {
+    let balance = 0;
+    let count = 0;
+    s.split('').forEach(val => {
+        if(val==='R') balance++;
+        else if(val==='L') balance--;
+        if(balance===0){
+            count++;
+        }
+    });
+    return count; 
+};
+---------------------------------------------------------
+var balancedStringSplit = (s, count=0) => (s.
+  split('').
+  filter(element => { 
+      (element == 'R' ? count += 1 : count -= 1); 
+      return count == 0 }).
+  length)
+=========================================================================================================================================================================
+
+
 ------------------------------------------------------------------------
