@@ -2038,6 +2038,172 @@ var balancedStringSplit = (s, count=0) => (s.
       return count == 0 }).
   length)
 =========================================================================================================================================================================
+3Sum :
+var threeSum = function(nums) {
+    let resultArr = [];
+    const sortedArr = nums.sort((a, b) => a - b);
+    for (i = 0; i < sortedArr.length - 2; i++) {
+      if (sortedArr[i] > 0) {
+        break;
+      }
+      if (i > 0 && sortedArr[i] === sortedArr[i - 1]) {
+        continue;
+      }
+      let left = i + 1;
+      let right = sortedArr.length - 1;
+      while (left < right) {
+        const sum = sortedArr[i] + sortedArr[left] + sortedArr[right];
+        if (sum < 0) {
+          left++;
+        } else if (sum > 0) {
+          right--;
+        } else {
+          resultArr.push([sortedArr[i], sortedArr[left], sortedArr[right]]);
+          while(left < right && sortedArr[left] === sortedArr[left + 1]) {
+            left++;
+          }
+          while(left < right && sortedArr[right] === sortedArr[right - 1]) {
+            right--;
+          }
+          left++;
+          right--;  
+        }
+      }
+    }
+    return resultArr;
+};
+/*-------------------------------------------------
+var threeSum = function(nums) {
+  nums.sort((a, b) => a - b);
+  const r = [];
+  for (let i = 0; i < nums.length - 2; i++) {
+    if (nums[i] > 0) break;
+    if (i > 0 && nums[i] === nums[i - 1]) continue;
+    let left = i + 1;
+    let right = nums.length - 1;
+    while (left < right) {
+      const s = nums[i] + nums[left] + nums[right];
+      if (s < 0) left ++;
+      else if (s > 0) right --;
+      else {
+        r.push([nums[i], nums[left], nums[right]]);
+        while (left < right && nums[left] === nums[left + 1]) left ++;
+        while (left < right && nums[right] === nums[right - 1]) right --;
+        left ++;
+        right --;
+      }
+    }
+  }
+  
+  return r;
+};
+---------------------------------------------------
+var threeSum = function(nums) {
+	nums.sort((a,b) => a-b)
+	const result=[]
 
+	if(nums.length < 3) return result
+
+	for(let i=0; i< nums.length; i++){
+		let left = i+1
+		let right = nums.length-1
+		if(i > 0 && nums[i] === nums[i-1]) continue
+		while(left < right){
+			let sum = nums[i] + nums[left] + nums[right]
+
+			if(sum===0){
+				let arr=[nums[i], nums[left], nums[right]]
+				result.push(arr)
+				left++
+				while(nums[left] === nums[left-1] && left < right) left++
+			}else if(sum > 0){
+				right--
+			}else{
+				left++
+			}
+		}
+	}
+
+	return result
+};
+console.log(threeSum([-1,0,1,2,-1,-4]))
+----------------------------------------------------
+var threeSum = function(nums) {
+  // First, let's sort the array. 
+  // This gives us two benefits: 
+  // 1. We can avoid duplicates, because skipping duplicate values in a sorted array is trivial (check if the prior value === current value)
+  // 2. We can stop once we hit positive values, because no three positive values can be added to reach 0
+  //
+  // Finally, it's OK to sort, because we accept a quadratic runtime here,
+  // and adding an O(logn) sort operation won't make that any worse
+  nums.sort((a, b) => {
+    return a - b
+  })
+
+  // With a sorted array, let's initialize a result array, which we'll use to hold our triplets
+  const result = []
+
+  // Now, loop through the sorted input array
+  for (let i = 0; i < nums.length; i++) {
+
+    // And if the number is greater than zero, 
+    // that means the only have positive integers left in the sorted array,
+    // and three positive integers will never equal 0,
+    // so we're done with the input and can break.
+    if (nums[i] > 0) {
+      break;
+    }
+
+    // At each iteration, we want to make sure we skip duplicates,
+    // so check that the prior number doesn't equal the current number.
+    if (i > 0 && nums[i - 1] === nums[i]) {
+      // If they're the same, skip this iteration
+      continue;
+    }
+
+    // With the prior conditions satisfied, 
+    // we can be certain we're looking at negative integers.
+    // In which case, we want to find two integers further down the array, such that all three integers added together equals 0.
+    //
+    // Now we solve this with two pointers, which is how we would solve Two Sum II.
+    // We use the sorted nature of the array to hone in on values that will equal zero.
+    // 
+    // Start the left pointer at the current index + 1, and the right pointer at the end of the array
+    let left = i + 1
+    let right = nums.length - 1
+
+    while (left < right) {
+      // Calculate the sum
+      const sum = nums[i] + nums[left] + nums[right]
+
+      // Check if the sum is equal to 0
+      // if so, push nums[i], nums[left], and nums[right] to our top level result array
+      if (sum === 0) {
+        result.push([nums[i], nums[left], nums[right]])
+
+        // Then, increment the left pointer and the right pointer, 
+        // to see if there are any additional triplets that satisfy the conditions.
+        left++
+        right--
+
+        // Also make sure we increment the left pointer past any possible duplicates
+        while (left < right && nums[left] === nums[left - 1]) {
+          left++
+        }
+      } else if (sum < 0) {
+        // If the sum is less than zero, we want to see if we can increase it to hit zero. 
+        // With a sorted input array, we can attempt this by incrementing the left pointer, 
+        // to look at bigger numbers.
+        left++
+      } else {
+        // Otherwise, sum is greater than zero, and we should try decreasing the sum, by decrementing the right pointer
+        right--
+      }
+    }
+  }
+
+  return result
+};*/
+=====================================================================================================================================================================
 
 ------------------------------------------------------------------------
