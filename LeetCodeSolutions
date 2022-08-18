@@ -2205,5 +2205,77 @@ var threeSum = function(nums) {
   return result
 };*/
 =====================================================================================================================================================================
+Maximum Subarray : 
+var maxSubArray = function(nums) {
+	//Declare a variable for our current overall maximum sum
+    let maxSum = nums[0];
+	//Declare a temporary sum for comparison
+    let tempSum = nums[0];
+	//Iterate over nums starting at nums[1] since we set our initial sums to nums[0]
+    for (let i = 1; i < nums.length; i++) {
+		//The temporary sum is either the current number if the prior tempSum was negative for example
+		//Or it is the sum of tempSum and the new sum if that figure is larger 
+        tempSum = Math.max(nums[i], tempSum + nums[i]);
+		//Every time we have a new tempSum we want to compare it to our running maxSum 
+        maxSum = Math.max(tempSum, maxSum);
+    };
+	//return the max sum
+  return maxSum;
+};
+----------------------------------------------------------
+var maxSubArray = function(nums) {
+    let max = -Infinity;
+    let currentMax = 0;
+    
+    for(let i = 0; i < nums.length; i++) {
+        currentMax = Math.max(nums[i], currentMax + nums[i]);
+        max = Math.max(currentMax, max);               
+    }
+    
+    return max;
+};
+------------------------------------------------------------
+const maxSubArray = nums =>
+  nums.reduce(
+    ([localMax, globalMax], curr) => [
+      Math.max(curr, localMax + curr),
+      Math.max(curr, localMax + curr, globalMax),
+    ],
+    [-Infinity, -Infinity],
+  )[1];
+-------------------------------------------------------------
+function maxSubArray(nums) {
+    let subSum = nums[0]
+    let max = nums[0]
+    
+    for(let i = 1; i < nums.length; i++) {
+        // if the sum of the subarray is negative we're no longer interested and start summin again starting at the current value
+        subSum = Math.max(subSum + nums[i], nums[i])
 
+        // tracks the subarray with the highest sum found
+        max = Math.max(subSum, max)
+    }
+    
+    return max
+};
+-----------------------------------------------------------
+var maxSubArray = function(nums) {
+    let maxSum = nums[0];
+    for (let i = 1; i < nums.length; i++) {
+        if (nums[i - 1] > 0) {
+            nums[i] += nums[i - 1];
+        }
+        maxSum = Math.max(nums[i], maxSum);
+    }
+    return maxSum;
+};
+---------------------------------------------------------------
+var maxSubArray = function(nums) {
+  for (let i = 1; i < nums.length; i++) {
+    nums[i] = Math.max(nums[i], nums[i] + nums[i - 1]);
+  }
+  return Math.max(...nums)
+};
+console.log(maxSubArray([-2,1,-3,4,-1,2,1,-5,4]))
+=========================================================================================================================================================================
 ------------------------------------------------------------------------
