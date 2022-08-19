@@ -2278,4 +2278,84 @@ var maxSubArray = function(nums) {
 };
 console.log(maxSubArray([-2,1,-3,4,-1,2,1,-5,4]))
 =========================================================================================================================================================================
+Longest Common Subsequence (LCS):
+var longestCommonSubsequence = function(text1, text2) { //using DP
+    let dp = Array(text1.length + 1).fill(0).map(() => Array(text2.length + 1).fill(0))
+    for (let i=0;i<text1.length; i++) {
+        for (let j=0;j<text2.length; j++)
+            dp[i+1][j+1] = text1[i] == text2[j]? dp[i][j]+1 : Math.max(dp[i][j+1],dp[i+1][j]);
+    }
+    return dp[text1.length][text2.length];
+};
+console.log(longestCommonSubsequence("abcde", "abc"))
+-------------------------------------------------------------------------
+var longestCommonSubsequence = function(text1, text2) { //using recursion
+    const memo = new Map();
+    return recursion(text1, text2, text1.length - 1, text2.length - 1, memo);
+};
+
+function recursion(text1, text2, index1, index2, memo) {
+    // base cases
+    if (index1 < 0 || index2 < 0) return 0;
+    
+    const key = index1 + '#' + index2;
+    
+    if (memo.has(key)) return memo.get(key);
+    
+    let result;
+
+    if (text1.charAt(index1) === text2.charAt(index2)) {
+        result = recursion(text1, text2, index1 - 1, index2 - 1, memo) + 1;
+    } else {
+        result = Math.max(recursion(text1, text2, index1, index2 - 1, memo), recursion(text1, text2, index1 - 1, index2, memo));
+    }
+    
+    memo.set(key, result);
+    return result;
+}
+------------------------------------------------------------------------
+const lcs = (str1, str2, n, m, dp) => { //using recursion
+    if (n==0 ||m==0) {
+        return 0;
+    }
+    const key = n + ':' + m;
+    if (dp.has(key)) {
+        return dp.get(key);
+    }
+    if (str1[n-1] == str2[m-1]) {
+        return 1+lcs(str1, str2, n-1,m-1, dp)
+    }
+    const lcsMax = Math.max(
+        lcs(str1, str2, n-1, m, dp),
+        lcs(str1, str2, n, m-1, dp)
+    );
+    dp.set(key, lcsMax);
+    
+    return dp.get(key);
+    
+}
+var longestCommonSubsequence = function(text1, text2) {
+    return lcs(text1,text2, text1.length, text2.length, new Map());
+};
+-------------------------------------------------------------------------
+/*var longestCommonSubsequence = function(text1, text2) { //avoid to do this
+    let count=0;
+    var m = text1.split('');
+    var n = text2.split('');
+    for(var i=0; i< m.length && n.length<m.length; i++){
+        for(var j=0; j< n.length ; j++){
+            if(m[i]===n[j]){
+                count++
+            }
+        }
+    }
+    return count
+};*/
+
+========================================================================================================================================================================
+
+
+
+
+
 ------------------------------------------------------------------------
