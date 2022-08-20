@@ -2353,7 +2353,47 @@ var longestCommonSubsequence = function(text1, text2) {
 };*/
 
 ========================================================================================================================================================================
+Generate Parentheses: 
+var generateParenthesis = function(n) {
+  var arr = [];
+  compose(n, n, '');
+  return arr;
 
+  function compose(left, right, str) {
+    if (!left && !right && str.length) return arr.push(str);
+    if (left) compose(left - 1, right, str + '(');
+    if (right > left) compose(left, right - 1, str + ')');
+  }
+};
+input:3output:  ["((()))","(()())","(())()","()(())","()()()"]
+-------------------------------------------------------------------------
+var generateParenthesis = function(n) {
+    //Create a list that will store the solution
+    const sol = [];
+    //Recursively call backtracking function
+    generator(0, 0, "", sol, n);
+    return sol;
+};
+
+function generator(op, cl, str, sol, n) {
+        //Check the base case.
+        //If number of opening and closing parentheses are equal to n..
+        if(op === n && cl === n) {
+            //add the string(str) to the list
+            sol.push(str);
+            return;
+        }
+        //if no. of opening parentheses(op) is less than n...
+        if(op < n) {
+            //add '(' to the current string and increment the count of opening parenthesis(op)
+            generator(op + 1, cl, str + '(', sol, n);
+        }
+        //if no. of closing parentheses is less than open parentheses...
+        if(cl < n && op > cl) {
+            //add ')' to the current string and increment the count of closing parentheses(cl)
+            generator(op, cl + 1, str + ')', sol, n);
+        }
+};
 
 
 
