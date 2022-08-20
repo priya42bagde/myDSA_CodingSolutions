@@ -2355,6 +2355,28 @@ var longestCommonSubsequence = function(text1, text2) {
 ========================================================================================================================================================================
 Generate Parentheses: 
 var generateParenthesis = function(n) {
+    let result = []
+
+    backtracking('', n, n)
+
+    function backtracking(temp, left, right) {
+        if(left == 0 && right == 0) {
+           result.push(temp)
+        }
+    
+        if(left > 0) {
+            backtracking(temp + '(', left-1, right)
+        }
+    
+        if(right > left) {
+            backtracking(temp + ')', left, right-1)
+        }
+    }
+    return result
+};
+//console.log(generateParenthesis(3))
+-----------------------------------------------------
+var generateParenthesis = function(n) {
   var arr = [];
   compose(n, n, '');
   return arr;
