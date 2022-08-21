@@ -2416,8 +2416,43 @@ function generator(op, cl, str, sol, n) {
             generator(op, cl + 1, str + ')', sol, n);
         }
 };
+==========================================================================================================================================================================
+Intersection of Two Arrays:
+var intersection = function(nums1, nums2) {
+  var result = nums1.filter((item)=>{
+      return nums2.includes(item)
+  })    
+  return [...new Set(result)];
+};
+//console.log(intersection([1,2,2,1],[2,2]))
+----------------------------------------------------
+function intersection(nums1 , nums2){
+    let setNum1 = new Set(nums1);
+    return [...new Set(nums2.filter(num => setNum1.has(num)))];
+}
+----------------------------------------------------
+var intersection = function(nums1, nums2) {
+    let st1 = new Set(nums1);
+    let st2 = new Set(nums2);
 
-
-
-
-------------------------------------------------------------------------
+    let ans = [];
+    
+    st1.forEach(c => {
+        if (st2.has(c)) {
+            ans.push(c);
+        }
+    })
+    
+    return ans;
+};
+----------------------------------------------------
+var intersection = function(nums1, nums2) {
+  const set1 = new Set(nums1)
+  const set2 = new Set(nums2)
+  return [...set1].filter(n => set2.has(n))
+};
+----------------------------------------------------
+var intersection = function(N1, N2) {
+    return [...new Set(N1.filter(n => N2.indexOf(n) > -1))];
+};
+==========================================================================================================================================================================
