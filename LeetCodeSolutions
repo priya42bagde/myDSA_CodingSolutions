@@ -2512,3 +2512,37 @@ Sqrt(x):- Input: 4 then output is 2
   return right;
 };
 ============================================================================================================================================================================
+Remove Linked List Elements: 
+var removeElements = function(head, val) {
+        if (head == null) return null;
+        head.next = removeElements(head.next, val);
+        return head.val == val ? head.next : head;
+};
+//For someone who finds it difficult to understand:
+
+When the input node is an empty node, then there is nothing to delete, so we just return a null node back. (That's the first line)
+
+When the head of the input node is the target we want to delete, we just return head.next instead of head to skip it. (That's the third line), else we will return head.
+
+We apply the same thing to every other node until it reaches null. (That's the second line).
+-------------------------------------------------
+//https://www.youtube.com/watch?v=hSY49AuyQ2A
+let removeElements = function(head, val) {
+    let dummy=new ListNode(-1);
+    dummy.next=head;
+   let prev = dummy;
+   let curr = head;
+    while(curr){
+        if(curr.val===val){
+           prev.next = curr.next;
+           curr = curr.next;          
+        }
+        else{
+           prev =curr;
+           curr = curr.next;           
+        }
+    }
+    return dummy.next;  
+};
+console.log(removeElements([1,2,6,3,4,5,6],6)) //[1,2,3,4,5]
+=========================================================================================================================================================================
