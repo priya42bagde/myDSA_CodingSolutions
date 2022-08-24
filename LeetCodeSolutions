@@ -2546,3 +2546,96 @@ let removeElements = function(head, val) {
 };
 console.log(removeElements([1,2,6,3,4,5,6],6)) //[1,2,3,4,5]
 =========================================================================================================================================================================
+Middle of the Linked List
+/*
+initial state
+f
+1 -> 2 -> 3 -> 4 -> 5
+s
+
+1st loop
+		  f
+1 -> 2 -> 3 -> 4 -> 5
+     s
+	 
+2nd loop
+		            f
+1 -> 2 -> 3 -> 4 -> 5
+          s
+
+when f reach end of the linked list, s will be at the middle.
+
+f = fast pointer
+s = slow pointer
+*/
+
+var middleNode = function(head) {
+    let fast = slow = head;
+    while (fast && fast.next) {
+        fast = fast.next.next;
+        slow = slow.next;
+    }
+    return slow;
+};
+console.log(middleNode([1,2,3,4,5]) //[3,4,5]
+---------------------------------------------------------------------------------
+var middleNode = function (head) {
+    count = 0
+    let copy = head
+    while (head) {
+        count += 1
+        head = head.next
+    }
+    target = Math.floor(count / 2)
+    count = 0
+    while (count < target) {
+        copy = copy.next
+        count += 1
+    }
+    return copy
+};
+--------------------------------------------------------------------------
+var middleNode = function(head) {
+    let hi = head, cnt = 1;
+    while (hi.next) {
+        hi = hi.next;
+        cnt++;
+    }
+    cnt = parseInt(cnt / 2);
+    while (cnt--) {
+        head = head.next;
+    }
+    return head;
+};
+-----------------------------------------------------------------------
+var middleNode = function(head) {
+    // Variables
+    fast = head;
+    slow = head;
+    
+    // While we have not reached the end of the linked list, have one pointer 'fast' move twice as fast as the slow pointer 'slow'. Once fast has reached the end of the list, 'slow' must therefore be in the middle of the list.
+    while (fast?.next)
+    {
+        fast = fast.next.next;
+        slow = slow.next;
+    };
+    
+    //
+    return slow;
+};
+------------------------------------------------------------------
+var middleNode = function(head) {
+    const values = [];
+    
+    let node = head;
+    
+    while (node) {
+        values.push(node);
+        node = node.next;
+    }
+    
+    const i = Math.floor(values.length / 2);
+
+    return values[i] || null;
+};
+==================================================================================================================================================================
