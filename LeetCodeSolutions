@@ -2639,3 +2639,62 @@ var middleNode = function(head) {
     return values[i] || null;
 };
 ==================================================================================================================================================================
+Sort Array by Increasing Frequency:
+var frequencySort = function(nums) {
+  const hash={}
+    for(let item of nums){
+      hash[item] 
+          ?hash[item]++
+          :hash[item]=1
+    }
+ return nums.sort((a,b)=>hash[a]-hash[b]||b-a)   
+    //or// return nums.sort((a, b) => map[a] === map[b] ? (b - a) : (map[a] - map[b]));
+};
+//console.log(frequencySort([1,1,2,2,2,3]))
+-------------------------------------------------------
+var frequencySort = function(nums) {
+    let map = {}
+
+    for(let num of nums) {
+        if(!map[num]) {
+            map[num] = 1
+        } else {
+            map[num]++
+        }
+    }
+
+    let sortedArray = Object.entries(map).sort((a,b) => {
+       if(a[1] == b[1]) { //1==2
+           return b[0] - a[0]
+       } else {
+           return a[1] - b[1]
+       }
+    })
+    console.log(sortedArray) //[["3", 1], ["1", 2], ["2", 3]]
+
+    let result = []
+
+    for(let arr of sortedArray) {
+        while(arr[1] > 0) {
+            result.push(+arr[0])
+            arr[1]--
+        }
+    }
+
+    return result;
+};
+console.log(frequencySort([1,1,2,2,2,3]))
+--------------------------------------------------------
+var frequencySort = function(nums) {
+    let map = new Map()
+    for (let n of nums) {
+        map.set(n, (map.get(n) || 0)+1)
+    }
+    console.log(map)
+    return nums.sort((a,b) => {
+        if (map.get(a) === map.get(b)) return b - a
+        return map.get(a) - map.get(b)
+    })
+};
+console.log(frequencySort([1,1,2,2,2,3]))
+=================================================================================================================================================================
