@@ -2698,3 +2698,47 @@ var frequencySort = function(nums) {
 };
 console.log(frequencySort([1,1,2,2,2,3]))
 =================================================================================================================================================================
+Reverse Linked List: 
+/*var reverseList = function(head) {
+    let [prev, current] = [null, head]
+    while(current) {
+        [current.next, prev, current] = [prev, current, current.next] //one ack
+    }
+    return prev
+}
+
+prev   --->       curr  ---->     curr.next
+   |-----------------------<----------------|
+   
+-------------------------------------------------
+
+let reverseList = function(head) {
+    let prev = null, next = null;
+    while (head) {
+        next = head.next
+        head.next = prev;
+        prev = head;
+        head = next;
+    }
+    return prev;
+};
+----------------------------------------------------
+
+var reverseList = function(head) {
+    prev= null;
+    while(head){
+        [head.next, prev, head] = [prev, head, head.next]
+    }
+    
+    return prev
+};
+----------------------------------------------------
+*/
+// Recursive solution
+var reverseList = function(head, previous = null) {
+    if (head === null) return previous;
+    let next = head.next;
+    head.next = previous;
+    return reverseList(next, head);
+};
+======================================================================================================================================================================
