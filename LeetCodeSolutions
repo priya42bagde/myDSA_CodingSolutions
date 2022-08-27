@@ -2742,3 +2742,61 @@ var reverseList = function(head, previous = null) {
     return reverseList(next, head);
 };
 ======================================================================================================================================================================
+Climbing Stairs:
+/*var climbStairs = function(n) {
+    let a = 1, b = 2, next;
+    
+    for(let i = 3; i <= n; i++) {
+        next = a + b;
+        a = b;
+        b = next;
+    }
+    return n === 1 ? a : b;
+};
+-----------------------------------------
+let climbStairs = function(n) {
+    let arr=[];
+    arr[1]=1;
+    arr[2]=2;
+    for(let i=3;i<=n;i++){
+        arr[i]=arr[i-1]+arr[i-2];
+    }
+    return arr[n]; //the number of ways to reach stair n.
+};
+--------------------------------------
+var climbStairs = function(n) {
+    let memo = new Map();   
+    let cs = (n) => {
+        if(!memo.has(n)) {
+            let res = (n < 2) ? 1 : cs(n-2) + cs(n-1);
+            memo.set(n,res);      
+        }
+        return memo.get(n);
+    }
+    return cs(n)
+};
+--------------------------------------------
+climbStairs = n =>
+    Array(n - 1)
+	    .fill(0) // Because the reduce function ignores undefined values.
+        .reduce(([a, b]) => [b, a + b], [1, 1])
+        .pop()
+---------------------------------------------
+*/
+function climbStairs(n) {
+    let cache = {};
+    
+    function helper(n) {
+	   // base case
+        if (n <=3 ) return n; 
+		
+		// place value in cache if not there
+        if (cache[n] === undefined) {
+            cache[n] = helper(n-1) + helper(n-2)
+        }
+		// always return the cached value to minimize duplicate computation
+        return cache[n];
+    }
+    return helper(n);
+};
+===================================================================================================================================================================
