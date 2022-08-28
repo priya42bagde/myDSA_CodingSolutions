@@ -2800,3 +2800,139 @@ function climbStairs(n) {
     return helper(n);
 };
 ===================================================================================================================================================================
+Palindrome Linked List: Last way of the solution is best
+/*var isPalindrome = function(head) {
+    let node = head;
+    let arr = [];
+    while (node) {
+        arr.push(node.val);
+        node = node.next;
+    }
+
+    let reversedArr = arr.reverse();
+    let index = 0;
+    for (let i = reversedArr.length - 1; i >= 0; i--) {
+        if (reversedArr[i] !== arr[index]) return false;
+        index++;
+    }
+    
+    return true 
+};
+------------------------------------------------------------
+var isPalindrome = function(head) {
+    let straight = '';
+    let reversed = '';
+    while (head) {
+        straight = straight + head.val;
+        reversed = head.val + reversed;    
+        head = head.next;
+    };
+    return straight === reversed;
+};
+------------------------------------------------------------
+var isPalindrome = function(head) {
+    let arr=[];
+    while (head){
+        arr.push(head.val);
+        head=head.next;
+        }
+    return arr.slice().reverse().join()==arr.join() ? true : false;
+};
+-------------------------------------------------------------
+var isPalindrome = function(head) {
+    let node = head
+    let arr = []
+    
+    while(node){
+        arr.push(node.val)
+        node = node.next
+    }
+    
+    return arr.join('') === arr.reverse().join('')
+};
+-----------------------------------------------------------
+var isPalindrome = function(head) {
+    const arr = [];
+    while(head && head.val !== null) {
+        arr.push(head.val);
+        head = head.next;
+    }
+    return arr.every((e, i) => e === arr[arr.length - i - 1]);
+};
+--------------------------------------------------------------
+var isPalindrome = function(head) {
+    let arr=[]
+    while(head !=null){
+        arr.push(head.val)
+        head=head.next
+    }
+    for(let i=0;i<arr.length/2;i++){
+        
+        if(arr[i]!==arr[arr.length-1-i] ){
+            return false
+        }
+    }
+    return true
+    // return  arr.join('')===arr.reverse().join('')
+};
+----------------------------------------------------------
+var isPalindrome = function(head) {
+    if(head === null) return true
+	
+    let node = head
+    const arr = []
+    
+    while(node) {
+        arr.push(node.val);
+        node = node.next;
+        
+    }
+    
+    let low = 0;
+    let high = arr.length - 1;
+	
+    while(low < high) {
+        if(arr[low] === arr[high]) {
+            low++;
+            high--;
+        } else {
+            return false;
+        }
+    }
+    return true
+};
+------------------------------------------------------------
+*/
+//https://www.youtube.com/watch?v=LBD8rIjVxZI
+function isPalindrome(head) {
+  let fast = head;
+  let slow = head;
+
+  // Set slow at the head of the second half
+  while (fast) {
+    fast = fast.next ? fast.next.next : fast.next;
+    slow = slow.next;
+  }
+
+  // Reverse the second half and returning prev
+  let prev = null;
+  while (slow) {
+    const next = slow.next;
+    slow.next = prev;
+    prev = slow;
+    slow = next;
+  }
+
+  // Compare the two halves in sequence if prev exist
+  while (prev) {
+    if (prev.val !== head.val) {
+      return false;
+    }
+    prev = prev.next;
+    head = head.next;
+  }
+
+  return true;
+}
+console.log(isPalindrome([1,2,2,1]))
+====================================================================================================================================================================
