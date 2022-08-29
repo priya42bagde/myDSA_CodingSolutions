@@ -2936,3 +2936,69 @@ function isPalindrome(head) {
 }
 console.log(isPalindrome([1,2,2,1]))
 ====================================================================================================================================================================
+Remove Duplicates from Sorted List
+/*var deleteDuplicates = function(head) {
+    var current = head;
+    
+    while(current) {
+        if(current.next !== null && current.val == current.next.val) {
+            current.next = current.next.next;
+        } else {
+            current = current.next;
+        }
+    }
+    
+    return head;
+};
+----------------------------------------------
+var deleteDuplicates = function(head) {
+  if (!head) return null;
+  // Init prev as 1st node, next as 2nd node
+  let prev = head, next = head.next;
+
+  // Iterate until next is null, which is end of list
+  while (next) {
+    if (prev.val === next.val) {
+	  // If next is a duplicate, skip over it by pointing its prev to its next
+      prev.next = next.next;
+    } else {
+	  // Else, just move prev forward to continue through the list
+      prev = prev.next;
+    }
+	// Always move next forward, it moves along with prev
+    next = next.next;
+  }
+
+  return head;
+}
+-----------------------------------------------------------------
+var deleteDuplicates = function(head) {
+    // Special case...
+    if(head == null || head.next == null)
+        return head;
+    // Initialize a pointer curr with the address of head node...
+    let curr = head;
+    // Traverse all element through a while loop if curr node and the next node of curr node are present...
+    while( curr != null && curr.next != null){
+        // If the value of curr is equal to the value of prev...
+        // It means the value is present in the linked list...
+        if(curr.val == curr.next.val){
+            // Hence we do not need to include curr again in the linked list...
+            // So we increment the value of curr...
+            curr.next = curr.next.next;
+        }
+        // Otherwise, we increment the curr pointer...
+        else{
+            curr = curr.next; 
+        }
+    }
+    return head;        // Return the sorted linked list without any duplicate element...
+};
+---------------------------------------------
+var deleteDuplicates = function(head) {
+  if(!head || !head.next) return head;
+  head.next = deleteDuplicates(head.next);
+  return head.val == head.next.val ? head.next : head;
+};*/
+========================================================================================================================================================================
+*
