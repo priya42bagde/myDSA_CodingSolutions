@@ -3001,4 +3001,17 @@ var deleteDuplicates = function(head) {
   return head.val == head.next.val ? head.next : head;
 };*/
 ========================================================================================================================================================================
-*
+Delete Node in a Linked List:
+/*var deleteNode = function(node) { 
+//WE DON'T DELETE THE NODE, WE ACTUALLY REPLACE THE VALUE OF THE NODE WITH THE NEXT //NODE VALUE AND THEN SKIP THE NODE
+  //node.val is what we want to delete. It's 5 in the case of [4,5,1,9]
+    //1. reassign the next nodes value (1) to this node (5). 
+        //[4,1,1,9]
+    //2. this node (1) will point to next next node (9) otherwise we would have 2 similar values of next node (1).
+        //[4,1,1,9] => [4,1,9]
+    node.val = node.next.val;
+    node.next = node.next.next;  
+};
+console.log(deleteNode(5))//[4,5,1,9]
+*/
+=======================================================================================================================================================================
