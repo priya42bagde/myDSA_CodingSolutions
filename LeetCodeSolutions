@@ -3015,3 +3015,40 @@ Delete Node in a Linked List:
 console.log(deleteNode(5))//[4,5,1,9]
 */
 =======================================================================================================================================================================
+Remove Nth Node From End of List:
+/*
+https://www.youtube.com/watch?v=Q5AdN4nUuAg
+https://www.youtube.com/watch?v=MzhI-u2h0-w
+*/
+/*var removeNthFromEnd = function(head, n) { //using 2 pointers
+    let start = new ListNode()
+    start.next = head
+    let slow = start, fast = start
+    for(let i=0; i<n; i++){
+        fast = fast.next
+    }
+    while(fast.next){
+        fast = fast.next
+        slow = slow.next
+    }
+    slow.next = slow.next.next
+    return start.next
+};*/
+/**old way*/
+let removeNthFromEnd = function(head, n) {
+    let fast = head, slow = head
+    
+    while(n--){ //placing the fast pointer so that diff(n) between slow and fast
+        fast = fast.next
+    }
+    while(fast && fast.next ) { //it will go till last node
+        fast = fast.next
+        slow = slow.next
+    }
+    
+    if(!fast)  head = head.next 
+    else slow.next = slow.next.next
+
+    return head
+};
+================================================================================================================================================================================
