@@ -3052,3 +3052,56 @@ let removeNthFromEnd = function(head, n) {
     return head
 };
 ================================================================================================================================================================================
+Odd Even Linked List:
+/**
+https://www.youtube.com/watch?v=ErkOfemuEuc
+https://www.youtube.com/watch?v=zwr-YbD0D4A
+ */
+/*var oddEvenList = function(head) {
+    if (!head || !head.next) return head;
+    
+    let odd = head, 
+        even = head.next,
+        evenhead = even;
+    
+    while (even !== null && even.next !== null) {
+        odd = odd.next = even.next;
+        even = even.next = odd.next;
+    }
+    odd.next = evenhead;
+    return head;
+};
+--------------------------------------------
+var oddEvenList = function(head) {
+    if(head == null)return null;
+
+    let odd = head;
+    let even = head.next;
+    let evenHead = even
+    while(even?.next){
+        odd.next = even.next;
+        odd = odd.next;
+        even.next = odd.next;
+        even = even.next
+    }
+    odd.next = evenHead
+    return head
+};
+-------------------------------------------
+*/
+var oddEvenList = function(head) {
+    if(head != null){
+        
+        let odd = head, even = head.next, evenHead = even;
+        
+        while(even && even.next != null){
+            odd.next = even.next;
+		    odd = odd.next;
+		    even.next = odd.next;
+		    even = even.next;
+        }
+        odd.next = evenHead;
+    }
+    return head;
+};
+==========================================================================================================================================================================
