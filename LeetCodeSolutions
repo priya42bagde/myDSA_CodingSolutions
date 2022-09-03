@@ -3105,3 +3105,69 @@ var oddEvenList = function(head) {
     return head;
 };
 ==========================================================================================================================================================================
+Linked List Cycle:
+/**
+https://www.youtube.com/watch?v=wDgDAOVqhhA
+*/
+
+/*var hasCycle = function(head) {
+    let fast = head;
+    let slow = head;
+    while (fast && fast.next) { //because it's not have a null. If we have null then give an error
+        fast = fast.next.next;
+        slow = slow.next;
+        if (fast === slow) {
+            return true;
+        }
+    }
+    return false;
+}
+---------------------------------------------
+var hasCycle = function(head) { 
+    while (head) {
+        if (head.visited) return true; //Mark a visit to a list node directly in the node.
+
+
+        head.visited = true;
+        head = head.next;
+    }
+    return false;
+};
+--------------------------------------------
+var hasCycle = function(head) {
+    let set = new Set();
+    while (head) {
+        if (set.has(head)) return true;
+        set.add(head);
+        head = head.next;
+    }
+    return false;
+};
+-------------------------------------------
+var hasCycle = function(head) {
+    let node = head;
+    const stack = [];
+    while (node && node.next) {
+        if (stack.includes(node)) {
+            return true;
+        }
+        stack.push(node)
+        node = node.next;
+    }
+    return false;
+};
+-----------------------------------------------
+*/
+/*This solution iterates through every node, setting the value within the node to null. Since we know the values are integers by default, if we encounter one of these null values, we know that we have cycled back to a value we have already iterated over.*/
+
+const hasCycle = (head) => {
+  while (head) {
+    if (!head.val) return true;
+
+    head.val = null;
+    head = head.next;
+  }
+
+  return false;
+};
+======================================================================================================================================================================
