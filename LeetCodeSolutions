@@ -3171,3 +3171,78 @@ const hasCycle = (head) => {
   return false;
 };
 ======================================================================================================================================================================
+Merge Two Sorted Lists:
+/**
+https://www.youtube.com/watch?v=g_uxlc8C6HE
+https://www.youtube.com/watch?v=W0Mwqk-uPsk
+ */
+/*var mergeTwoLists = function(l1, l2) {
+    let dummyHead = new ListNode(0, null);
+    let currentNode = dummyHead;
+    
+    while (l1 && l2) {
+        if(l1.val < l2.val) 
+        {
+            currentNode.next = l1;
+            l1 = l1.next
+        } 
+        else 
+        {
+            currentNode.next = l2;
+            l2 = l2.next
+        }
+        currentNode = currentNode.next;
+    }
+    // It's possible that one linked list is shorter than the other so we just
+	// add on the remainder of the last linked list. It's already sorted :)
+    //currentNode.next = l1 || l2;
+    if (l1 != null) currentNode.next = l1;
+    if (l2 != null) currentNode.next = l2;
+    
+	// return .next because this first element in the linkedlist is empty
+    
+    return dummyHead.next;
+};
+------------------------------------------------------
+var mergeTwoLists = function(l1, l2) {
+    let node = new ListNode(-1);
+    if (!l1 && !l2){
+        return null;
+    }
+    else if (!l1 || !l2){
+        return l1 || l2;
+    }
+
+    if (l1.val <= l2.val){
+        node.val = l1.val;
+        l1 = l1.next;
+    } 
+    else {
+        node.val = l2.val;
+        l2 = l2.next;
+    }
+    node.next = mergeTwoLists(l1, l2);
+    return node;   
+};
+----------------------------------------------------
+var mergeTwoLists = function(l1, l2) {
+  if (!l1 || !l2 ) return l1 || l2
+  if (l1.val > l2.val){
+    [l1, l2] = [l2, l1]
+  }
+  l1.next = mergeTwoLists(l1.next, l2)
+  return l1
+};
+----------------------------------------------------
+*/
+var mergeTwoLists = function(l1, l2) {
+    if(!l1 || !l2) return l1 || l2
+    if(l1.val < l2.val){
+        l1.next = mergeTwoLists(l1.next, l2)
+        return l1
+    }
+    l2.next = mergeTwoLists(l1, l2.next)
+    return l2
+        
+};
+=======================================================================================================================================================================
