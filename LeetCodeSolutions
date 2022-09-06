@@ -3246,3 +3246,65 @@ var mergeTwoLists = function(l1, l2) {
         
 };
 =======================================================================================================================================================================
+Intersection of Two Arrays II:
+/*const intersect = (nums1, nums2) =>
+  nums1.filter(item => (
+    nums2.includes(item)
+      ? nums2.splice(nums2.indexOf(item), 1)
+      : false
+  ));
+//console.log(intersect([1,2,2,1], [2,2]))
+---------------------------------------------
+const intersect = (nums1, nums2) => nums1.filter(n => nums2.includes(n) && nums2.splice(nums2.indexOf(n), 1));
+----------------------------------------------
+var intersect = function(nums1, nums2) {
+    nums1.sort((a,b) => a-b)
+    nums2.sort((a,b) => a-b)
+    let arr = []
+    let i=0, j=0
+    while(i<nums1.length && j<nums2.length){
+        if(nums1[i] < nums2[j]) i++
+        else if(nums2[j] < nums1[i])    j++
+        else{
+            arr.push(nums1[i])
+            i++
+            j++
+        }
+    }
+    return arr
+};
+-----------------------------------------------
+var intersect = function(nums1, nums2) {
+    
+    const hash = {}, ar = []
+    
+    nums2.forEach(num => {
+        hash[num] ? hash[num]++ : hash[num] = 1
+    })
+    
+    for (let i = 0; i < nums1.length; i++){
+        if (hash[nums1[i]] > 0){
+            ar.push(nums1[i])
+            hash[nums1[i]]--
+        }
+    }
+    return ar
+};
+-------------------------------------------------
+*/
+const intersect = (n1, n2) => {
+  const seen = {};
+  const res = [];
+  for (let n of n1) {
+    if (!seen[n]) seen[n] = 0;
+    seen[n]++;
+  }
+
+  for (let n of n2) {
+    if (seen[n] > 0) {
+      res.push(n);
+      seen[n]--;
+    }
+  }
+  return res;
+};
