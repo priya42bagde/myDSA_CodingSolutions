@@ -3308,3 +3308,78 @@ const intersect = (n1, n2) => {
   }
   return res;
 };
+=======================================================================================================================================================================
+Best Time to Buy and Sell Stock:
+/*var maxProfit = function(prices) {
+    let result = 0;
+    let min = prices[0];
+    for(let i = 1; i < prices.length; i++) {
+        min = Math.min(prices[i], min);
+        result = Math.max(result, prices[i] - min); //profit = high-low
+    }
+    return result;
+};
+----------------------------------------
+var maxProfit = function(prices) {
+    let min = prices[0], max = 0;
+    
+    for(let i = 1; i < prices.length; i++){
+        max = Math.max(prices[i] - min, max);
+        min = Math.min(prices[i], min);
+    }
+    
+    return max;
+};
+-------------------------------------------
+var maxProfit = function(prices) {
+    let maxProf = 0, curr = prices[0];
+    
+    for(let x of prices) {
+        if(curr < x) maxProf = Math.max(maxProf, x - curr);
+        else curr = x;
+    }
+    return maxProf;
+};
+----------------------------------------------
+var maxProfit = function (prices) {
+    let minBuyPrice = prices[0];
+    let maxProfit = 0;
+    for (let price of prices) {
+        if (price < minBuyPrice) {
+            minBuyPrice = price
+        } else if (price-minBuyPrice > maxProfit){
+            maxProfit = price-minBuyPrice
+        }
+    }
+    return maxProfit
+}
+-------------------------------------------
+function maxProfit(prices) { 
+    let max = 0, min = Infinity;
+    prices.forEach(price => price < min ? min = price : max = Math.max(max, price - min));
+    return max;
+};
+-----------------------------------------
+  var maxProfit = function(prices) {
+    let max = 0;
+    for (let i = 0; i < prices.length; i++) {
+        for (let j = i + 1; j < prices.length; j++) {
+            max = Math.max(max, prices[j] - prices[i]);
+        }
+     }
+     return max;
+  };
+  --------------------------------------
+  */
+function maxProfit(prices) {
+    let min = Number.MAX_SAFE_INTEGER; 
+
+    return prices.reduce((max, price) => {
+        min = Math.min(min, price);
+        
+        return Math.max(max, price - min);
+    }, 0);
+}
+==========================================================================================================================================================================
+
+
