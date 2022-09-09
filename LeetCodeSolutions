@@ -3388,5 +3388,34 @@ var findKthLargest = function(nums, k) {
 };
 //console.log(findKthLargest([3,2,1,5,6,4],3))
 ==========================================================================================================================================================================
-
+Container With Most Water:
+/* https://www.youtube.com/watch?v=ZHQg07n_tbg
+var maxArea = function(height) {
+    let result = l = 0, r = height.length - 1, temp;
+    while (l < r){
+        temp = (r - l)   *   Math.min(height[l], height[r]); //breadth x length
+        if (temp > result){
+            result = temp;
+        } 
+        height[l] <= height[r] ? l ++: r --; //smaller or equal
+    }
+    return result;
+};
+------------------------------------------------------------
+*/
+const maxArea = heights => {
+  let i = 0;
+  let j = heights.length - 1;
+  let water = 0;
+  while (i < j) {
+    water = Math.max(water, (j - i) * Math.min(heights[i], heights[j]));
+    if (heights[i] < heights[j]) {
+      i++;
+    } else {
+      j--;
+    }
+  }
+  return water;
+};
+========================================================================================================================================================================
 
