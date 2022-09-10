@@ -3418,4 +3418,100 @@ const maxArea = heights => {
   return water;
 };
 ========================================================================================================================================================================
+Pascal's Triangle:
+/*var generate = function(numRows) {
+  let result = new Array(numRows); //
+  
+  for(let i=0; i<numRows; i++){
+   
+      let row = new Array(i+1);
+      row[0] =1; row[row.length-1]=1;
+    
+      for(let j=1; j<row.length-1; j++)
+      {
+        let rowAbove = result[i-1];
+        row[j]=rowAbove[j]+ rowAbove[j-1]
+      }
+    result[i]= row;
+  }
+  
+  return result;
+};
+-----------------------------------------------
+ //https://www.youtube.com/watch?v=y24nMGNkkPo
+var generate = function(numRows) {
+  let result =[]  
+  for(let i=0; i<numRows; i++){
+      let row = new Array(i+1); //0th row having 1 element and so on...
+      row[0] =1; 
+      row[row.length-1]=1; //always first and last is 1
+    
+      for(let j=1; j<row.length-1; j++) //inserting between 1 .... 1
+      {
+        row[j]=result[i-1][j]+ result[i-1][j-1] 
+      }
+      result[i]= row; //adding an array //result.push(row);
+  }
+  return result;
+};
+-----------------------------------------------
+var generate = function(numRows) {
+  let number=[]
+  for(var i=0;i<numRows;i++)
+  {
+     var temparray=[]
+     for(var j=0;j<=i;j++){
+        if(j==0||j==i) temparray.push(1)
+        else temparray.push(number[i-1][j-1] + number[i-1][j])
+     }
+     number.push(temparray)
+  }
+  return number
+}
+--------------------------------------------------
+var generate = function(n) {
+    let ans = [];
+    for(let i = 0; i < n; i++) {
+        ans[i] = new Array(i+1);
+        ans[i][0] = 1;
+        ans[i][i] = 1;
+        for(let j = 1; j < i; j++) {
+            ans[i][j] = ans[i-1][j-1]+ans[i-1][j];
+        }
+    }
+    return ans;
+};
+-----------------------------------------------------
+var generate = function(numRows) {
+    const p = [];
+    for(let i = 0; i < numRows; i++) {
+        p[i] = [];
+        for(let j = 0; j <= i; j++) {
+            p[i][j] = (j === 0 || i === 0 || i === j) 
+            ? 1 
+            : p[i - 1][j - 1] + p[i - 1][j];
+        }
+    }   
+    return p;
+};
+------------------------------------------------------
+*/
+var generate = function(numRows) {
+    let resultArray = []
+
+    for(var i=0; i<numRows; i++) {
+        const currentArray = []
+        var j=0;
+    
+        while(j<=i) {
+            if(j === 0 || j === i) currentArray.push(1);
+            else currentArray.push(resultArray[i - 1][j - 1] + resultArray[i - 1][j])
+        
+            j++;
+        }
+        resultArray.push(currentArray);
+    }
+    return resultArray;
+};
+=========================================================================================================================================================================
 
