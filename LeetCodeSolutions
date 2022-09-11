@@ -3514,4 +3514,42 @@ var generate = function(numRows) {
     return resultArray;
 };
 =========================================================================================================================================================================
-
+Swapping Nodes in a Linked List:
+/*var swapNodes = function(head, k) {
+    let i, arr = [], w = head
+    while (w != null) { arr.push(w); w = w.next }
+    let pt1 = k-1, pt2 = arr.length-k
+    let a = arr[pt1].val, b = arr[pt2].val
+    arr[pt1].val = b
+    arr[pt2].val = a
+    return head
+};
+-----------------------------------------------------
+var swapNodes = function(head, k) {
+    let arr = [], node = head
+    
+    while(node){
+        arr.push(node)
+        node = node.next
+    }
+    
+    [arr[k-1].val, arr[arr.length-k].val] = [arr[arr.length-k].val, arr[k-1].val]
+    
+    return head
+};
+-----------------------------------------------------
+*/
+var swapNodes = function(head, k) {
+    let fast = head, second = head, first = head
+    for(let i=0; i<k-1; i++)    fast = fast.next
+    first = fast
+    while(fast.next != null){
+        fast = fast.next
+        second = second.next
+    }
+    let temp = first.val
+    first.val = second.val
+    second.val = temp
+    return head
+};
+===========================================================================================================================================================================
