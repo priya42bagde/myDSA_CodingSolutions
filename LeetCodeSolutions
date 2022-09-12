@@ -3553,3 +3553,63 @@ var swapNodes = function(head, k) {
     return head
 };
 ===========================================================================================================================================================================
+First Unique Character in a String:
+/*var firstUniqChar = function(s) {
+    for(i=0; i<s.length; i++)
+        if(s.indexOf(s[i])===s.lastIndexOf(s[i])) return i
+    return -1
+};
+
+//console.log(firstUniqChar("leetcodooe"))
+---------------------------------------------------
+var firstUniqChar = function(s) {
+    const count = {};
+    for(let i = 0; i < s.length; i++) {
+        if(!count[s[i]]) {
+            count[s[i]] = 1;
+        } else {
+            count[s[i]]++
+        }
+    }
+    for(let i = 0; i < s.length; i++) {
+        if(count[s[i]] === 1) return i
+    }    
+    return -1
+};
+------------------------------------------------
+var firstUniqChar = function(s) {
+    for(let i of s){
+        if(s.lastIndexOf(i) == s.indexOf(i)){
+            return s.indexOf(i);
+        }
+    }
+    return -1;
+};
+------------------------------------------------
+var firstUniqChar = function(s) {
+    if (!s || !s.length) return -1;
+    const cache = new Map();
+    
+    for (char of s) {
+        cache.set(char, cache.get(char) + 1 || 1);
+    }
+    
+    for (let i = 0; i < s.length; i++) {
+        if (cache.get(s[i]) === 1) return i;
+    }
+    return -1;
+};
+-----------------------------------------------
+*/
+var firstUniqChar = function(s) {
+    let str = s.split('');
+    let dups = str.filter((item, index) => str.indexOf(item) !== index);
+    
+    for (let i=0; i<str.length; i++) {
+        if (!dups.includes(str[i])) {
+            return i;
+        }
+    }
+    return -1;
+};
+=========================================================================================================================================================================
