@@ -3613,3 +3613,58 @@ var firstUniqChar = function(s) {
     return -1;
 };
 =========================================================================================================================================================================
+Reverse Integer:
+/*
+var reverse = function(x) {
+    const number = Math.abs(x).toString().split('').reverse().join('');
+
+    if (number > Math.pow(2, 31) - 1) {
+        return 0
+    }
+
+    return x < 0 ? -number : number;
+};
+---------------------------------------------
+var reverse = function(x) {
+  const absReversed = Math.abs(x).toString().split('').reverse().join('');
+  if (absReversed > 2**31) return 0;
+  return absReversed * Math.sign(x);
+};
+---------------------------------------------
+var reverse = function(x){
+    let res = 0;
+    let y = Math.abs(x);
+    while(y > 0){
+        res = res * 10 + y % 10;
+        y = y / 10 | 0;
+    }
+    if(res > Math.pow(2, 31) + 1 || x < Math.pow(-2, 31)) return 0;
+    return x > 0 ? res : -res;
+}
+---------------------------------------------
+var reverse = function(x) {
+  const max = Math.pow(2, 31);
+  let r = 0;
+  while (x !== 0) {
+    r = r * 10 + x % 10;
+    if (r > max || r < -max) return 0;
+    x = (x / 10) << 0;
+  }
+  
+  return r;
+};
+---------------------------------------------
+var reverse = function(x) {
+  const reversedAsString = x.toString().split('').reverse().join('').replace('-', '');
+  const reversedNumber = x < 0 ? parseInt(reversedAsString) * (-1) : parseInt(reversedAsString);
+  return (reversedNumber > (2**31 - 1) || reversedNumber < (-(2**31))) ? 0 : reversedNumber;
+};
+---------------------------------------------
+*/
+var reverse = function(x) {
+    let ans = x < 0 
+        ?parseInt(Math.abs(x).toString().split('').reverse().join('')) * -1
+        :parseInt(x.toString().split('').reverse().join(''))
+    return Math.abs(ans) < Math.pow(2,31) ? ans : 0;
+};
+========================================================================================================================================================================
