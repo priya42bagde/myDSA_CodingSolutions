@@ -3668,3 +3668,111 @@ var reverse = function(x) {
     return Math.abs(ans) < Math.pow(2,31) ? ans : 0;
 };
 ========================================================================================================================================================================
+Product of Array Except Self:
+/**https://www.youtube.com/watch?v=gREVHiZjXeQ
+ */
+/*var productExceptSelf = function(nums) {
+    const result = []; //1 //1 //2 //[1, 1, 2, 6]
+    let productSoFar = 1; //1 //2
+    for (let i = 0; i < nums.length; i++) {//0,1,2,3<4
+        result[i] = productSoFar //1 //1 //2
+        productSoFar *= nums[i] //1*1 //1*2
+    }
+    productSoFar = 1
+    for (let j = nums.length-1; j >= 0; j--) {
+        result[j] *= productSoFar
+        productSoFar *= nums[j]
+    }
+    return result;
+};
+console.log(productExceptSelf([1,2,3,4])) //[24,12,8,6]
+-----------------------------------------------------------------
+const productExceptSelf = function (nums) {
+	//initialize an array of the same length as nums full of 1s
+	const res = Array(nums.length).fill(1)
+	
+	//multiply each element by the product of each element to the left 
+	let product = 1
+	for (let i = 0; i < res.length - 1; i++) {
+		product *= nums[i]
+		res[i + 1] *= product
+	}
+
+	//multiply each element by the product of each element to the right 
+	product = 1
+	for (let i = res.length - 1; i > 0; i--) {
+		product *= nums[i]
+		res[i - 1] *= product
+	}
+	//return the resultant array
+	return res
+};
+-----------------------------------------------------------------
+var productExceptSelf = function(nums) {
+  const len = nums.length;
+
+  const res = [];
+
+  let product = 1; // Our product acc
+
+  // Pass Right, calculate all values to the right of i
+  for (let i = 0; i < len; i++) {
+    res.push(product);
+    product *= nums[i];
+  }
+  
+  product = 1;
+
+  // Pass Left, calculate the product of res[i] and
+  // the product of all items to the left of i
+  for (let i = len - 1; i >= 0; i--) {
+    res[i] *= product;
+    product *= nums[i];
+  }
+
+
+  return res;
+};
+--------------------------------------------------------------
+var productExceptSelf = function(nums) {
+    
+    
+    //so basically if we can calculate the prefix multiplication before the element and postfix multiplication after the element 
+	//and then multiply both of them we should get the product without self
+    
+    
+    const res = []
+    
+    let multiplier = 1;
+    
+    //first calculate prefix multiplication for all elements
+    for(let i=0;i<nums.length;i++){
+        res[i] = multiplier;
+        multiplier*=nums[i];
+    }
+    
+    multiplier = 1;
+    //now calculate postfix multiplication and also multiply with the prefix multiplication present in res array with postfix multiplication
+    
+    for(let i=nums.length-1;i>=0;i--){
+        res[i] *= multiplier;
+        multiplier *= nums[i];
+    }
+    
+    return res;
+};
+--------------------------------------------------------------
+*/
+var productExceptSelf = function(nums) {
+    let res =[];
+    nums.reduce((leftP, curr, i) => {
+        res[i] = leftP;
+        return leftP*curr;
+    }, 1)
+    nums.reduceRight((rightP, curr, i) => {
+        res[i] *= rightP;
+        return rightP*curr;
+    }, 1)
+    return res;
+};
+===================================================================================================================================================================
