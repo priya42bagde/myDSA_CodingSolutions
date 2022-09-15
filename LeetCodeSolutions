@@ -3776,3 +3776,78 @@ var productExceptSelf = function(nums) {
     return res;
 };
 ===================================================================================================================================================================
+Add Two Numbers : 
+/*var addTwoNumbers = function(l1, l2) {
+    const d = new ListNode();
+    let curr = d;
+    let carry = 0;
+    while (l1 || l2 || carry) {
+        const sum = (l1 ? l1.val : 0) + (l2 ? l2.val : 0) + carry;
+        carry = sum / 10 | 0; //This is a bitwise or. It effectively truncates numbers from floats to integers, so it's similar to the floor operator for positive numbers.
+        curr.next = new ListNode(sum % 10);
+        if (l1) l1 = l1.next;
+        if (l2) l2 = l2.next;
+        curr = curr.next;
+    }
+    return d.next;
+};
+---------------------------------------------------------
+var addTwoNumbers = function(list1, list2) {
+  return add(list1, list2, 0);
+  
+  function add(l1, l2, carry) {
+    const v1 = (l1 && l1.val) || 0;
+    const v2 = (l2 && l2.val) || 0;
+    const sum = v1 + v2 + carry;
+    const newCarry = Math.floor(sum / 10); //carry
+    const val = sum % 10; // sum wihout Carry
+    return (l1 || l2 || carry) ? { val, next: add(l1 && l1.next, l2 && l2.next, newCarry) } : null;
+  };
+};
+-------------------------------------------------------
+function addTwoNumbers(l1, l2) {
+    let head = new ListNode();
+    let tail = head;
+    let carry = 0;
+    
+    while (l1 || l2 || carry) {
+        const sum = (l1 ? l1.val : 0) + (l2 ? l2.val : 0) + carry;
+        
+        tail.next = new ListNode(sum % 10);
+        tail = tail.next;
+        
+        carry = Math.trunc(sum / 10);
+        
+        l1 = l1 && l1.next;
+        l2 = l2 && l2.next;
+    }
+    
+    return head.next;
+};
+-----------------------------------------------------------
+*/
+const addTwoNumbers = (l1, l2) => {
+    let result = new ListNode();
+    let head = result;
+    let carry = 0;
+    
+    while (l1 || l2) {
+        let sum = (l1 ? l1.val : 0) + (l2 ? l2.val : 0) + carry;
+        carry = parseInt(sum / 10);
+        head.val = sum % 10;
+        
+        if (l1) l1 = l1.next;
+        if (l2) l2 = l2.next;
+        if (l1 || l2) {
+            head.next = new ListNode();
+            head = head.next;
+        }
+    }
+    
+    if (carry > 0) {
+        head.next = new ListNode(carry);
+    }
+    
+    return result;
+};
+=======================================================================================================================================================================
