@@ -3851,3 +3851,66 @@ const addTwoNumbers = (l1, l2) => {
     return result;
 };
 =======================================================================================================================================================================
+Longest Consecutive Sequence:
+/*var longestConsecutive = function(nums) {
+  if (nums == null || nums.length === 0) return 0;
+  const set = new Set(nums);
+  let longest = 0;
+  for (let num of nums) {
+    if (!set.has(num - 1)) {
+      let count = 0;
+      while (set.has(count+num)) {
+        count++;
+      }
+      longest = Math.max(longest,count);
+    }
+  }
+  return longest;
+};
+//Iterate over "nums" and check if it's previous number exist or not.
+//If it exist , then sequence can't start from that number , so we will move to next number
+//If it doesn't exist , it means sequence can start from that number . So , we will create //a count variable and run a loop until (num+count) exist or until next number exist in our //set.
+---------------------------------------------
+const longestConsecutive = (nums) => {
+  let maxLength = 0;
+  for (let num of nums) {
+    let length = 1;
+    while (nums.includes(num + length)) length++; // Build up the length as we find the next consecutive num
+    maxLength = Math.max(maxLength, length); // Update max
+  }
+  return maxLength;
+};
+-------------------------------------------------
+const longestConsecutive = (nums) => {
+  let maxLength = 0;
+  let set = new Set(nums); //Intialize set with nums array
+
+  for (let num of nums) {
+    if (set.has(num - 1)) continue; // Not the start of a new consecutive list, so skip.
+    let length = 1;
+    while (set.has(num + length)) length++; // Build up the length as we find the next consecutive num
+    maxLength = Math.max(length, maxLength); // Update max
+  }
+  return maxLength;
+};
+-------------------------------------------------
+*/
+var longestConsecutive = function(nums) {
+    let set = new Set();
+    for(const n of nums) {
+        set.add(n);
+    }
+    let max = 0;
+    for(let n of set) {
+        if(!set.has(n-1)) {
+            let count = 0;
+            while(set.has(n++)) {
+                count++;
+            }
+            max = Math.max(count, max);
+        }
+    }
+    return max;
+};
+console.log(longestConsecutive([100,4,200,1,3,2]))
+===========================================================================================================================================================================
