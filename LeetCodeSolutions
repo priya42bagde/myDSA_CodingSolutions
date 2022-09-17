@@ -3914,3 +3914,79 @@ var longestConsecutive = function(nums) {
 };
 console.log(longestConsecutive([100,4,200,1,3,2]))
 ===========================================================================================================================================================================
+Sum of Two Integers:
+/*   * Binary operators used:
+         * & (AND) - produces a digit of 1 if both numbers have a digit of 1
+         * ^ (XOR) - produces a digit of 1 only if one number (not both) have a digit of one
+         * << (Left Shift) - adds one binary zero onto the number; increments operand.
+
+
+var getSum = function(a, b) {
+  let res = a^b;
+  let carry = (a&b) << 1;
+  if(carry!=0){
+     return getSum(res,carry);
+  }
+  return res;
+};
+console.log(getSum(1,2))
+-------------------------------------
+var getSum = function(a, b) {
+    // get the initial sum without the carry
+    var sum = a ^ b;
+	// get the carry
+    var carry = a & b;
+    
+	// loop until carry becomes 0;
+    while(carry !=0) {
+	// apply the carry to the next position by shifting left
+        carry = carry << 1; 
+		//store the prevSum
+        var prevSum = sum;
+		// repeat addition
+        sum = sum ^ carry;
+		// get the carry
+        carry = prevSum & carry; 
+    }
+    
+  return sum;  
+};
+-----------------------------------------
+var getSum = function(a, b) {
+    while (b !== 0) {
+        let temp = a;
+        a = a ^ b;
+        b = (temp & b) << 1;
+    }
+    return a; 
+};
+-----------------------------------------
+
+var getSum = function(a, b) {
+    let carry;
+    
+    while(b) {
+        carry = a & b;
+        a ^= b;
+        b = carry << 1;
+    }
+    
+    return a;
+};
+-------------------------------------------
+function getSum(a, b) {
+  const sum = a ^ b; // XOR derives the sum bits, without carry
+  const carry = (a & b) << 1; // AND derives the carry bits
+
+  if (!carry) {
+    return sum;
+  }
+
+  return getSum(sum, carry);
+};  
+-------------------------------------------------
+*/
+var getSum = function(a, b) {
+    return b ? getSum(a ^ b, (a & b) << 1) : a;
+};
+=============================================================================================================================================================================
