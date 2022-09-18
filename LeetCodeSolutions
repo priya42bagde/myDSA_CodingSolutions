@@ -3990,3 +3990,66 @@ var getSum = function(a, b) {
     return b ? getSum(a ^ b, (a & b) << 1) : a;
 };
 =============================================================================================================================================================================
+Delete the Middle Node of a Linked List;
+/*var deleteMiddle = function(head) {
+    if(!head.next) return null;
+  let slow = head;
+  
+  // make fast start from 3rd node
+  let fast = head.next.next;
+  
+  // now we loop until fast reaches end of list
+  while(fast && fast.next){
+    slow = slow.next;
+    fast = fast.next.next;
+  }
+  
+  // since we made fast start from 3rd node
+  // when we exit the loop, the slow pointer
+  // will be at node middle - 1 (not middle)
+  // so we can easily delete middle node now
+  slow.next = slow.next.next;
+  return head;
+};
+---------------------------------------------------
+var deleteMiddle = function(head) {
+    if(head.next==null){return null;}
+    let slow=head; let fast=head; let pre;
+    while(fast && fast.next){
+        fast=fast.next.next;
+        pre=slow;
+        slow=slow.next;
+    }
+    pre.next=pre.next.next;
+    return head;
+};
+-------------------------------------------------------
+ var deleteMiddle = function(head) {
+     if( !head || !head.next ) return null;
+     if(!head.next) return null;
+     let slow = head, fast = head;
+     while(fast != null){
+         if(fast.next && fast.next.next && fast.next.next.next){
+             slow = slow.next;
+             fast = fast.next.next;
+         }
+         else fast = null;
+     }
+     slow.next = slow.next.next;
+     return head    
+};
+---------------------------------------------------------------
+*/
+var deleteMiddle = function(head) {
+    if(!head) return [];
+    if(head.next===null) return null;
+    let fast = head;
+    let slow = head;
+    while(fast.next && fast.next.next && fast.next.next.next){
+        fast = fast.next.next;
+        slow = slow.next;
+    }
+    if(slow.next) slow.next = slow.next.next;
+    return head;
+};
+===========================================================================================================================================================================
