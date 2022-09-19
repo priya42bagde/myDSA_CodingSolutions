@@ -4053,3 +4053,55 @@ var deleteMiddle = function(head) {
     return head;
 };
 ===========================================================================================================================================================================
+Find All Duplicates in an Array:
+/*var findDuplicates = function(nums) {
+  let result = []
+  for(let i = 0;i<nums.length;i++) {
+	  // mark index as current value negative and if it appears negative again means its a repeatative number. 
+      if(nums[Math.abs(nums[i])-1] > 0) nums[Math.abs(nums[i])-1] = -nums[Math.abs(nums[i])-1]
+      else {
+	  //store the result if its a negative number
+          result.push(Math.abs(nums[i]))
+      }
+  }
+  //returns the result
+  return result
+};
+-----------------------------------------------------
+const findDuplicates = nums =>
+  nums.reduce((ans, val) => {
+    let idx = Math.abs(val) - 1
+    if (nums[idx] < 1) ans.push(++idx);
+    else nums[idx] *= -1;
+    return ans
+  }, [])
+-----------------------------------------------------
+var findDuplicates = function(nums) {
+    let ans = [];
+    
+    for(let i=0; i<nums.length; i++){
+        let cur = Math.abs(nums[i])-1;
+        if(nums[cur] > 0){
+            nums[cur] *= -1;
+        }else{
+            ans.push(cur+1);
+        }
+    }
+
+    return ans;
+};
+-----------------------------------------------------
+    */
+var findDuplicates = function(arr) {
+let map = new Map();
+let result = []
+for (let i = 0; i < arr.length; i++) {
+let count = 0;
+if (map.has(arr[i])) {
+result.push(arr[i])
+} else
+map.set(arr[i], ++count);
+}
+return result
+};
+=========================================================================================================================================================================
