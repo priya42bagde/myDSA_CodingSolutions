@@ -4105,3 +4105,123 @@ map.set(arr[i], ++count);
 return result
 };
 =========================================================================================================================================================================
+Intersection of Two Linked Lists:
+/*There are multiple ways
+https://www.youtube.com/watch?v=SvBA4ly1nYo
+ */
+/*var getIntersectionNode = function(headA, headB) {
+    if(!headA ||!headB) return null //if anyone of the linked list not exist
+    let a = headA;
+    let b = headB;
+    
+    //if a is not equal to b(i.e, a!==b)
+    while(a!==b){
+        if(a !== null){
+            a= a.next
+        }else{
+            a = headB;
+        }
+        if(b !== null){
+            b= b.next
+        }else{
+            b = headA;
+        }    
+   }    
+    //if a is equal to b(i.e, a===b)
+    return a; //or return b (both are same)
+};
+----------------------------------------------------------------------
+var getIntersectionNode = function(headA, headB) {
+    if(!headA || !headB){
+        return null
+    }
+    
+    let p1 = headA;
+    let p2 = headB;
+    
+    while(p1 !== p2){
+        p1 = p1.next
+        p2 = p2.next
+        
+        if(p1 === p2){
+            return p1
+        }
+        
+        if(p1 === null){
+            p1 = headB
+        }
+        
+        if(p2 === null){
+            p2 = headA
+        }
+        
+    }
+    
+    return p1
+};
+----------------------------------------------------------------------
+var getIntersectionNode = function(headA, headB) {
+    let P1 = headA;
+    let P2 = headB;
+    
+    while(P1 !== P2){
+        P1 = P1 === null ? headB : P1.next;
+        P2 = P2 === null ? headA : P2.next;
+    }
+    
+    //P1 would be equal to P2, either NULL if no intersection or pointing to the itersecting node
+    return P1;
+};
+----------------------------------------------------------------------
+var getIntersectionNode = function(headA, headB) {
+    if(!headA || !headB)    return null
+    let A = headA, B = headB
+    while(A != B){
+        A = (A)? A.next : headB
+        B = (B)? B.next : headA
+    }
+    return A
+};
+----------------------------------------------------------------------
+var getIntersectionNode = function(headA, headB) {
+    if (!headA || !headB) return null;
+    var p1 = headA;
+    var p2 = headB;
+    while (p1 && p2 && p1 !== p2) {
+        p1 = p1.next;
+        p2 = p2.next;
+        
+        if (p1 == p2) return p1;
+        if (!p1) p1 = headB;
+        if (!p2) p2 = headA;
+    }
+    return p1;
+};
+----------------------------------------------------------------------
+*/
+var getIntersectionNode = function(headA, headB) {
+    const map = new WeakMap();
+
+    while (headA || headB) {
+        if (headA) {
+            if (map.has(headA)) {
+                return headA;
+            }
+
+            map.set(headA, true); //true means 1
+            headA = headA.next;
+        }
+        
+        if (headB) {
+            if (map.has(headB)) {
+                return headB;
+            }
+
+            map.set(headB, true);
+            headB = headB.next;
+        }
+    }
+
+    return null;
+};
+======================================================================================================================================================================
