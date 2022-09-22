@@ -4258,3 +4258,53 @@ var maxDepth = function(root) {
     return levels;
 };
 =========================================================================================================================================================================
+Minimum Depth of Binary Tree: 
+/*var minDepth = function(root) {
+    if (root === null) return 0;
+    if (root.left === null) return minDepth(root.right) + 1;
+    if (root.right === null) return minDepth(root.left) + 1;
+    return Math.min( minDepth(root.left), minDepth(root.right) ) + 1;
+};
+-----------------------------------------------------
+var minDepth = function(root) {
+  if(!root) return 0;
+  const queue = [{ node: root, height: 1 }]
+  while(queue.length) {
+    const current = queue.shift();
+    if (!current.node.left && !current.node.right)  {
+		// as soon as we get the first height we break out of loop
+      return current.height;
+    }
+    if(current.node.left) queue.push({ node: current.node.left, height: current.height + 1});
+    if(current.node.right) queue.push({ node: current.node.right, height: current.height + 1});
+  }
+}
+--------------------------------------------------------
+*/
+var minDepth = function(root)  {
+	if (!root) return 0;
+
+	const queue = [root];
+	let min = 1;
+
+	while (queue.length) {
+		const len = queue.length;
+
+		// traverse level by level
+		for (let i = 0; i < len; i++) {
+			const node = queue.shift();
+
+			// reached end of current path, return min. First edge node reached, must be the min dpeth
+			if (!node.left && !node.right) return min; 
+			
+			// traverse left/right node on to next level
+			if (node.left) queue.push(node.left);
+			if (node.right) queue.push(node.right);
+		}
+
+		min++; // increment depth at each level iteration
+	}
+
+	return min;
+};
+=======================================================================================================================================================================
