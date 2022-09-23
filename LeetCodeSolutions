@@ -4308,3 +4308,170 @@ var minDepth = function(root)  {
 	return min;
 };
 =======================================================================================================================================================================
+Sort List:
+/*var sortList = function(head) {
+    const arr = []; //To store all the numbers
+    let node = head; //helper node to iterate the linked list
+    
+    //Fill the array
+    while(head) {
+        arr.push(head.val);
+        head = head.next;
+    }
+    
+    //Sort the numbers
+    arr.sort((a,b) => a - b);
+    
+    
+    head = node; // We want to return the same head, and we already changed its value when filling the array
+    
+    for(const n of arr) {
+        node.val = n; //Change list value
+        node = node.next; //Go next
+    }
+    
+    //Finally return the head of the new linked list
+    return head;
+};
+-----------------------------------------------------
+var sortList = function(head) {
+    let temp = head;
+    let arr = [];
+    let i = 0;
+    while (temp) {
+        arr.push(temp.val);
+        temp = temp.next;
+    };
+    arr.sort( (a,b) => a - b);
+    temp = head;
+    while (temp) {
+        temp.val = arr[i++];
+        temp = temp.next;
+    };
+    return head;
+};
+----------------------------------------------------
+var sortList = function(head) {
+    if(!head || !head.next) return head;
+    let slow = head;
+    let fast = head;
+    let temp = head;
+    while(fast!==null && fast.next!==null){
+        temp = slow;
+        slow = slow.next;
+        fast = fast.next.next;
+    }
+    temp.next=null;
+    let left = sortList(head)
+    let right = sortList(slow)
+    return mergeSort(left,right);
+    
+    function mergeSort(l1,l2){
+        let dummy = new ListNode(-1);
+        let current = dummy;
+        while(l1!==null && l2!==null){
+            if(l1.val < l2.val){
+                current.next = l1;
+                l1 = l1.next
+            } else{
+                current.next = l2;
+                l2 = l2.next;
+            }
+            current= current.next;
+        }
+        current.next = l1 || l2
+        return dummy.next;
+    }
+};
+--------------------------------------------
+function mergeTwo (one, two) {
+   var dummy = new ListNode(-1);
+   var head = dummy;
+   while(one && two) {
+       if (one.val < two.val) {
+           head.next = one;
+           one = one.next;
+       } else {
+           head.next = two;
+           two = two.next;
+       }
+       head = head.next;
+   }
+   if (one) head.next = one;
+   if (two) head.next = two;
+   return dummy.next;
+}
+function sortList (head) {
+    if (!head || !head.next) return head;
+    var fast = head, slow = head;
+    while(fast.next && fast.next.next) {
+        fast = fast.next.next;
+        slow = slow.next;
+    }
+    var second = slow.next;
+    slow.next = null;
+    head = sortList(head);
+    second = sortList(second);
+    return mergeTwo(head, second);
+}
+-----------------------------------------------
+var sortList = function(head) {
+    if (head === null || head.next === null) {
+        return head;
+    }
+    let fast = head.next; // 需要先走一步，原因是，对于偶数长度，mid 可以在一半的地方分割
+    let slow = head;
+    while (fast !== null && fast.next !== null) {
+        fast = fast.next.next;
+        slow = slow.next;
+    }
+    const mid = slow.next;
+    slow.next = null;
+    let left = sortList(head);
+    let right = sortList(mid);
+    const dummy = new ListNode(0);
+    let h = dummy;
+    while (left !== null && right !== null) {
+        if (left.val < right.val) {
+            h.next = left;
+            left = left.next;
+        } else {
+            h.next = right;
+            right = right.next;
+        }
+        h = h.next;
+    }
+    if (left) {
+        h.next = left;
+    }
+    if (right) {
+        h.next = right;
+    }
+    return dummy.next;
+};
+------------------------------------------------------
+*/
+function sortList (head) {
+    if(!head || !head.next) return head;
+    let fast = head, slow = head;
+    while(fast.next && fast.next.next) {
+        fast = fast.next.next;
+        slow = slow.next;
+    }
+    let middle = slow.next;
+    slow.next = null;
+    return merge(sortList(head), sortList(middle));
+}
+const merge = (o, t) => {
+    let d = new ListNode(-1); //dummy and temp
+    let tmp = d;
+    while(o && t) {
+        tmp.next = (o.val < t.val) ? o : t;
+        tmp = tmp.next;
+        if(o.val < t.val) o = o.next; else t = t.next;
+    }
+    if(o) tmp.next = o;
+    if(t) tmp.next = t;
+    return d.next;
+}
+===========================================================================================================================================================================
