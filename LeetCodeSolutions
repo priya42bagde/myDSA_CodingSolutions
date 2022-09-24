@@ -4475,3 +4475,30 @@ const merge = (o, t) => {
     return d.next;
 }
 ===========================================================================================================================================================================
+First Missing Positive:
+/*const firstMissingPositive = (nums) => {
+    let set = new Set(nums) , i = 1
+    while(i <= nums.length + 1 ){
+        if(!set.has(i)) return i
+        else i++
+    }
+}
+---------------------------------------------------
+const firstMissingPositive = function (nums) {
+    const arr = nums.sort((a, b) => a - b);
+    return arr.reduce((min, num) => (num == min) ? min + 1 : min, 1);
+}
+---------------------------------------------------
+      */
+const firstMissingPositive = function (nums) {
+    const arr = nums.sort((a, b) => a - b);
+    let min = 1;
+
+    arr.forEach(num => {
+        if (num == min) min++;
+        if (num > min) return min;
+    });
+
+    return min;
+}
+=======================================================================================================================================================================
