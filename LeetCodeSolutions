@@ -4551,3 +4551,97 @@ var countSmaller = function(nums) {
     return result;
 }
 ==========================================================================================================================================================================
+Count and Say:
+/*var countAndSay = function(n) {
+    var str = '1';
+    for (var i=1; i < n; i++) {
+        var strArray = str.split('');
+        str ='';
+        var count = 1;
+        for (var j=0; j < strArray.length; j++) {
+            if (strArray[j] !== strArray[j+1]) {
+                str += count + strArray[j];
+                count = 1;
+            }
+            else {
+                count++;
+            }
+        }
+    }
+    return str;
+};
+//console.log(countAndSay("3322251"))
+----------------------------------------------
+const countAndSay = n => {
+  let str = '1';
+  while (n > 1) {
+    let newStr = '',
+      count = 0,
+      say = str[0];
+    for (let i = 0; i < str.length; i += 1) {
+      if (str[i] === say) {
+        count += 1;
+      } else {
+        newStr += count + say;
+        count = 1;
+        say = str[i];
+      }
+    }
+    str = newStr + count + say;
+    n -= 1;
+  }
+  return str;
+};
+-----------------------------------------------
+const countAndSay = (n, str = '1') => {
+  if (n === 1) {
+    return str;
+  }
+  let newStr = '',
+    count = 0,
+    say = str[0];
+  for (let i = 0; i < str.length; i += 1) {
+    if (str[i] === say) {
+      count += 1;
+    } else {
+      newStr += count + say;
+      count = 1;
+      say = str[i];
+    }
+  }
+  return countAndSay(n - 1, newStr + count + say);
+};
+---------------------------------------------------
+var countAndSay = function(n) {
+    if(n === 1) return "1";
+    let prev = countAndSay(n-1), count = 1, res = ""; var i;
+    for( i=0; i< prev.length -1;i++){
+        if(prev[i] === prev[i+1]){
+            count++;
+        }else{
+            res += count + prev[i];
+            count = 1;
+        }
+    }
+    res += count + prev[i];
+    return res;
+}
+---------------------------------------------------
+*/
+var countAndSay = function(n) {
+    var str = '1';
+    for (var i=1; i < n; i++) { //because n=interger value
+        var strArray = str.split(''); str =''; var count = 1;
+        for (var j=0; j < strArray.length; j++) {
+            if (strArray[j] === strArray[j+1]) {
+               count++;
+            }
+            else {
+                str = str + count + strArray[j];
+                count = 1;
+            }
+        }
+    }
+    return str;
+};
+========================================================================================================================================================================
