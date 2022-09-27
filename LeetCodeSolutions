@@ -4645,3 +4645,100 @@ var countAndSay = function(n) {
     return str;
 };
 ========================================================================================================================================================================
+Trapping Rain Water :
+/*var trap = function(height) {
+    const leftWall = []
+    const rightWall = []
+    
+    let leftMax = 0
+    for (let i=0; i<height.length; i++) {
+        leftMax = Math.max(height[i], leftMax)
+        leftWall[i] = leftMax
+    }
+    
+    let rightMax = 0
+    for (let i=height.length-1; i>=0; i--) {
+        rightMax = Math.max(height[i], rightMax)
+        rightWall[i] = rightMax
+    }
+    
+    return height.reduce((acc, ele, idx) => acc + Math.min(leftWall[idx], rightWall[idx]) - ele, 0)
+};
+------------------------------------------------
+var trap = function(height) {
+    let result = 0, left = 0, right = height.length - 1, maxLeft = 0, maxRight = 0;
+    while(left < right) {
+        if(height[left] < height[right]) { //if left is smaller
+            if(height[left] > maxLeft) { // if maxleft is smaller than left
+                maxLeft = height[left];
+            }
+            else {
+                result += maxLeft - height[left];
+            }
+            left++;
+        }
+        else { //if right is smaller
+            if(height[right] > maxRight) {
+                maxRight = height[right];
+            }
+            else {
+                result += maxRight - height[right];
+            }
+            right--;
+        }
+    }
+    return result;
+};
+------------------------------------------------
+var trap = function(height) {
+  
+    let maxLeftArray = [];
+    let maxLeft = 0;
+    let maxRightArray = [];
+    let maxRight = 0;
+    let trappedWater = 0;
+    
+	//Here we have to get the max left value for each index pre-implementation. This is done to maintain the O(N) time complexity.
+    for(let i = 0; i < height.length; i++){
+        maxLeftArray[i] = maxLeft;
+        maxLeft = Math.max(maxLeft, height[i]);
+    }
+    
+	//Here we have to get the max right value for each index pre-implementation. This is done to maintain the O(N) time complexity.
+    for(let j = height.length - 1; j >= 0; j--){
+        maxRightArray[j] = maxRight;
+        maxRight = Math.max(maxRight, height[j]);
+    }
+    
+	//Since we know the max left and right value for each index. We get the minimum value which would be the water level then subtract from the current index. This would added to the trapped water and also we need to be careful about the negative value so just equated to zero.
+    for(let m = 1; m < height.length - 1; m++){
+       let waterLevel = Math.min(maxLeftArray[m], maxRightArray[m])
+       
+       trappedWater = trappedWater + Math.max((waterLevel - height[m]), 0);
+       
+    }
+    
+    return trappedWater;
+};
+-------------------------------------------------
+https://www.youtube.com/watch?v=UZG3-vZlFM4
+*/
+var trap = function(height) {
+ let left =new Array(height.length), right=new Array(height.length), result=0
+ 
+ left[0] = height[0]
+ for(let i=1; i<height.length; i++){
+     left[i] = Math.max(left[i-1], height[i])
+ }
+    
+ right[height.length-1] = height[height.length-1]   
+ for(let j=height.length-2; j>=0; j--){
+    right[j] = Math.max(right[j+1], height[j])
+ }
+ 
+ for(let k=0; k<height.length; k++){
+      result = result + Math.min(left[k], right[k]) - height[k]
+ }
+ return result
+}
+===========================================================================================================================================================================
