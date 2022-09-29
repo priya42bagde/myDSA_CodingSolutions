@@ -4827,3 +4827,92 @@ function invertTree(root) {
   return root;
 }
 ==========================================================================================================================================================================
+Same Tree:
+/*function isSameTree(p, q) {
+  if (!p && !q) return true;
+  if (!p || !q || p.val !== q.val) return false;
+  
+  return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
+}
+--------------------------------------------------
+var isSameTree = function(p, q) {
+     return JSON.stringify(p)===JSON.stringify(q)
+};
+--------------------------------------------------
+var isSameTree = function(p, q) {
+    const stack1 = [], stack2 = [];
+    while (p || q || stack1.length || stack2.length) {
+        while (p) {
+            stack1.push(p);
+            p = p.left
+        }
+        while (q) {
+            stack2.push(q);
+            q = q.left;
+        }
+        p = stack1.pop();
+        q = stack2.pop();
+        if (!p && !q) {
+            continue;
+        }
+        if (!p || !q || p.val !== q.val) {
+            return false;
+        }
+        stack1.push(null);
+        stack2.push(null);
+        p = p.right;
+        q = q.right;
+    }
+    return true;
+};
+-------------------------------------------------------
+var isSameTree = function(p, q) { 
+    if(!p && !q) return true;
+    let s1 = [p], s2 = [q]
+    let curr1, curr2
+    
+    while(s1.length && s2.length){
+        curr1 = s1.pop()
+        curr2 = s2.pop()
+        const val1 = curr1 ? curr1.val : false
+        const val2 = curr2 ? curr2.val : false
+        if(val1 !== val2){
+            return false
+        }
+        if(curr1.right || curr2.right){
+            s1.push(curr1.right)
+            s2.push(curr2.right)
+        }
+        if(curr1.left || curr2.left){
+            s1.push(curr1.left)
+            s2.push(curr2.left)
+        }
+    }
+    return true
+};
+---------------------------------------------------
+*/
+var isSameTree = function(p, q) {
+    let stack = [p, q];
+
+    while (stack.length > 0) {
+        var q = stack.pop();
+        var p = stack.pop();
+
+        if (!p && !q) continue; //We don't return here like in the recursive solution, as we just want the execution to continue with the remaining elements in the stack.
+
+        if (!p || !q) return false;
+
+        if (p.val === q.val) {
+            stack.push(p.left);
+            stack.push(q.left);
+            stack.push(p.right);
+            stack.push(q.right);
+        } else {
+            return false;
+        }
+    }
+
+    return true;
+};
+========================================================================================================================================================================
