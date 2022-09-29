@@ -4916,3 +4916,86 @@ var isSameTree = function(p, q) {
     return true;
 };
 ========================================================================================================================================================================
+Find Lucky Integer in an Array:
+/*var findLucky = function(arr) {
+    let max = -1
+    
+    const map = {}
+    
+    for(const number of arr) {
+        if(map[number]) {
+            map[number] += 1
+        } else {
+            map[number] = 1
+        }
+    }
+    
+    for(const key in map) {
+        if(Number(key) === map[key] && map[key] > max) {
+            max = map[key]
+        }
+    }
+    
+    return max
+};
+-----------------------------------------------------
+var findLucky = function(arr) {
+    let myMap= new Map()
+    let max = 0;
+    
+    //create a map to store frequency counts
+    for(let i of arr){
+        if(myMap.has(i)){
+            myMap.set(i, myMap.get(i)+1);
+        }else{
+            myMap.set(i,1);
+        }
+    }
+    
+    //loop through map to find lucky numbers and modify the max value
+    for(let [index, value] of myMap){
+        if(index == value){
+            max = Math.max(max,value)
+        }
+    }
+    
+    return max > 0 ? max : -1;
+};
+-------------------------------------------------------
+var findLucky = function(arr) {
+    const map = {}
+    let res = -1
+    arr.forEach((e,i) => {
+        if (map[e]) {
+            map[e]++
+        } else {
+            map[e] = 1
+        }
+    })
+    for (let key in map) {
+        if (map[key] == key) {
+            res = key
+        }
+    }
+    return res
+};
+------------------------------------------------------
+*/
+var findLucky = function(arr) {
+    const map = arr.reduce((map,e) => {
+        if (map[e]) {
+            map[e]++
+        } else {
+            map[e] = 1
+        }
+        return map
+    }, {})
+    let res = -1
+    for (let key in map) {
+        if (map[key] == key) {
+            res = key
+        }
+    }
+    return res
+};
+======================================================================================================================================================================
