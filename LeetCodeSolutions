@@ -4999,3 +4999,90 @@ var findLucky = function(arr) {
     return res
 };
 ======================================================================================================================================================================
+Binary Tree Inorder Traversal:
+/*const inorderTraversal = root => root 
+? [...inorderTraversal(root.left), root.val, ...inorderTraversal(root.right)] : [];
+----------------------------------------------
+var inorderTraversal = function(root) {
+    if (!root) {
+      return [];
+    }
+    let left = inorderTraversal(root.left);
+    let mid = root.val;
+    let right = inorderTraversal(root.right);
+    return [...left, mid, ...right];
+};
+--------------------------------------------
+function inorderTraversal(root) {
+  const stack = [];
+  const res = [];
+
+  while (root || stack.length) {
+    if (root) {
+      stack.push(root); //stack-push
+      root = root.left; //root.left
+    } else {
+      root = stack.pop(); //stack-pop
+      res.push(root.val); //res-push
+      root = root.right; //root.right
+    }
+  }
+
+  return res;
+}
+----------------------------------------
+const inorderTraversal = (root) => {
+    let curr = root,  res = [], stack = [];
+    while (curr || stack.length) {
+        while (curr) {
+            stack.push(curr);
+            curr = curr.left;
+        }
+        curr = stack.pop();
+        res.push(curr.val);
+        curr = curr.right;
+    }
+    return res;
+};
+----------------------------------------
+const inorderTraversal = (root) => {
+    const res = [];
+    traverse(root);
+    return res;
+    
+    function traverse(node) {
+        if (!node) return;
+        traverse(node.left);
+        res.push(node.val);
+        traverse(node.right);
+    }
+};
+------------------------------------------
+*/
+var inorderTraversal = function(root) {
+    // Inorder traversal: Left -> Root -> right
+    
+    // Stack is best the sata structure to use when traversing a tree iteratively. As in recusion as well, we make the use of call stack and stack is LIFO
+    let stack = [], result = [];
+    let curr = root;
+    
+    // Traverse the tress
+    while(curr !== null || stack.length > 0) {
+        // Reach the left most node of the curr subtree
+        while(curr != null) {
+            // Placing pointer of the curr node on the stack before traversing the node's left subtree
+            stack.push(curr);
+            curr = curr.left;
+        }
+        
+        // At this point curr is null, so we have reached the end of left subtree, since stack is LIFO, the top element of stack is the left most node in the subtree
+        curr = stack.pop();
+        // Add the left most node to our result array
+        result.push(curr.val);
+        // Now we visit the right subtree
+        curr = curr.right;
+    }
+    
+    return result;    
+};
+======================================================================================================================================================================
