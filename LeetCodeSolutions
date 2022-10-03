@@ -5191,3 +5191,63 @@ var nextPermutation = function(nums) {
     }
 };
 =======================================================================================================================================================================
+Find the Index of the First Occurrence in a String:
+/*var strStr = function(haystack, needle) {
+    if (haystack === needle || needle === "") {
+        return 0;
+    }
+    for (let i = 0; i < haystack.length; i++) {
+        if (haystack[i] === needle[0]) {
+            let temp = haystack.substring(i, i + needle.length); //0,5
+            if (temp === needle) {
+                return i;
+            }
+        }
+    }
+    return -1;
+};
+console.log(strStr("leetcode", "leeto"))
+---------------------------------------------
+var strStr = function(haystack, needle) {
+  var needleLength = needle.length
+  var haystackLength = haystack.length
+
+  if(needle === '' && haystack === '' ){
+    return 0
+  }
+
+  for(var i=0; i < haystack.length; i++){
+    if (haystack.substr(i, needleLength) === needle){
+      return i
+    }
+  }
+  return -1
+}
+---------------------------------------------
+var strStr = function(haystack, needle) {
+    if (!needle.length) return 0;
+    for (let i in haystack) if (haystack[i] === needle[0] && haystack.substring(i, Number(i) + needle.length) === needle) return i;
+    return -1;
+};
+-----------------------------------------------
+var strStr = function(haystack, needle){
+     if(needle.length==""){
+         return 0;
+     }
+     else if(haystack.length==""){
+         return -1;
+     }
+    return haystack.indexOf(needle);
+ }
+--------------------------------------------------
+*/
+var strStr = function(haystack, needle) {
+    if (!needle.length) return 0;
+    
+    for (let i = 0; i < haystack.length; i++) {
+        if (haystack[i] === needle[0] && haystack.substr(i, needle.length) === needle) return i;
+    }
+    
+    return -1;
+};
+===========================================================================================================================================================================
