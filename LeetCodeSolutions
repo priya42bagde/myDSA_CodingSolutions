@@ -5251,3 +5251,56 @@ var strStr = function(haystack, needle) {
     return -1;
 };
 ===========================================================================================================================================================================
+Find the Difference of Two Arrays:
+/*var findDifference = function(nums1, nums2) {
+    let set1 = new Set(nums1.filter(num => !nums2.includes(num)))
+    let set2 = new Set(nums2.filter(num => !nums1.includes(num)));
+    
+    return [[...set1], [...set2]]
+};
+------------------------------------------------
+var findDifference = function(nums1, nums2) {
+  var arr1 = [],
+    arr2 = [];
+  for (var i = 0; i < nums1.length; i++) {
+    if (nums2.indexOf(nums1[i]) == -1) {
+      arr1.push(nums1[i])
+    }
+  }
+  for (var i = 0; i < nums2.length; i++) {
+    if (nums1.indexOf(nums2[i]) == -1) {
+      arr2.push(nums2[i])
+    }
+  }
+  arr1 = [...new Set(arr1)];
+  arr2 = [...new Set(arr2)];
+  return [arr1, arr2]
+};
+----------------------------------------------
+var findDifference = function(nums1, nums2) {
+  const set1 = new Set(nums1),
+        set2 = new Set(nums2);
+  
+  nums1.forEach(set2.delete, set2);
+  nums2.forEach(set1.delete, set1);
+  
+  return [[...set1], [...set2]]
+};
+-----------------------------------------------
+var findDifference = function(nums1, nums2) {
+let ans1=new Set(nums1)
+nums2.forEach(v=>{ans1.delete(v)});
+let ans2=new Set(nums2);
+nums1.forEach(v=>{ans2.delete(v)});    
+
+return [[...ans1],[...ans2]];
+}
+--------------------------------------------------
+*/
+var findDifference = function (nums1, nums2) {
+  return [
+    [...new Set(nums1)].filter((x) => !nums2.includes(x)),
+    [...new Set(nums2)].filter((x) => !nums1.includes(x)),
+  ];
+};
+==========================================================================================================================================================================
