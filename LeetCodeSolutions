@@ -5304,3 +5304,71 @@ var findDifference = function (nums1, nums2) {
   ];
 };
 ==========================================================================================================================================================================
+Binary Search : Leetcode 704
+/*const search = (nums, target) => {
+  let left = 0;
+  let right = nums.length - 1;
+  while (left <= right) {
+    let mid = Math.floor((left + right) / 2); // ! getting out mid val
+    if (nums[mid] === target) { // ! if mid val is equal to target we will return the mid 
+      return mid;
+    } else if (nums[mid] < target) { 
+
+      left = mid + 1; /// ! if mid val is less than target we will move the left pointer to mid+1
+    } else {
+        right = mid - 1; // ! if mid val is greater than target we will move the right pointer mid-1
+    }
+  }
+  //! if we cant find the target we will return -1
+  return -1;
+};
+---------------------------------------
+const calcMid = (l, r) => {
+    return l + Math.floor((r - l) / 2);
+}
+
+var search = function(nums, target) {
+    let left = 0;
+    let right = nums.length - 1;
+    
+    while (right >= left) {
+        const mid = calcMid(left, right);
+   
+        if (nums[mid] == target) {
+            return mid;  
+        } else if (nums[mid] > target) {
+            right = mid - 1;
+        } else {
+            left = mid + 1;
+        }
+    }
+    
+    return -1;
+};
+--------------------------------------
+var search = function(nums, target) {
+return nums.indexOf(target);
+};
+---------------------------------------
+    */
+var search = function(nums, target) {
+    
+    const left = 0;
+    const right = nums.length - 1;
+    
+    return binarySearch(nums, left, right, target);
+};
+
+function binarySearch(arr, left, right, target) {
+    if (left <= right) { //alternative of while loop in iterative approach
+        const mid = left + Math.floor(((right-left)/2));
+    
+        if (arr[mid] === target) return mid;
+    
+        if (target < arr[mid]) return binarySearch(arr, left, mid - 1, target);
+        if (target > arr[mid]) return binarySearch(arr, mid + 1, right, target);
+    }
+    
+    return -1;
+}
+===========================================================================================================================================================================
