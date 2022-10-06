@@ -5372,3 +5372,50 @@ function binarySearch(arr, left, right, target) {
     return -1;
 }
 ===========================================================================================================================================================================
+Top K Frequent Elements:
+/*var topKFrequent = function(nums, k) {
+    
+    let map = {};
+    
+    for(let num of nums){
+        
+        map[num] = (map[num] || 0) + 1;
+        
+    }
+
+    return Object.entries(map).sort((a,b) => b[1] - a[1]).map(val => Number(val[0])).slice(0, k);
+    
+};
+console.log(topKFrequent([1,1,1,2,2,3]))
+------------------------------------------------
+const topKFrequent = function (nums, k) {
+
+    let map = new Map();
+    nums.forEach(num => {
+        map.has(num) ? map.set(num, map.get(num) + 1) : map.set(num, 0);
+    });
+
+    return [...map] 
+        .sort((a, b) => { return b[1] - a[1] }) //sorting based on values i.e second element of an array
+        .map(tuple => tuple[0]) //taking keys i.e, 0th index
+        .slice(0, k); //finding first kth elementa
+};
+--------------------------------------------------
+*/var topKFrequent = function(nums, k) {
+    const map = new Map();
+    for (const n of nums) {
+        if (map.has(n)) {
+            map.set(n, map.get(n) + 1);
+        } else {
+            map.set(n, 1);
+        }
+    }
+    const entries = [...map.entries()].sort((a, b) => b[1] - a[1]);
+    console.log(entries);
+    const result = [];
+    for (let i = 0; i < k && i < entries.length; i++) {
+        result.push(entries[i][0]);
+    }
+    return result;
+};
+==========================================================================================================================================================================
