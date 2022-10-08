@@ -5486,3 +5486,34 @@ function maxProduct(nums) {
   return res;
 }
 ==============================================================================================================================================================================
+ Subarray Sum Equals K:
+/* https://www.youtube.com/watch?v=MHocw0bP1rA
+var subarraySum = function(nums, k) {
+    let count =0;
+    for(let i =0; i<nums.length; i++){
+        let sum = 0;
+        for(let j=i; j<nums.length; j++){
+            sum += nums[j]
+            if(sum===k){
+                count++;
+            }
+        }
+    }
+    return count;
+    
+};
+console.log(subarraySum([1,2,3],3))
+------------------------------------------------
+*/
+const subarraySum = (nums, k) => {
+    const hashmap = {0: 1}
+    //making a prefix array sum, where we assuming sum is zero and its freq is 1.
+    let count = 0, total = 0
+    for(const num of nums) {
+        total += num
+        if(hashmap[total - k]) count += hashmap[total - k] //prefix-k
+        hashmap[total] ? hashmap[total]++ : hashmap[total] = 1
+    }
+    return count
+};
+===========================================================================================================================================================================
