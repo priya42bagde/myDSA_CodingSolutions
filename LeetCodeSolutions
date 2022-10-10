@@ -5535,3 +5535,53 @@ const lowestCommonAncestor = (root, p, q) => {
     return root              // p is in one side and q is in the other
 };
 =====================================================================================================================================================================
+Symmetric Tree :
+/*var isSymmetric = function(root) {
+    const isMirror = (t1, t2) => {
+        if (t1 === null && t2 === null) {
+            return true;
+        }
+        if (t1 === null || t2 === null) {
+            return false;
+        }
+        return t1.val === t2.val 
+            && isMirror(t1.left, t2.right) 
+            && isMirror(t1.right, t2.left);
+    };
+    return isMirror(root, root);
+};
+------------------------------------------------
+var isSymmetric = function(root) {
+  if(!root) return true;
+  return dfs(root.left, root.right);
+};
+
+function dfs(s, t){
+  if(!s && !t) return true;
+  if(!s || !t) return false;
+  if(s.val !== t.val) return false;
+  
+  return dfs(s.left, t.right) && dfs(s.right, t.left)
+}
+---------------------------------------------
+    */
+var isSymmetric = function(root) {
+    const queue = [];
+    
+    queue.push(root, root);
+    
+    while (queue.length > 0) {
+        const node1 = queue.shift();
+        const node2 = queue.shift();
+        
+        if (node1 == null && node2 == null) continue;
+        if (node1 == null || node2 == null) return false;
+        if (node1.val != node2.val) return false;
+        
+        queue.push(node1.left, node2.right);            
+        queue.push(node1.right, node2.left);
+    }
+    
+    return true;
+};
+====================================================================================================================================================================
