@@ -5585,3 +5585,38 @@ var isSymmetric = function(root) {
     return true;
 };
 ====================================================================================================================================================================
+Validate Binary Search Tree:
+/*var isValidBST = function(root, min=null, max=null) {
+    if (!root) return true;
+    if (min && root.val <= min.val) return false;
+    if (max && root.val >= max.val) return false;
+    return isValidBST(root.left, min, root) && isValidBST(root.right, root, max);
+};
+---------------------------------------------------------
+
+function isValidBST(root, min, max) {
+  if (!root) { 
+    return true;
+  }
+
+  if (min !== undefined && root.val <= min) {
+    return false;
+  }
+
+  if (max !== undefined && root.val >= max) { 
+    return false;
+  }
+ 
+  return isValidBST(root.left, min, root.val) && isValidBST(root.right, root.val, max); 
+}
+---------------------------------------------------------
+    */var isValidBST = function(root, lower = -Infinity, upper = Infinity) {
+    if (!root) return true;
+    
+    let val = root.val;
+    
+    if (val <= lower || val >= upper) return false; 
+    
+    return isValidBST(root.left, lower, val) && isValidBST(root.right, val, upper)
+};
+========================================================================================================================================================================
