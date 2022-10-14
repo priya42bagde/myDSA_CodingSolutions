@@ -5655,7 +5655,98 @@ var subsetsWithDup = function(nums) {
     return result;
 };
 ========================================================================================================================================================================
+Valid Parenthesis String:
+/*let checkValidString = S => {
+    let N = S.length;
+    let go = (i = 0, open = 0) => {
+        if (i == N)
+            return open == 0;
+        if (open < 0)
+            return false;
+        if (S[i] == '(') return go(i + 1, open + 1);
+        if (S[i] == ')') return go(i + 1, open - 1);
+        return go(i + 1, open - 1) || go(i + 1, open + 1) || go(i + 1, open); // '*' --> '(' || ')' || ''
+    };
+    return go();
+};
+------------------------------------
+const checkValidString = s => {
+    let lo = 0;
+    let hi = 0;
+    
+    for (const c of s) {
+        lo += c === '(' ? 1 : -1;
+        hi += c !== ')' ? 1 : -1;
+        if (hi < 0) break;
+        lo = Math.max(lo, 0);
+    }
+    
+    return lo === 0;
+};
+------------------------------------
+var checkValidString = function (s) {
+  let lmin = 0;
+  let lmax = 0;
 
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] === "(") {
+      lmin++;
+      lmax++;
+    }
+    if (s[i] === ")") {
+      lmin--;
+      lmax--;
+    }
+    if (s[i] === "*") {
+      lmin--;
+      lmax++;
+    }
+    if (lmin < 0) lmin++;
+    if (lmax < 0) return false;
+  }
+  return lmin === 0;
+};
+console.log(checkValidString((*))))
+------------------------------------------
+*/
+var checkValidString = function(s) {
+    
+    const openStack = [];
+    const starStack = [];
+    
+    for(let i = 0; i < s.length; i++) {
+        
+        if(s[i] === '(') {
+            openStack.push(i);
+        } else if (s[i] === '*') {
+            starStack.push(i);
+        } else {
+            if(openStack.length > 0) {
+                openStack.pop();
+            } else if(starStack.length > 0) {
+                starStack.pop();
+            } else {
+                return false;
+            }
+        }
+    }
+
+    let i = openStack.length - 1;
+    let j = starStack.length - 1;
+    
+    while(openStack[i] < starStack[j]) {
+        openStack.pop();
+        starStack.pop();
+        i--;
+        j--;
+    }
+    
+    if(openStack.length === 0) {
+        return true;
+    } else {
+        return false;
+    }
+};
 ========================================================================================================================================================================
 
 ========================================================================================================================================================================
