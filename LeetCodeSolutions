@@ -5901,7 +5901,81 @@ var shuffle = function(nums, n) {
     return res 
 };
 ========================================================================================================================================================================
+Second Largest Digit in a String :
+var secondHighest = function(s) {
+    const numbers = new Set('0123456789'); 
+    let max = -1, secondMax = -1;
+    for (const char of s) {
+        if (!numbers.has(char)) {
+            continue; //not run for alphabets
+        }
+        
+        const num = Number(char);
+        
+        if (num === max) {
+            continue;
+        }
+        
+        if (num > max) {
+            secondMax = max;
+            max = num;
+            continue;
+        }
+        
+        if (num > secondMax) {
+            secondMax = num;
+        }
+    }
+    
+    return secondMax;
+};
+/*------------------------------------------------
+var secondHighest = function(s) {
+    const res = [...new Set(s.split(""))].filter(x => !isNaN(x)).sort((a, b) => b-a);
+    return res.length < 2 ? -1 : res[1];
+}; 
+------------------------------------------------
+var secondHighest = function(s) {
+  let number_arr = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
 
+  let arr = []
+  for(const element of s){
+    if(number_arr.includes(element)){
+      arr.push(element)
+    }
+  }
+  let sorted_arr = [... new Set(arr)].sort((a,b) => a-b)
+  let result = sorted_arr[sorted_arr.length -2]
+
+
+  return result || -1
+};
+----------------------------------------------
+var secondHighest = function(s) {
+    let result = new Set();
+    for(let val of s){
+      if(!isNaN(val) ){
+        result.add(+val)
+      }
+    }
+  let sorted = Array.from(result).sort((a,b) => b-a);
+  return sorted.length <= 1 ? -1 : sorted[1];    
+};
+-----------------------------------------------
+var secondHighest = function(s) {
+    let result = []
+    for(let character of s){
+        if(Number(character)){
+            result.push(+character)
+        }
+    }
+    
+    result.sort((a,b)=>b-a)
+    return result.length ? result[1] : -1
+};
+//console.log(secondHighest("dfa12321afd"))
+----------------------------------------------
+*/
 ========================================================================================================================================================================
 ========================================================================================================================================================================
 ========================================================================================================================================================================
