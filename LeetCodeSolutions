@@ -164,6 +164,17 @@ const fib = n => {
     
     return arr[n];
 };
+--------------------------------------------------------
+function fibbo(num){
+let arr = [0,1];
+  for(let i=0; i< num; i++){
+      arr<2 
+      ? arr 
+      : arr.push(arr[i]+arr[i+1])
+  }
+return arr
+}
+console.log(fibbo(5)) 
 ========================================================================================================================================================================
  Search Insert Position:
 var searchInsert = function(nums, target) {
